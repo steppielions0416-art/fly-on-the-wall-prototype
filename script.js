@@ -7,6 +7,11 @@
   const dashboard = document.getElementById("companyDashboard");
   const deepDive = document.getElementById("deepDiveContent");
   const dialog = document.getElementById("evidenceDialog");
+  const analysisStatus = document.getElementById("analysisStatus");
+  const analysisHeadline = document.getElementById("analysisHeadline");
+  const analysisDetail = document.getElementById("analysisDetail");
+  const compareSelect = document.getElementById("compareCompany");
+  const compareButton = document.getElementById("compareButton");
 
   let activeCompanyKey = "amazon";
   let activeTab = "stability";
@@ -16,6 +21,11 @@
     opt.value = company.name;
     opt.dataset.key = key;
     options.appendChild(opt);
+
+    const compareOpt = document.createElement("option");
+    compareOpt.value = key;
+    compareOpt.textContent = company.name;
+    compareSelect.appendChild(compareOpt);
   });
 
   function findCompanyKey(value) {
@@ -27,7 +37,7 @@
     })?.[0] || null;
   }
 
-  function renderCompany(key) {
+  async function renderCompany(key) {
     const company = companies[key];
     if (!company) return;
     activeCompanyKey = key;
@@ -35,6 +45,16 @@
     message.textContent = "";
     dashboard.hidden = false;
     searchInput.value = company.name;
+
+    analysisStatus.hidden = false;
+    analysisHeadline.textContent = "Analyzing " + company.name + "…";
+    analysisDetail.textContent = "Checking stability, hiring, employee, customer and credibility signals.";
+    await wait(260);
+    analysisDetail.textContent = "Cross-reading grades, risks and source strength.";
+    await wait(260);
+    analysisDetail.textContent = "Building the job-seeker brief.";
+    await wait(260);
+    analysisStatus.hidden = true;
 
     document.getElementById("companyIndustry").textContent = company.industry;
     document.getElementById("companyName").textContent = company.name;
@@ -50,6 +70,10 @@
       card.innerHTML = "<span>" + escapeHtml(label) + "</span><strong>" + escapeHtml(grade) + "</strong>";
       gradeGrid.appendChild(card);
     });
+
+    renderBizzieBrief(company);
+    renderAskFly(company);
+    syncCompareOptions(key);
 
     const findings = document.getElementById("flyFindings");
     findings.innerHTML = "";
@@ -115,7 +139,7 @@
       const sourceId = row[4];
       return "<tr><td><strong>" + escapeHtml(row[0]) + "</strong></td><td>" + escapeHtml(row[1]) +
         "</td><td>" + escapeHtml(row[2]) + "</td><td>" + escapeHtml(row[3]) + "</td><td>" +
-        (sourceId ? '<button type="button" class="source-btn" data-source="' + escapeAttribute(sourceId) + '">Evidence</button>' : "") +
+        (sourceId ? '<button type="button" class="source-btn" data-source="' + escapeAttribute(sourceId) + '">Evidence</button><div class="evidence-strength">' + escapeHtml(sourceStrength(company.sources[sourceId])) + '</div>' : "") +
         "</td></tr>";
     }).join("");
 
@@ -143,7 +167,7 @@
   function submitSearch() {
     const key = findCompanyKey(searchInput.value);
     if (!key) {
-      message.textContent = "This prototype currently includes Amazon and Cruva. Try one of those demo companies.";
+      message.textContent = "That company is not loaded into this prototype yet. Choose one of the available demo companies.";
       return;
     }
     renderCompany(key);
@@ -161,6 +185,103 @@
   document.querySelectorAll(".deep-dive-nav button").forEach(btn => {
     btn.addEventListener("click", () => renderTab(btn.dataset.tab));
   });
+
+  function renderBizzieBrief(company) {
+    const good = company.findings.find(x => x.type === "good") || company.findings[0];
+    const watch = company.findings.find(x => x.type === "watch" || x.type === "risk") || company.findings[1] || company.findings[0];
+    const recent = company.findings[company.findings.length - 1] || good;
+    const cards = [
+      ["Fly's read", company.overallGrade + " overall", company.readout.good],
+      ["Biggest opportunity", good?.title || "Positive signal", good?.text || company.readout.good],
+      ["Biggest risk", watch?.title || "Watch signal", watch?.text || company.readout.watch],
+      ["Ask before accepting", "Pressure-test the team", company.readout.ask]
+    ];
+    document.getElementById("bizzieBrief").innerHTML = cards.map(([label,title,text]) =>
+      '<article class="brief-card"><span>' + escapeHtml(label) + '</span><strong>' +
+      escapeHtml(title) + '</strong><p>' + escapeHtml(text) + '</p></article>'
+    ).join("");
+  }
+
+  function renderAskFly(company) {
+    const prompts = [
+      ["Is this company stable?", "stability"],
+      ["Are the jobs real?", "jobs"],
+      ["Why should I be cautious?", "risk"],
+      ["What should I ask in the interview?", "interview"]
+    ];
+    const wrap = document.getElementById("askFlyPrompts");
+    wrap.innerHTML = prompts.map(([label,key]) =>
+      '<button class="prompt-chip" type="button" data-ask="' + key + '">' + escapeHtml(label) + '</button>'
+    ).join("");
+    wrap.querySelectorAll("[data-ask]").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const box = document.getElementById("askFlyAnswer");
+        box.classList.add("loading");
+        box.innerHTML = '<span class="answer-kicker">Fly is reading the research…</span><p>Connecting the strongest signals.</p>';
+        await wait(420);
+        const answer = answerQuestion(company, btn.dataset.ask);
+        box.classList.remove("loading");
+        box.innerHTML = '<span class="answer-kicker">' + escapeHtml(btn.textContent) + '</span><p>' + escapeHtml(answer) + '</p>';
+      });
+    });
+    document.getElementById("askFlyAnswer").innerHTML =
+      '<span class="answer-kicker">Choose a question</span><p>Fly will answer using the company research already loaded into this prototype.</p>';
+  }
+
+  function answerQuestion(company, type) {
+    const risk = company.findings.find(x => x.type === "risk" || x.type === "watch");
+    if (type === "stability") {
+      return "Fly's read: " + company.grades["Business Stability"] + " for business stability. " +
+        company.readout.good + " The important caveat: " + company.readout.watch;
+    }
+    if (type === "jobs") {
+      return "Job credibility is graded " + company.grades["Job Credibility"] +
+        ". The prototype separates whether a posting exists from whether the team looks durable. " +
+        (company.tabs.credibility?.intro || company.readout.watch);
+    }
+    if (type === "risk") {
+      return (risk ? risk.title + ": " + risk.text + " " : "") + company.readout.watch;
+    }
+    return company.readout.ask;
+  }
+
+  function syncCompareOptions(currentKey) {
+    Array.from(compareSelect.options).forEach(opt => opt.disabled = opt.value === currentKey);
+    const firstAvailable = Array.from(compareSelect.options).find(opt => !opt.disabled);
+    if (firstAvailable) compareSelect.value = firstAvailable.value;
+    document.getElementById("compareResult").innerHTML = "<p>Choose another demo company to compare grades and risk signals.</p>";
+  }
+
+  function renderCompare() {
+    const left = companies[activeCompanyKey];
+    const right = companies[compareSelect.value];
+    if (!left || !right) return;
+    const labels = ["Overall","Business Stability","Hiring & Workforce","Employee Sentiment","Customer / Product","Job Credibility"];
+    const rows = labels.map(label => {
+      const lv = label === "Overall" ? left.overallGrade : (left.grades[label] || "—");
+      const rv = label === "Overall" ? right.overallGrade : (right.grades[label] || "—");
+      return '<div class="compare-score-row"><span>' + escapeHtml(label) + '</span><span><strong>' +
+        escapeHtml(lv) + '</strong> vs <strong>' + escapeHtml(rv) + '</strong></span></div>';
+    }).join("");
+    document.getElementById("compareResult").innerHTML =
+      '<p><strong>' + escapeHtml(left.name) + '</strong> vs <strong>' + escapeHtml(right.name) +
+      '</strong></p>' + rows;
+  }
+
+  function sourceStrength(src) {
+    if (!src || !src.url) return "Source";
+    const u = src.url.toLowerCase();
+    if (u.includes("sec.gov") || u.includes("ftc.gov") || u.includes("osha.gov")) return "Primary public record";
+    if (u.includes("reuters.com") || u.includes("theacsi.com")) return "Independent";
+    if (u.includes("reddit.com")) return "Community signal";
+    return "First-party";
+  }
+
+  function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  compareButton.addEventListener("click", renderCompare);
 
   function escapeHtml(value) {
     return String(value ?? "").replace(/[&<>"']/g, char => ({
