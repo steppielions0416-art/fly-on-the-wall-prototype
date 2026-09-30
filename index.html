@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Fly on the Wall — company intelligence for job seekers." />
+  <title>Fly on the Wall</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">F</div>
+      <div>
+        <div class="brand-name">Fly on the Wall</div>
+        <div class="brand-tagline">Swat away the corporate spin. Find the truth.</div>
+      </div>
+    </div>
+    <div class="prototype-badge">Prototype</div>
+  </header>
+
+  <main class="app-shell">
+    <section class="hero">
+      <p class="eyebrow">Company intelligence built for job seekers</p>
+      <h1>Know what you’re walking into.</h1>
+      <p class="hero-copy">Search a company to see financial stability, hiring signals, employee sentiment, customer strength, product position, and the evidence behind the grade.</p>
+
+      <form id="companySearchForm" class="search-wrap" role="search">
+        <label class="sr-only" for="companySearch">Search a company</label>
+        <input id="companySearch" list="companyOptions" autocomplete="off" placeholder="Search Amazon or Cruva…" />
+        <datalist id="companyOptions"></datalist>
+        <button type="submit">Research company</button>
+      </form>
+
+      <div class="demo-pills" aria-label="Demo companies">
+        <span>Try a demo:</span>
+        <button type="button" class="demo-company" data-company="amazon">Amazon</button>
+        <button type="button" class="demo-company" data-company="cruva">Cruva</button>
+      </div>
+      <p id="searchMessage" class="search-message" aria-live="polite"></p>
+    </section>
+
+    <section id="companyDashboard" class="dashboard" hidden>
+      <div class="company-hero">
+        <div>
+          <p class="eyebrow" id="companyIndustry"></p>
+          <h2 id="companyName"></h2>
+          <p id="companyMeta" class="company-meta"></p>
+        </div>
+        <div class="overall-grade-card">
+          <span>Overall Company Grade</span>
+          <strong id="overallGrade"></strong>
+          <small id="gradeUpdated"></small>
+        </div>
+      </div>
+
+      <div id="gradeGrid" class="grade-grid"></div>
+
+      <section class="insight-panel">
+        <div class="section-heading-row">
+          <div>
+            <p class="eyebrow">Fast read</p>
+            <h3>What Fly Found</h3>
+          </div>
+          <span id="signalCount" class="signal-count"></span>
+        </div>
+        <div id="flyFindings" class="findings-grid"></div>
+      </section>
+
+      <section class="snapshot-grid">
+        <article class="panel">
+          <p class="eyebrow">Hiring snapshot</p>
+          <h3>Where the company is moving</h3>
+          <div id="hiringSnapshot" class="metric-list"></div>
+        </article>
+        <article class="panel">
+          <p class="eyebrow">Job seeker readout</p>
+          <h3>What to ask before you say yes</h3>
+          <div id="jobSeekerReadout"></div>
+        </article>
+      </section>
+
+      <nav class="deep-dive-nav" aria-label="Company deep dives">
+        <button type="button" data-tab="stability" class="active">Stability</button>
+        <button type="button" data-tab="hiring">Hiring</button>
+        <button type="button" data-tab="employees">Employees</button>
+        <button type="button" data-tab="customers">Customers & Product</button>
+        <button type="button" data-tab="credibility">Credibility</button>
+        <button type="button" data-tab="sources">Sources</button>
+      </nav>
+
+      <section id="deepDiveContent" class="deep-dive-content" aria-live="polite"></section>
+    </section>
+  </main>
+
+  <dialog id="evidenceDialog">
+    <form method="dialog" class="dialog-shell">
+      <button class="dialog-close" aria-label="Close evidence">×</button>
+      <p class="eyebrow">Evidence</p>
+      <h3 id="evidenceTitle"></h3>
+      <p id="evidenceSummary"></p>
+      <div id="evidenceSources"></div>
+    </form>
+  </dialog>
+
+  <footer>
+    <p>Fly on the Wall prototype · Built for product validation, not investment or employment advice.</p>
+  </footer>
+
+  <script src="companies.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
