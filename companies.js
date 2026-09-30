@@ -13,6 +13,33 @@ window.FLY_COMPANIES = {
       "Customer / Product": "A-",
       "Job Credibility": "B+"
     },
+    decisionLayer: {
+      applyDecision:"Apply With Caution",
+      applyWhy:"Amazon is genuinely hiring at scale, but recent corporate reductions mean the specific team matters more than the company headline.",
+      applyTone:"watch",
+      hiringReality:"Active, but uneven",
+      hiringWhy:"Thousands of openings remain visible while selected corporate organizations continue restructuring.",
+      hiringTone:"watch",
+      ghostJobWatch:"Low–Moderate",
+      ghostWhy:"Official postings are verifiable, but role durability can still vary by organization and backfill status.",
+      ghostTone:"watch",
+      ats:"Amazon Jobs / internal system",
+      atsWhy:"The public application flow is through Amazon Jobs; Fly has not verified a third-party ATS for this profile.",
+      aiHiring:"Unknown",
+      aiWhy:"Fly found no company-specific public evidence in this research set confirming AI candidate ranking or rejection.",
+      aiTone:"unknown",
+      timeWaste:"Moderate",
+      timeWasteWhy:"Application burden varies by role; the bigger risk is investing in a team undergoing reorganization.",
+      timeWasteTone:"watch",
+      applicationPath:[
+        ["Career site","Verified","Amazon Jobs"],
+        ["ATS","Internal / unknown","No third-party ATS confirmed"],
+        ["Automated screening","Unknown","No verified evidence loaded"],
+        ["Recruiter","Likely human review"],
+        ["Hiring manager","Role dependent"],
+        ["Interview","Role dependent"]
+      ]
+    },
     findings: [
       {type:"good", title:"The business is financially strong", text:"Q2 2026 sales reached $200.6B, up 20% year over year, while operating income rose 43%."},
       {type:"watch", title:"Strong company does not mean safe team", text:"Amazon cut about 16,000 corporate roles in January 2026 and made additional AGI cuts in July."},
@@ -119,6 +146,33 @@ window.FLY_COMPANIES = {
       "Customer / Product": "B+",
       "Job Credibility": "A-"
     },
+    decisionLayer: {
+      applyDecision:"Apply Now — Verify Fit",
+      applyWhy:"Hiring intensity is high relative to company size and the openings are supported by a live first-party careers page.",
+      applyTone:"good",
+      hiringReality:"Expansion-stage",
+      hiringWhy:"Six openings against an approximately 11-person team points to aggressive growth rather than passive posting.",
+      hiringTone:"good",
+      ghostJobWatch:"Low–Moderate",
+      ghostWhy:"Openings are live in Ashby, though some roles have remained visible for 30+ days.",
+      ghostTone:"watch",
+      ats:"Ashby",
+      atsWhy:"Cruva's live application workflow uses Ashby.",
+      aiHiring:"Possible",
+      aiWhy:"Ashby offers automation and AI-assisted recruiting capabilities, but Fly has no evidence that Cruva enables AI ranking or rejection.",
+      aiTone:"watch",
+      timeWaste:"Low–Moderate",
+      timeWasteWhy:"The main uncertainty is startup speed and process variation, not evidence of a long or burdensome application flow.",
+      timeWasteTone:"watch",
+      applicationPath:[
+        ["Career site","Verified","Cruva careers"],
+        ["ATS","Ashby","Confirmed"],
+        ["Automated screening","Possible","No employer-specific confirmation"],
+        ["Recruiter","Likely human"],
+        ["Hiring manager","Likely direct"],
+        ["Interview","Unknown"]
+      ]
+    },
     findings: [
       {type:"good", title:"Profitable and bootstrapped", text:"Cruva's public hiring materials describe the business as profitable with no outside capital dependency."},
       {type:"good", title:"Hiring is expansion-stage", text:"Six openings on an approximately 11-person team is an unusually high hiring intensity."},
@@ -218,6 +272,33 @@ window.FLY_COMPANIES = {
       "Employee Sentiment": "C",
       "Customer / Product": "A-",
       "Job Credibility": "D+"
+    },
+    decisionLayer: {
+      applyDecision:"Verify First",
+      applyWhy:"BNY is financially strong and the roles are real, but repeated reposting in some job families weakens confidence that every requisition is actively converting candidates now.",
+      applyTone:"watch",
+      hiringReality:"Mixed",
+      hiringWhy:"There is a visible Houston hiring cluster, but company headcount has declined for multiple years while automation expands.",
+      hiringTone:"watch",
+      ghostJobWatch:"Elevated",
+      ghostWhy:"Near-identical VP Client Operations roles have resurfaced across multiple months and requisition IDs.",
+      ghostTone:"risk",
+      ats:"Oracle Recruiting",
+      atsWhy:"The official BNY requisition is hosted on Oracle Cloud Candidate Experience.",
+      aiHiring:"Possible",
+      aiWhy:"Oracle recruiting products support automation and AI features, but Fly has no BNY-specific proof that AI is ranking or rejecting applicants.",
+      aiTone:"watch",
+      timeWaste:"High for repeated roles",
+      timeWasteWhy:"Long-running/reposted job families can consume applicant time without clear evidence of near-term conversion.",
+      timeWasteTone:"risk",
+      applicationPath:[
+        ["Career site","Verified","BNY Careers"],
+        ["ATS","Oracle Recruiting","Confirmed from application URL"],
+        ["Automated screening","Possible","Employer use not confirmed"],
+        ["Recruiter","Likely human"],
+        ["Hiring manager","Likely after recruiter screen"],
+        ["Decision","Conversion signal mixed"]
+      ]
     },
     findings: [
       {type:"good", title:"Financial performance is very strong", text:"2025 produced record revenue and net income, and Q2 2026 revenue rose 13% year over year."},
