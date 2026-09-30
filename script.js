@@ -190,19 +190,36 @@
   function renderDecisionLayer(company) {
     const d = company.decisionLayer || {};
     const cards = [
-      ["Should I apply?", d.applyDecision || "Verify First", d.applyWhy || "Fly does not yet have enough evidence for a stronger call.", d.applyTone || "watch", true],
-      ["Hiring Reality", d.hiringReality || "Unknown", d.hiringWhy || "Current hiring direction is not yet established.", d.hiringTone || "unknown"],
-      ["Ghost Job Watch", d.ghostJobWatch || "Unknown", d.ghostWhy || "Not enough historical posting evidence yet.", d.ghostTone || "unknown"],
-      ["ATS", d.ats || "Unknown", d.atsWhy || "Applicant tracking system not confidently identified.", "unknown"],
-      ["AI Hiring Signal", d.aiHiring || "Unknown", d.aiWhy || "No verified public evidence found.", d.aiTone || "unknown"],
-      ["Time-Waste Warning", d.timeWaste || "Unknown", d.timeWasteWhy || "Application burden is not yet fully mapped.", d.timeWasteTone || "unknown"]
+      {label:"Should I Apply?", icon:"✓", title:d.applyDecision || "Verify First", text:d.applyWhy || "Fly does not yet have enough evidence for a stronger call.", tone:d.applyTone || "watch", cls:"decision-hero"},
+      {label:"Ghost Job Watch", icon:"G", title:d.ghostJobWatch || "Unknown", text:d.ghostWhy || "Not enough historical posting evidence yet.", tone:d.ghostTone || "unknown", cls:"decision-critical"},
+      {label:"AI Hiring Signal", icon:"AI", title:d.aiHiring || "Unknown", text:d.aiWhy || "No verified public evidence found.", tone:d.aiTone || "unknown", cls:"decision-critical"},
+      {label:"Time-Waste Warning", icon:"T", title:d.timeWaste || "Unknown", text:d.timeWasteWhy || "Application burden is not yet fully mapped.", tone:d.timeWasteTone || "unknown", cls:"decision-critical"},
+      {label:"Hiring Reality", icon:"↗", title:d.hiringReality || "Unknown", text:d.hiringWhy || "Current hiring direction is not yet established.", tone:d.hiringTone || "unknown", cls:"decision-critical"},
+      {label:"ATS", icon:"ATS", title:d.ats || "Unknown", text:d.atsWhy || "Applicant tracking system not confidently identified.", tone:"unknown", cls:"decision-support"}
     ];
-    document.getElementById("decisionLayer").innerHTML = cards.map(([label,title,text,tone,primary]) =>
-      '<article class="decision-card' + (primary ? ' primary' : '') + '"><span class="decision-label">' +
-      escapeHtml(label) + '</span><strong>' + escapeHtml(title) + '</strong><p>' +
-      escapeHtml(text) + '</p><span class="decision-status ' + escapeAttribute(tone) + '">' +
-      escapeHtml(statusLabel(tone)) + '</span></article>'
-    ).join("");
+
+    document.getElementById("decisionLayer").innerHTML = cards.map((card, i) => {
+      const shortText = firstSentence(card.text);
+      const hasMore = shortText.length < String(card.text).trim().length;
+      return '<article class="decision-card ' + card.cls + ' tone-' + escapeAttribute(card.tone) + '">' +
+        '<div class="decision-topline"><span class="decision-icon">' + escapeHtml(card.icon) + '</span>' +
+        '<span class="decision-label">' + escapeHtml(card.label) + '</span></div>' +
+        '<strong class="decision-answer">' + escapeHtml(card.title) + '</strong>' +
+        '<p class="decision-summary">' + escapeHtml(shortText) + '</p>' +
+        (hasMore ? '<button type="button" class="decision-why" data-decision-detail="decision-detail-' + i + '">Why?</button>' : '') +
+        '<p id="decision-detail-' + i + '" class="decision-detail" hidden>' + escapeHtml(card.text) + '</p>' +
+        '<span class="decision-status ' + escapeAttribute(card.tone) + '">' + escapeHtml(statusLabel(card.tone)) + '</span>' +
+        '</article>';
+    }).join("");
+
+    document.querySelectorAll(".decision-why").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const detail = document.getElementById(btn.dataset.decisionDetail);
+        if (!detail) return;
+        detail.hidden = !detail.hidden;
+        btn.textContent = detail.hidden ? "Why?" : "Hide";
+      });
+    });
 
     const path = d.applicationPath || [
       ["Career site","Verified"],
@@ -213,10 +230,18 @@
       ["Interview","Unknown"]
     ];
     document.getElementById("applicationPath").innerHTML =
-      '<h4>What happens after you click Apply?</h4><div class="path-flow">' +
-      path.map(([step,state,note]) => '<div class="path-step"><span>' + escapeHtml(step) + '</span><strong>' +
-      escapeHtml(state) + '</strong>' + (note ? '<em>' + escapeHtml(note) + '</em>' : '') + '</div>').join("") +
+      '<div class="application-path-heading"><div><span class="decision-label">Application Path</span><h4>What happens after you click Apply?</h4></div>' +
+      '<span class="path-note">Verified where possible</span></div><div class="path-flow">' +
+      path.map(([step,state,note], index) => '<div class="path-step"><span>' + escapeHtml(step) + '</span><strong>' +
+      escapeHtml(state) + '</strong>' + (note ? '<em>' + escapeHtml(note) + '</em>' : '') +
+      (index < path.length - 1 ? '<b class="path-arrow">→</b>' : '') + '</div>').join("") +
       '</div>';
+  }
+
+  function firstSentence(text) {
+    const value = String(text || "").trim();
+    const match = value.match(/^(.+?[.!?])(?:\s|$)/);
+    return match ? match[1] : value;
   }
 
   function statusLabel(tone) {
