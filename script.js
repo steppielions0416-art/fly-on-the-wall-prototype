@@ -71,6 +71,7 @@
       gradeGrid.appendChild(card);
     });
 
+    renderDecisionLayer(company);
     renderBizzieBrief(company);
     renderAskFly(company);
     syncCompareOptions(key);
@@ -185,6 +186,45 @@
   document.querySelectorAll(".deep-dive-nav button").forEach(btn => {
     btn.addEventListener("click", () => renderTab(btn.dataset.tab));
   });
+
+  function renderDecisionLayer(company) {
+    const d = company.decisionLayer || {};
+    const cards = [
+      ["Should I apply?", d.applyDecision || "Verify First", d.applyWhy || "Fly does not yet have enough evidence for a stronger call.", d.applyTone || "watch", true],
+      ["Hiring Reality", d.hiringReality || "Unknown", d.hiringWhy || "Current hiring direction is not yet established.", d.hiringTone || "unknown"],
+      ["Ghost Job Watch", d.ghostJobWatch || "Unknown", d.ghostWhy || "Not enough historical posting evidence yet.", d.ghostTone || "unknown"],
+      ["ATS", d.ats || "Unknown", d.atsWhy || "Applicant tracking system not confidently identified.", "unknown"],
+      ["AI Hiring Signal", d.aiHiring || "Unknown", d.aiWhy || "No verified public evidence found.", d.aiTone || "unknown"],
+      ["Time-Waste Warning", d.timeWaste || "Unknown", d.timeWasteWhy || "Application burden is not yet fully mapped.", d.timeWasteTone || "unknown"]
+    ];
+    document.getElementById("decisionLayer").innerHTML = cards.map(([label,title,text,tone,primary]) =>
+      '<article class="decision-card' + (primary ? ' primary' : '') + '"><span class="decision-label">' +
+      escapeHtml(label) + '</span><strong>' + escapeHtml(title) + '</strong><p>' +
+      escapeHtml(text) + '</p><span class="decision-status ' + escapeAttribute(tone) + '">' +
+      escapeHtml(statusLabel(tone)) + '</span></article>'
+    ).join("");
+
+    const path = d.applicationPath || [
+      ["Career site","Verified"],
+      ["ATS","Unknown"],
+      ["Screening","Unknown"],
+      ["Recruiter","Likely human"],
+      ["Hiring manager","Unknown"],
+      ["Interview","Unknown"]
+    ];
+    document.getElementById("applicationPath").innerHTML =
+      '<h4>What happens after you click Apply?</h4><div class="path-flow">' +
+      path.map(([step,state,note]) => '<div class="path-step"><span>' + escapeHtml(step) + '</span><strong>' +
+      escapeHtml(state) + '</strong>' + (note ? '<em>' + escapeHtml(note) + '</em>' : '') + '</div>').join("") +
+      '</div>';
+  }
+
+  function statusLabel(tone) {
+    if (tone === "good") return "Positive signal";
+    if (tone === "risk") return "Concern";
+    if (tone === "watch") return "Watch";
+    return "Unknown / verify";
+  }
 
   function renderBizzieBrief(company) {
     const good = company.findings.find(x => x.type === "good") || company.findings[0];
