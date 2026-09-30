@@ -592,5 +592,102 @@ window.FLY_COMPANIES = {
     sources:{
       "vrt-site":{name:"Vertiv Investor Relations",url:"https://investors.vertiv.com/",note:"Public financial, workforce and business information."}
     }
+  },
+
+  caz: {
+    name:"CAZ Investments",
+    aliases:["caz","caz investments","caz investments lp"],
+    industry:"Alternative Investments · Private Markets · Asset Management",
+    meta:"Houston, TX · Founded 2001 · ~83 employees · Private company",
+    updated:"Updated Sep 2026",
+    overallGrade:"B",
+    grades:{
+      "Business Stability":"B+",
+      "Hiring & Workforce":"B",
+      "Employee Sentiment":"—",
+      "Customer / Product":"B+",
+      "Job Credibility":"C"
+    },
+    decisionLayer:{
+      applyDecision:"Verify First",
+      applyWhy:"CAZ is clearly growing and actively recruiting, but the target VP Portfolio Management & Operations role has repeatedly closed and reappeared in 2026, so role-level conversion needs verification.",
+      applyTone:"watch",
+      hiringReality:"Active, with recycled target role",
+      hiringWhy:"Broad recruiting is real across investment, operations, marketing and investor-relations functions, but the target role has shown repeat close/reopen behavior.",
+      hiringTone:"watch",
+      ghostJobWatch:"Elevated",
+      ghostWhy:"The same VP Portfolio Management & Operations title was recorded as closed in April and July 2026 and is live again now.",
+      ghostTone:"risk",
+      ats:"Unknown",
+      atsWhy:"Fly has verified CAZ's own careers page, but the candidate-facing ATS has not yet been confidently identified.",
+      aiHiring:"Unknown",
+      aiWhy:"Fly found no company-specific public evidence in this research set confirming AI candidate ranking or rejection.",
+      aiTone:"unknown",
+      timeWaste:"High for the repeated VP role",
+      timeWasteWhy:"Repeated posting cycles and weak exact-role hire evidence mean applicants should verify funded headcount and current interview activity before investing heavily.",
+      timeWasteTone:"risk",
+      applicationPath:[
+        ["Career site","Verified","CAZ Careers"],
+        ["ATS","Unknown","Not yet confirmed"],
+        ["Automated screening","Unknown","No employer-specific evidence"],
+        ["Recruiter","Verified role in process","Named talent team visible"],
+        ["Hiring manager","Likely after screen"],
+        ["Decision","Conversion signal mixed"]
+      ]
+    },
+    findings:[
+      {type:"good",title:"Business scale has grown materially",text:"Regulatory AUM reached about $10.83B at year-end 2025, while company materials report more than $11B in assets and continued investor growth."},
+      {type:"good",title:"Broad recruiting is real",text:"Current hiring spans investment diligence, portfolio operations, marketing, capital formation and investor relations, with additional university recruiting activity in September 2026."},
+      {type:"watch",title:"Target role keeps resurfacing",text:"The VP Portfolio Management & Operations role closed at least twice in 2026 and is live again, weakening near-term conversion confidence."},
+      {type:"watch",title:"Private-company financial visibility is limited",text:"CAZ does not publish parent-company revenue, profit, cash-flow or leverage statements, so business strength relies on AUM, fund growth and distribution signals."}
+    ],
+    hiringSnapshot:[
+      ["Regulatory AUM","$10.83B at 12/31/2025"],
+      ["Employees","83 in Mar 2026 ADV-derived data"],
+      ["Current scale","$11B+ assets"],
+      ["Hiring signal","Broad active recruiting"],
+      ["Target-role signal","Repeated close/reopen pattern"]
+    ],
+    readout:{
+      good:"CAZ shows strong growth proxies, expanding distribution and genuine hiring activity across multiple functions.",
+      watch:"The company is private and the target VP Portfolio Management & Operations role has repeatedly resurfaced without strong evidence of a recent exact-role hire.",
+      ask:"Is this role net-new, backfill or pipeline? How many seats are funded? Why did the prior versions close and reopen? Is the team currently interviewing candidates?"
+    },
+    tabs:{
+      stability:{title:"Business Stability",intro:"CAZ shows strong AUM, investor and distribution growth, but private-parent financial transparency is limited.",rows:[
+        ["Regulatory AUM","$10.83B at year-end 2025","Positive","Strong scale signal from regulatory data","caz-adv"],
+        ["Current company scale","$11B+ assets","Positive","Company reports continued growth","caz-home"],
+        ["Investor footprint","9,400+ investors across 41 countries","Positive","Broad distribution footprint","caz-home"],
+        ["Parent financial transparency","No public audited corporate P&L, balance sheet or cash flow","Watch","Limits certainty on profitability and leverage","caz-sec"]
+      ]},
+      hiring:{title:"Hiring & Workforce",intro:"CAZ is actively recruiting, but role-level credibility varies.",rows:[
+        ["Broad hiring","Multiple current roles across investment, operations, marketing and investor relations","Positive","Shows genuine company-wide recruiting activity","caz-careers"],
+        ["University recruiting","Multiple CAZ roles posted through University of Houston in Sep 2026","Positive","Independent signal of coordinated recruiting","caz-uh"],
+        ["Target role history","VP Portfolio Management & Operations closed at least twice and reopened","Watch","Fresh posting age may not reflect true role age","caz-careers"]
+      ]},
+      employees:{title:"Employee & Workplace",intro:"The public prototype intentionally does not republish restricted third-party review-site content.",rows:[
+        ["Public review layer","Not yet available","Mixed","Fly community reports will eventually populate this section","caz-home"],
+        ["Workplace diligence","Manager stability, workload and team turnover should be verified directly","Watch","Private-company culture can vary materially by team","caz-careers"]
+      ]},
+      customers:{title:"Customer & Product",intro:"CAZ has expanded its private-markets product set and distribution reach.",rows:[
+        ["Distribution","Relationships include SoFi, iCapital and major custodial platforms","Positive","Broadens investor access","caz-sofi"],
+        ["Product expansion","Strategic Opportunities Fund, GP Stakes Fund and additional private-market strategies","Positive","Supports continued product growth","caz-home"],
+        ["Technology","Enhanced Partner Portal launched in 2026","Positive","Signals operating investment in advisor/investor experience","caz-home"]
+      ]},
+      credibility:{title:"Opportunity & Job Credibility",intro:"The target opportunity appears authentic, but repeated reposting lowers confidence that the seat is converting applicants into a hire quickly.",rows:[
+        ["Posting authenticity","Current role appears on CAZ's own careers site","Positive","Confirms employer-authorized opening","caz-careers"],
+        ["Broad hiring","Other current roles and recent recruiting activity are visible","Positive","Company-wide hiring is real","caz-careers"],
+        ["Repost pattern","Target title repeatedly closed and reappeared in 2026","Risk","Raises evergreen or pipeline concern","caz-careers"],
+        ["Exact-role conversion","No strong recent exact-role hire evidence found in the research pass","Watch","Verify current interview velocity before investing heavily","caz-careers"]
+      ]}
+    },
+    sources:{
+      "caz-home":{name:"CAZ Investments",url:"https://prod.cazinvestments.com/",note:"Company scale, positioning and current business information."},
+      "caz-careers":{name:"CAZ Investments Careers",url:"https://prod.cazinvestments.com/careers",note:"Primary source for current hiring and target-role verification."},
+      "caz-sec":{name:"SEC — CAZ Strategic Opportunities Fund",url:"https://www.sec.gov/rules-regulations/2026/03/caz-strategic-opportunities-fund-et-al",note:"Regulatory structure and fund-related public record."},
+      "caz-adv":{name:"CAZ Form ADV / regulatory data",url:"https://cazinvestments.com/wp-content/uploads/2023/03/CAZ-Investments-Form-ADV.pdf",note:"Regulatory baseline for adviser scale and AUM history."},
+      "caz-sofi":{name:"SoFi partnership announcement",url:"https://investors.sofi.com/news/news-details/2026/SoFi-Expands-Access-to-Private-Markets-with-Funds-From-CAZ-Investments-and-AngelList-Asset-Management/default.aspx",note:"Third-party confirmation of distribution expansion."},
+      "caz-uh":{name:"University of Houston Career Center",url:"https://careercenter.bauer.uh.edu/companies/caz-investments/jobs/",note:"Independent current recruiting signal."}
+    }
   }
 };
