@@ -20,7 +20,13 @@
     <section class="hero">
       <p class="eyebrow">Company intelligence built for job seekers</p>
       <h1>Know what you’re walking into.</h1>
-      <p class="hero-copy">Search a company to see financial stability, hiring signals, employee sentiment, customer strength, product position, and the evidence behind the grade.</p>
+      <p class="hero-copy">Search a company and Fly will turn scattered public signals into a job-seeker brief: stability, hiring reality, employee risk, customer strength, product position, and the evidence behind every call.</p>
+      <div class="hero-capabilities" aria-label="Prototype capabilities">
+        <span>Analyze signals</span>
+        <span>Ask Fly</span>
+        <span>Compare companies</span>
+        <span>Trace the evidence</span>
+      </div>
 
       <form id="companySearchForm" class="search-wrap" role="search">
         <label class="sr-only" for="companySearch">Search a company</label>
@@ -38,6 +44,14 @@
     </section>
 
     <section id="companyDashboard" class="dashboard" hidden>
+      <section id="analysisStatus" class="analysis-status" hidden>
+        <div class="analysis-orb" aria-hidden="true"></div>
+        <div>
+          <p class="eyebrow">Fly intelligence</p>
+          <strong id="analysisHeadline">Analyzing company signals…</strong>
+          <p id="analysisDetail">Checking business stability, hiring, employee, customer and credibility signals.</p>
+        </div>
+      </section>
       <div class="company-hero">
         <div>
           <p class="eyebrow" id="companyIndustry"></p>
@@ -52,6 +66,17 @@
       </div>
 
       <div id="gradeGrid" class="grade-grid"></div>
+
+      <section class="bizzie-brief">
+        <div class="bizzie-brief-header">
+          <div>
+            <p class="eyebrow">AI-style synthesis</p>
+            <h3>Bizzie Brief</h3>
+          </div>
+          <span class="prototype-ai-badge">Prototype intelligence</span>
+        </div>
+        <div id="bizzieBrief" class="brief-grid"></div>
+      </section>
 
       <section class="insight-panel">
         <div class="section-heading-row">
@@ -74,6 +99,35 @@
           <p class="eyebrow">Job seeker readout</p>
           <h3>What to ask before you say yes</h3>
           <div id="jobSeekerReadout"></div>
+        </article>
+      </section>
+
+      <section class="intelligence-grid">
+        <article class="panel ask-fly-panel">
+          <div class="section-heading-row">
+            <div>
+              <p class="eyebrow">Ask Fly</p>
+              <h3>Interrogate the research</h3>
+            </div>
+            <span class="signal-count">No API required</span>
+          </div>
+          <div id="askFlyPrompts" class="prompt-chips"></div>
+          <div id="askFlyAnswer" class="ask-answer">
+            <span class="answer-kicker">Choose a question</span>
+            <p>Fly will answer using the company research already loaded into this prototype.</p>
+          </div>
+        </article>
+
+        <article class="panel compare-panel">
+          <p class="eyebrow">Compare</p>
+          <h3>Put two companies side by side</h3>
+          <div class="compare-controls">
+            <select id="compareCompany" aria-label="Choose a company to compare"></select>
+            <button id="compareButton" type="button">Compare now</button>
+          </div>
+          <div id="compareResult" class="compare-result">
+            <p>Choose another demo company to compare grades and risk signals.</p>
+          </div>
         </article>
       </section>
 
