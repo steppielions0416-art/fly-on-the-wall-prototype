@@ -607,3 +607,31 @@ footer{padding:30px 20px 46px;text-align:center;color:var(--muted);font-size:12p
   .brand-wordmark{width:72px;max-height:70px}
   .hero-brandmark{width:145px;margin-bottom:14px}
 }
+
+/* Mobile cleanup v3 */
+@media(max-width:700px){
+  html,body{overflow-x:hidden}
+  .site-header{padding:10px 14px;gap:10px}
+  .brand{gap:8px;min-width:0}
+  .brand-wordmark{width:92px;max-height:64px;object-fit:contain}
+  .prototype-badge{font-size:10px;padding:6px 9px}
+  .app-shell{padding:18px 12px 56px;max-width:100%}
+  .hero{padding:12px 0 28px}
+  .hero-brandmark{width:170px;max-width:58vw;margin:0 auto 14px}
+  h1{font-size:38px}
+  .hero-copy{font-size:15px;line-height:1.5}
+  .search-wrap{grid-template-columns:1fr}
+  .search-wrap button{width:100%}
+  .company-hero{flex-direction:column;align-items:stretch;padding:20px;overflow:hidden}
+  .company-hero>div:first-child{min-width:0}
+  #companyIndustry,.company-meta{overflow-wrap:anywhere;word-break:break-word}
+  .overall-grade-card{flex:0 0 auto;width:100%;max-width:none}
+  .grade-grid{grid-template-columns:1fr}
+  .grade-card{min-width:0}
+  .dashboard{gap:16px}
+  .panel,.insight-panel,.deep-dive-content,.decision-layer,.bizzie-brief{padding:18px}
+  .findings-grid,.snapshot-grid,.intelligence-grid{grid-template-columns:1fr}
+  .detail-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .deep-dive-nav{overflow-x:auto;white-space:nowrap;padding-bottom:4px}
+  .path-flow{grid-template-columns:1fr}
+}
