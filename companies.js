@@ -203,5 +203,313 @@ window.FLY_COMPANIES = {
       "cruva-product": {name:"Cruva", url:"https://cruva.com", note:"Product, positioning, customer and pricing information."},
       "cruva-snow": {name:"Cruva / SNOW Case Study", url:"https://cruva.com/case-studies/snow", note:"Company-published customer outcome."}
     }
+  },
+
+  bny: {
+    name: "BNY",
+    aliases: ["bny","bank of new york mellon","bny mellon"],
+    industry: "Financial Services · Asset Servicing · Banking",
+    meta: "New York, NY · Founded 1784 · ~48.1K employees · Public company",
+    updated: "Updated Sep 2026",
+    overallGrade: "B",
+    grades: {
+      "Business Stability": "A",
+      "Hiring & Workforce": "C+",
+      "Employee Sentiment": "C",
+      "Customer / Product": "A-",
+      "Job Credibility": "D+"
+    },
+    findings: [
+      {type:"good", title:"Financial performance is very strong", text:"2025 produced record revenue and net income, and Q2 2026 revenue rose 13% year over year."},
+      {type:"watch", title:"Headcount is moving the other way", text:"Full-time employees fell from 53.4K in 2023 to 48.1K in 2025 while efficiency and AI programs expanded."},
+      {type:"watch", title:"Some roles appear repeatedly", text:"The Houston VP Client Operations family has shown repeated reposting across multiple requisitions and months."},
+      {type:"watch", title:"Strong business does not equal strong applicant conversion", text:"The company is healthy, but repeated listings and ongoing automation make role-by-role diligence important."}
+    ],
+    hiringSnapshot: [
+      ["Employees","~48.1K at Dec 2025"],
+      ["Headcount trend","Down from 53.4K in 2023"],
+      ["Houston signal","Large Client Ops / Processing cluster"],
+      ["Target-role pattern","Repeated VP-level reposting"],
+      ["Hiring reality","Real openings, mixed conversion signal"]
+    ],
+    readout: {
+      good:"BNY is financially strong, profitable and still hiring across multiple operations and service functions.",
+      watch:"Headcount has declined for multiple years while automation and platform consolidation continue. Some job families show repeated repost behavior.",
+      ask:"Is the role net-new, backfill or pipeline? How long has the requisition truly been open? When was the last person hired into this exact team?"
+    },
+    tabs: {
+      stability:{title:"Business Stability",intro:"BNY's business is strong even as the organization becomes leaner.",rows:[
+        ["2025 revenue","$20.1B record revenue","Positive","Strong franchise economics","bny-annual"],
+        ["2025 net income","$5.3B record net income","Positive","High profitability","bny-annual"],
+        ["Q2 2026 revenue","$5.698B, +13% YoY","Positive","Momentum continued into 2026","bny-q2"],
+        ["Headcount","48.1K at Dec 2025, down from 53.4K in 2023","Watch","Efficiency is translating into a smaller workforce","bny-annual"]
+      ]},
+      hiring:{title:"Hiring & Workforce",intro:"Hiring exists, but visible demand sits alongside a shrinking workforce and repeated postings in some job families.",rows:[
+        ["Houston cluster","Multiple Client Ops / Processing / Loans roles","Positive","Function-level demand is real","bny-jobs"],
+        ["Role reposting","Similar VP Client Operations roles resurfaced across months","Watch","May indicate long-running or pipeline recruiting","bny-role"],
+        ["Workforce trend","Multi-year FTE decline","Watch","Open roles do not necessarily mean net expansion","bny-annual"],
+        ["AI / platform shift","Automation and platform consolidation are strategic priorities","Watch","Operations roles may be redesigned as hiring continues","bny-annual"]
+      ]},
+      employees:{title:"Employee & Workplace",intro:"The most defensible public signals are organizational change, RTO and workforce reduction rather than third-party review scores.",rows:[
+        ["Work policy","4 days/week in office since Sep 2025","Watch","Less flexibility for hybrid candidates","bny-rto"],
+        ["Workforce reduction","FTE down materially across 2023-2025","Watch","Job security varies by function","bny-annual"],
+        ["AI training","Broad employee AI enablement","Mixed","Upskilling opportunity alongside automation","bny-annual"]
+      ]},
+      customers:{title:"Customer & Product",intro:"BNY remains a very large, durable institutional financial-services platform.",rows:[
+        ["AUC/A","$62.6T at Jun 2026","Positive","Exceptional institutional scale","bny-q2"],
+        ["AUM","$2.2T at Jun 2026","Positive","Large asset-management franchise","bny-q2"],
+        ["2026 outlook","Revenue outlook raised to +10-11%","Positive","Management sees continued momentum","bny-q2"]
+      ]},
+      credibility:{title:"Opportunity & Job Credibility",intro:"The posting can be authentic while the near-term probability of conversion remains uncertain.",rows:[
+        ["Posting authenticity","Official BNY requisitions are live","Positive","The jobs exist","bny-role"],
+        ["Repost pattern","Near-identical roles have appeared repeatedly","Risk","True role age may be older than the latest posting date","bny-role"],
+        ["Hiring context","Large related Houston role cluster","Mixed","Demand exists, but not every req implies growth","bny-jobs"]
+      ]}
+    },
+    sources:{
+      "bny-annual":{name:"BNY 2025 Annual Report",url:"https://www.bny.com/corporate/global/en/investor-relations/annual-report-2025.html",note:"Revenue, profit, headcount and strategy."},
+      "bny-q2":{name:"BNY Q2 2026 Results",url:"https://www.reuters.com/business/finance/bny-lifts-2026-revenue-forecast-above-estimates-after-record-second-quarter-2026-07-15/",note:"Q2 2026 growth and outlook."},
+      "bny-rto":{name:"Reuters — BNY RTO",url:"https://www.reuters.com/business/world-at-work/bny-asks-employees-return-office-four-days-week-by-september-2025-04-30/",note:"Four-day office requirement."},
+      "bny-role":{name:"BNY Careers — VP Client Operations",url:"https://eofe.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/BNY-Careers/job/78517/",note:"Official requisition used for posting credibility."},
+      "bny-jobs":{name:"BNY Jobs — Texas",url:"https://www.linkedin.com/jobs/bny-jobs-texas",note:"Current Houston/Texas role cluster."}
+    }
+  },
+
+  insightglobal: {
+    name: "Insight Global",
+    aliases:["insight global","ig"],
+    industry:"Staffing · Recruiting · Professional Services",
+    meta:"Atlanta, GA · 25+ years · Large national staffing firm",
+    updated:"Updated Sep 2026",
+    overallGrade:"A-",
+    grades:{
+      "Business Stability":"A",
+      "Hiring & Workforce":"A-",
+      "Employee Sentiment":"B",
+      "Customer / Product":"A-",
+      "Job Credibility":"A-"
+    },
+    findings:[
+      {type:"good",title:"Large, diversified operating scale",text:"Insight Global reports 60K+ placements annually and 2,600+ active customers."},
+      {type:"good",title:"Hiring engine is active",text:"The company reports large placement volume and ongoing internal hiring plans."},
+      {type:"watch",title:"Candidate experience can vary by recruiter",text:"Large staffing operations can produce uneven follow-up, contractor support and conversion experiences."},
+      {type:"watch",title:"Contract-to-hire is not guaranteed",text:"Candidates should verify client budget, conversion history, benefits and who owns support after placement."}
+    ],
+    hiringSnapshot:[
+      ["Annual placements","60K+"],
+      ["Direct placements","7K+ / year"],
+      ["Active customers","2,600+"],
+      ["Fortune 1000 customers","800+"],
+      ["Candidate reality","High opportunity, variable experience"]
+    ],
+    readout:{
+      good:"Scale and client diversification create a large opportunity surface for candidates.",
+      watch:"Candidate experience depends heavily on recruiter, assignment, client and local team.",
+      ask:"Is this role direct hire, contract or contract-to-hire? What is the client's historical conversion rate? Who supports me after placement?"
+    },
+    tabs:{
+      stability:{title:"Agency Health",intro:"Insight Global's scale and diversified client base are the main stability signals.",rows:[
+        ["Placement scale","60K+ placements annually","Positive","Large recurring demand engine","ig-site"],
+        ["Customer base","2,600+ active customers","Positive","Diversification reduces single-client risk","ig-site"],
+        ["Enterprise reach","800+ Fortune 1000 customers","Positive","Broad enterprise footprint","ig-site"]
+      ]},
+      hiring:{title:"Hiring & Opportunity",intro:"This is a high-volume staffing model, so job seekers should distinguish client demand from guaranteed conversion.",rows:[
+        ["Direct placements","7K+ per year","Positive","Shows permanent-placement activity","ig-site"],
+        ["Shortlist speed","Company reports shortlists in ≤48 hours","Positive","Fast operating cadence","ig-site"],
+        ["Conversion","Varies by client and assignment","Watch","Contract-to-hire should never be assumed","ig-site"]
+      ]},
+      employees:{title:"Candidate Experience",intro:"The prototype leaves first-hand candidate reporting to the new Fly review layer rather than republishing third-party reviews.",rows:[
+        ["Recruiter dependence","Experience can vary by recruiter/location","Watch","Ask who owns follow-up and escalation","ig-site"],
+        ["Contract support","Clarify payroll, PTO, benefits and assignment-end process","Watch","Important before accepting","ig-site"]
+      ]},
+      customers:{title:"Market & Operations",intro:"Insight Global serves multiple professional sectors and a large enterprise customer base.",rows:[
+        ["Sector breadth","Technology, healthcare, finance, engineering and more","Positive","Multiple demand pools","ig-site"],
+        ["Technology exposure","1,200+ active customers cited","Positive","Deep technology staffing footprint","ig-site"]
+      ]},
+      credibility:{title:"Opportunity & Job Credibility",intro:"Agency-posted opportunities can be legitimate while still varying in funding, exclusivity and client urgency.",rows:[
+        ["Agency scale","High placement volume","Positive","Strong evidence of real recruiting activity","ig-site"],
+        ["Client dependency","Some openings depend on client-side timing","Watch","Ask whether req is funded and exclusive","ig-site"]
+      ]}
+    },
+    sources:{
+      "ig-site":{name:"Insight Global",url:"https://insightglobal.com/",note:"Company scale, services and operating information."}
+    }
+  },
+
+  revenuecat: {
+    name:"RevenueCat",
+    aliases:["revenuecat","revenue cat"],
+    industry:"Developer Tools · Subscription Infrastructure · SaaS",
+    meta:"San Francisco, CA · Founded 2017 · Private · Series C",
+    updated:"Updated mid-2026",
+    overallGrade:"B+",
+    grades:{
+      "Business Stability":"B+",
+      "Hiring & Workforce":"B",
+      "Employee Sentiment":"—",
+      "Customer / Product":"A-",
+      "Job Credibility":"B+"
+    },
+    findings:[
+      {type:"good",title:"Well-funded private company",text:"Research shows roughly $119M raised with reputable institutional backers."},
+      {type:"good",title:"Strong product reputation",text:"The company has a strong developer-market position in in-app subscription infrastructure."},
+      {type:"watch",title:"Private-company data is noisy",text:"Headcount, valuation and revenue estimates vary widely across sources."},
+      {type:"watch",title:"Culture grade intentionally withheld",text:"The public prototype is not republishing restricted third-party employee-review data."}
+    ],
+    hiringSnapshot:[
+      ["Stage","Series C"],
+      ["Funding","~$119M across reported rounds"],
+      ["Employee estimate","~77–163 across sources"],
+      ["Layoff signal","No major public event found in research"],
+      ["Data quality","Private-company estimates vary"]
+    ],
+    readout:{
+      good:"Strong product-market reputation and reputable backing make RevenueCat worth serious consideration.",
+      watch:"Private-company opacity means exact headcount, valuation, revenue and hiring pace require direct verification.",
+      ask:"What is current headcount growth? Is the role net-new? What are the team's goals, hiring plan and expected workload?"
+    },
+    tabs:{
+      stability:{title:"Business Stability",intro:"Funding quality and product traction are positive, but private-company financials remain less verifiable.",rows:[
+        ["Funding","~$119M reported across 7 rounds","Positive","Strong capital base","rc-site"],
+        ["Stage","Series C","Positive","Established startup rather than seed-stage","rc-site"],
+        ["Data quality","Valuation and headcount estimates conflict","Watch","Verify directly in interviews","rc-site"]
+      ]},
+      hiring:{title:"Hiring & Workforce",intro:"The company appears to be operating from a position of strength, but current hiring intensity should be checked role by role.",rows:[
+        ["Layoffs","No major public layoff event found in research","Positive","No obvious contraction signal","rc-site"],
+        ["Headcount","Estimates vary significantly","Watch","Private-company staffing data is imprecise","rc-site"]
+      ]},
+      employees:{title:"Employee & Workplace",intro:"Third-party review data is intentionally excluded from this public prototype.",rows:[
+        ["Public review layer","Not yet available","Mixed","Fly community reports will eventually populate this section","rc-site"]
+      ]},
+      customers:{title:"Customer & Product",intro:"RevenueCat is a recognized platform for mobile subscription infrastructure.",rows:[
+        ["Core product","Subscription SDK, paywalls and analytics","Positive","Critical developer infrastructure","rc-site"],
+        ["Market position","Strong developer adoption and ecosystem integrations","Positive","Supports durable product relevance","rc-site"]
+      ]},
+      credibility:{title:"Opportunity & Job Credibility",intro:"Role credibility should be assessed from current first-party postings as the demo evolves.",rows:[
+        ["Company stage","Established Series C company","Positive","More durable than an early seed startup","rc-site"]
+      ]}
+    },
+    sources:{
+      "rc-site":{name:"RevenueCat",url:"https://www.revenuecat.com/",note:"Company, product and public business information."}
+    }
+  },
+
+  sensortower: {
+    name:"Sensor Tower",
+    aliases:["sensor tower","sensortower"],
+    industry:"Market Intelligence · Mobile Analytics · Ad Intelligence",
+    meta:"San Francisco, CA · Founded 2013 · Private · Majority-owned by Riverwood Capital",
+    updated:"Updated mid-2026",
+    overallGrade:"B-",
+    grades:{
+      "Business Stability":"B+",
+      "Hiring & Workforce":"C+",
+      "Employee Sentiment":"—",
+      "Customer / Product":"B+",
+      "Job Credibility":"B"
+    },
+    findings:[
+      {type:"good",title:"Business appears durable",text:"Research found a long profitability history, stable institutional ownership and active acquisition strategy."},
+      {type:"good",title:"Product credibility is strong",text:"Sensor Tower data is widely used across enterprise and media contexts."},
+      {type:"watch",title:"Fast M&A creates integration risk",text:"Multiple acquisitions in a relatively short period can create organizational churn."},
+      {type:"watch",title:"Employee review data is intentionally excluded",text:"Fly's public prototype will rely on safer public signals plus future first-party candidate reports."}
+    ],
+    hiringSnapshot:[
+      ["Employees","~348–439 estimated"],
+      ["Ownership","Riverwood Capital majority owner"],
+      ["Recent M&A","data.ai, Playliner, AppMagic"],
+      ["Layoff evidence","No precise public scale verified in current research"],
+      ["Hiring reality","Check team-specific growth vs integration"]
+    ],
+    readout:{
+      good:"The business has credible market positioning and continued investment behind it.",
+      watch:"Acquisition integration and private-company opacity can create team-level uncertainty even when the business is sound.",
+      ask:"Is this role tied to growth, backfill or post-acquisition integration? Which product/team owns the headcount budget?"
+    },
+    tabs:{
+      stability:{title:"Business Stability",intro:"Ownership continuity, profitability claims and acquisitions support the business case, with integration risk as the main watch item.",rows:[
+        ["Ownership","Majority-owned by Riverwood Capital","Positive","Stable institutional backing","st-site"],
+        ["M&A","Multiple acquisitions since 2024","Mixed","Growth signal with integration risk","st-site"],
+        ["Revenue visibility","Private; not independently disclosed","Watch","Limits precision","st-site"]
+      ]},
+      hiring:{title:"Hiring & Workforce",intro:"Hiring should be read in the context of acquisitions and integration.",rows:[
+        ["Team size","Hundreds of employees across estimates","Mixed","Private-company estimates vary","st-site"],
+        ["Integration","Recent acquisitions may reshape teams","Watch","Ask about org design and duplicate functions","st-site"]
+      ]},
+      employees:{title:"Employee & Workplace",intro:"Restricted third-party review data is not republished here.",rows:[
+        ["Fly review layer","Coming soon","Mixed","Future candidate and employee reports will live here","st-site"]
+      ]},
+      customers:{title:"Customer & Product",intro:"Sensor Tower operates a recognized intelligence platform across mobile, digital advertising and market analytics.",rows:[
+        ["Platform breadth","Mobile, ad and market intelligence","Positive","Broad enterprise use cases","st-site"],
+        ["Acquisitions","data.ai and AppMagic expand product coverage","Positive","Strengthens competitive footprint","st-site"]
+      ]},
+      credibility:{title:"Opportunity & Job Credibility",intro:"Current openings should be evaluated against the integration roadmap.",rows:[
+        ["Org context","Acquisition-heavy environment","Watch","Role may be growth, replacement or consolidation related","st-site"]
+      ]}
+    },
+    sources:{
+      "st-site":{name:"Sensor Tower",url:"https://sensortower.com/",note:"Company, product and public business information."}
+    }
+  },
+
+  vertiv: {
+    name:"Vertiv",
+    aliases:["vertiv","vrt"],
+    industry:"Data Center Infrastructure · Power · Thermal Management",
+    meta:"Westerville, OH · ~34K employees · Public company",
+    updated:"Updated mid-2026",
+    overallGrade:"A-",
+    grades:{
+      "Business Stability":"A",
+      "Hiring & Workforce":"A-",
+      "Employee Sentiment":"—",
+      "Customer / Product":"A",
+      "Job Credibility":"A-"
+    },
+    findings:[
+      {type:"good",title:"AI infrastructure demand is driving growth",text:"FY2025 revenue reached about $10.2B and Q1 2026 revenue grew roughly 30% year over year."},
+      {type:"good",title:"Backlog remains very large",text:"Backlog ended FY2025 near $15B and remained strongly above prior-year levels in Q1 2026."},
+      {type:"good",title:"Workforce expanded",text:"Vertiv reported roughly 34K employees and 2,500+ salaried hires in 2025."},
+      {type:"watch",title:"Demand concentration cuts both ways",text:"About 85% of revenue is tied to data centers, increasing exposure to hyperscaler capital spending cycles."}
+    ],
+    hiringSnapshot:[
+      ["Employees","~34K"],
+      ["2025 salaried hires","2,500+"],
+      ["Hiring emphasis","Engineering, Services, Operations"],
+      ["Layoff signal","No major Vertiv-specific 2026 event found in research"],
+      ["Demand signal","Large backlog and strong revenue growth"]
+    ],
+    readout:{
+      good:"Vertiv combines strong demand, rising revenue, a large backlog and active hiring.",
+      watch:"The biggest macro risk is concentration in the AI/data-center buildout and whether that demand converts on schedule.",
+      ask:"Which business segment is funding the role? Is headcount tied to backlog growth? What happens if hyperscaler capex slows?"
+    },
+    tabs:{
+      stability:{title:"Business Stability",intro:"Vertiv's financial and demand indicators are strong.",rows:[
+        ["FY2025 revenue","~$10.23B, +27.7% YoY","Positive","Strong growth","vrt-site"],
+        ["Q1 2026 revenue","~$2.65B, +30% YoY","Positive","Momentum remains strong","vrt-site"],
+        ["Backlog","~$15B at FY2025","Positive","Substantial future demand visibility","vrt-site"],
+        ["Concentration","~85% of revenue tied to data centers","Watch","High exposure to one major investment cycle","vrt-site"]
+      ]},
+      hiring:{title:"Hiring & Workforce",intro:"The workforce expanded alongside demand.",rows:[
+        ["Employees","~34K globally","Positive","Large operating base","vrt-site"],
+        ["2025 salaried hires","2,500+","Positive","Strong expansion signal","vrt-site"],
+        ["Priority functions","Engineering, Services and Operations","Positive","Hiring aligned to capacity growth","vrt-site"]
+      ]},
+      employees:{title:"Employee & Workplace",intro:"This public prototype avoids restricted review-site content and focuses on workforce facts.",rows:[
+        ["Workforce growth","2,500+ salaried hires in 2025","Positive","Expansion rather than contraction","vrt-site"]
+      ]},
+      customers:{title:"Customer & Product",intro:"Vertiv is highly exposed to the global data-center buildout.",rows:[
+        ["Data-center exposure","~85% of revenue","Positive","Direct leverage to AI infrastructure spending","vrt-site"],
+        ["Market position","#1 positions cited in thermal management and large UPS/power distribution","Positive","Strong competitive position","vrt-site"]
+      ]},
+      credibility:{title:"Opportunity & Job Credibility",intro:"Strong demand and workforce expansion support the credibility of current hiring.",rows:[
+        ["Hiring alignment","Hiring concentrated in functions needed to serve backlog","Positive","Supports net growth thesis","vrt-site"],
+        ["Macro dependency","Role durability still depends on data-center demand","Watch","Ask how team plans map to backlog","vrt-site"]
+      ]}
+    },
+    sources:{
+      "vrt-site":{name:"Vertiv Investor Relations",url:"https://investors.vertiv.com/",note:"Public financial, workforce and business information."}
+    }
   }
 };
