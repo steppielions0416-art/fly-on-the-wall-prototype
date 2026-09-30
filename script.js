@@ -37,7 +37,7 @@
     })?.[0] || null;
   }
 
-  async function renderCompany(key) {
+  async function renderCompany(key, shouldScroll = true) {
     const company = companies[key];
     if (!company) return;
     activeCompanyKey = key;
@@ -111,7 +111,7 @@
     });
 
     renderTab(activeTab);
-    dashboard.scrollIntoView({behavior:"smooth", block:"start"});
+    if (shouldScroll) dashboard.scrollIntoView({behavior:"smooth", block:"start"});
   }
 
   function renderTab(tabKey) {
@@ -358,5 +358,5 @@
     return escapeHtml(value);
   }
 
-  renderCompany("amazon");
+  renderCompany("amazon", false);
 })();
