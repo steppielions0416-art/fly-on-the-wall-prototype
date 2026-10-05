@@ -13,7 +13,16 @@
       <img class="brand-wordmark" src="assets/fly-on-the-wall-logo-final.png" alt="Fly on the Wall" />
       <div class="brand-tagline">Swat away the corporate spin. Find the truth.</div>
     </div>
-    <div class="prototype-badge">Prototype</div>
+    <nav class="main-nav" aria-label="Fly product">
+<a href="company-intelligence.html">Company Intel</a>
+<a href="job-intelligence.html">Jobs</a>
+<a href="reviews.html">Reviews</a>
+<a href="tools.html">Tools</a>
+<a href="interview-prep.html">Interview Prep</a>
+<a href="compensation.html">Pay</a>
+<a href="career-transition.html">Career Transition</a>
+<a href="community.html">Community</a>
+</nav><div class="prototype-badge">Prototype</div>
   </header>
 
   <main class="app-shell">
@@ -44,19 +53,25 @@
       </div>
       <p id="searchMessage" class="search-message" aria-live="polite"></p>
     </section>
-
-
-    <section id="prototypeExplorer" class="prototype-explorer">
-      <div class="prototype-explorer-header">
+    <section class="product-hub">
+      <div class="product-hub-head">
         <div>
-          <p class="eyebrow">Full user-testing prototype</p>
-          <h2>Explore what Fly can become.</h2>
-          <p>Every feature marked <strong>YES — Build for User Test</strong> in the prototype plan is represented here. Real or demo data appears where available; otherwise Fly shows N/A or a clearly labeled test state instead of hiding the feature.</p>
+          <p class="eyebrow">Explore Fly</p>
+          <h2>One job search. Eight connected tools.</h2>
+          <p>Each area now has its own prototype page. Features marked YES in the build plan stay visible even when the data is still N/A.</p>
         </div>
-        <div class="prototype-total"><strong>118</strong><span>user-test features</span></div>
+        <span class="hub-count">118 user-test features</span>
       </div>
-      <nav id="prototypeAreaTabs" class="prototype-area-tabs" aria-label="Prototype product areas"></nav>
-      <div id="prototypeAreaPanel" class="prototype-area-panel"></div>
+      <div class="product-hub-grid">
+        <a href="company-intelligence.html"><span>28 features</span><h3>Company Intelligence</h3><p>Stability, hiring direction, worker signals, customer/product strength and evidence.</p></a>
+        <a href="job-intelligence.html"><span>25 features</span><h3>Job Intelligence</h3><p>Ghost-job signals, application friction, priority, credibility and decision support.</p></a>
+        <a href="reviews.html"><span>14 features</span><h3>Reviews & Candidate Experience</h3><p>First-party application, interview, recruiter, pay and outcome reporting.</p></a>
+        <a href="tools.html"><span>5 features</span><h3>Job-Search Tools</h3><p>Service profiles, pricing, outcomes, cancellation experience and reviews.</p></a>
+        <a href="interview-prep.html"><span>11 features</span><h3>Interview Prep</h3><p>Company-aware interview prep, likely questions, emphasis, red flags and practice.</p></a>
+        <a href="compensation.html"><span>4 features</span><h3>Compensation</h3><p>Range tracking, changes during the process and salary movement.</p></a>
+        <a href="career-transition.html"><span>18 features</span><h3>Career Transition</h3><p>Real titles, transferable skills, gaps, reality filters and transition paths.</p></a>
+        <a href="community.html"><span>13 features</span><h3>Worker Community</h3><p>Company and role rooms, change signals, verified anonymity and moderation.</p></a>
+      </div>
     </section>
 
     <section id="companyDashboard" class="dashboard" hidden>
@@ -187,18 +202,6 @@
     </section>
   </main>
 
-
-  <dialog id="prototypeFeatureDialog">
-    <form method="dialog" class="dialog-shell prototype-detail-dialog">
-      <button class="dialog-close" aria-label="Close feature">×</button>
-      <p id="prototypeFeatureArea" class="eyebrow"></p>
-      <h3 id="prototypeFeatureTitle"></h3>
-      <p><strong>Module:</strong> <span id="prototypeFeatureModule"></span></p>
-      <div class="prototype-detail-value"><strong>Prototype state</strong><p id="prototypeFeatureValue"></p></div>
-      <p class="prototype-detail-note">This element is intentionally visible during user testing even when the underlying production data or automation is not available yet.</p>
-    </form>
-  </dialog>
-
   <dialog id="evidenceDialog">
     <form method="dialog" class="dialog-shell">
       <button class="dialog-close" aria-label="Close evidence">×</button>
@@ -215,6 +218,5 @@
 
   <script src="companies.js"></script>
   <script src="script.js"></script>
-  <script src="prototype-features.js"></script>
 </body>
 </html>
