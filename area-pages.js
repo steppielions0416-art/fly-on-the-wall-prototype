@@ -110,6 +110,33 @@ function companyDataExperience(area){
    <div class="research-company-output" data-company-key="${escHtml(defaultKey)}"></div>
  </section>`;
 }
+function renderDeepDiveMarkup(d){
+ const tabs=Object.entries(d.tabs||{});
+ const sources=Object.values(d.sources||{});
+ if(!tabs.length && !sources.length) return "";
+ return `<section class="real-deep-dives"><div class="deep-dive-title-row"><div><p class="eyebrow">Deep dives</p><h3>Explore the full research</h3></div><span>${tabs.length} research sections${sources.length?` · ${sources.length} sources`:""}</span></div><nav class="real-deep-dive-nav">${tabs.map(([key,val],i)=>`<button type="button" data-real-tab="${escHtml(key)}" class="${i===0?"active":""}">${escHtml(val.title||key)}</button>`).join("")}${sources.length?`<button type="button" data-real-tab="__sources">Sources</button>`:""}</nav><div class="real-deep-dive-content"></div></section>`;
+}
+function drawDeepDive(container,d,key){
+ if(!container) return;
+ if(key==="__sources"){
+   const sources=Object.values(d.sources||{});
+   container.innerHTML=`<div class="deep-dive-section-head"><h4>Sources</h4><p>Sources already attached to this Fly research record.</p></div><div class="source-rows">${sources.map(s=>`<div><strong>${escHtml(s.name||"Source")}</strong><p>${escHtml(s.note||"")}</p>${s.url?`<a href="${escHtml(s.url)}" target="_blank" rel="noopener">Open source</a>`:""}</div>`).join("")}</div>`;
+   return;
+ }
+ const tab=(d.tabs||{})[key];
+ if(!tab){container.innerHTML="";return}
+ container.innerHTML=`<div class="deep-dive-section-head"><h4>${escHtml(tab.title||key)}</h4><p>${escHtml(tab.intro||"")}</p></div><div class="deep-dive-rows">${(tab.rows||[]).map(row=>`<div class="deep-dive-row"><div><strong>${escHtml(row[0]||"")}</strong><p>${escHtml(row[1]||"")}</p></div><span class="signal-pill">${escHtml(row[2]||"")}</span><p class="deep-dive-meaning">${escHtml(row[3]||"")}</p></div>`).join("")}</div>`;
+}
+function setupDeepDives(container,d){
+ const nav=container.querySelector(".real-deep-dive-nav");
+ const body=container.querySelector(".real-deep-dive-content");
+ if(!nav||!body) return;
+ const buttons=[...nav.querySelectorAll("button")];
+ const select=btn=>{buttons.forEach(b=>b.classList.toggle("active",b===btn));drawDeepDive(body,d,btn.dataset.realTab)};
+ buttons.forEach(btn=>btn.addEventListener("click",()=>select(btn)));
+ if(buttons[0]) select(buttons[0]);
+}
+
 function renderCompanyResearch(container,key,area){
  const d=(window.FLY_COMPANIES||{})[key];
  if(!d||!container) return;
@@ -125,7 +152,9 @@ function renderCompanyResearch(container,key,area){
       <section><h3>Hiring snapshot</h3>${hiring.map(([label,val])=>`<div class="research-metric"><span>${escHtml(label)}</span><strong>${escHtml(val)}</strong></div>`).join("")}</section>
     </div>
     ${d.readout?`<div class="research-readout"><div><span>Positive</span><p>${escHtml(d.readout.good||"N/A")}</p></div><div><span>Watch</span><p>${escHtml(d.readout.watch||"N/A")}</p></div><div><span>Ask</span><p>${escHtml(d.readout.ask||"N/A")}</p></div></div>`:""}
+    ${renderDeepDiveMarkup(d)}
    `;
+   setupDeepDives(container,d);
  }else{
    const x=d.decisionLayer||{};
    const path=x.applicationPath||[];
