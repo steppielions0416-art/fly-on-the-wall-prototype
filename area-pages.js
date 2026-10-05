@@ -89,9 +89,37 @@ function analyzeJobDescription(text,url){
  const lines=raw.split(/\n+/).map(x=>x.trim()).filter(Boolean);
  const domain=(()=>{try{return new URL((url||"").trim()).hostname.replace(/^www\./,"")}catch(e){return ""}})();
 
- const titleHints=["vice president","vp ","director","head of","senior manager","manager","principal","lead ","specialist","analyst","engineer","customer success","customer experience","operations","implementation","product manager","marketing","sales"];
- let role=lines.find(l=>l.length<100 && titleHints.some(h=>l.toLowerCase().includes(h))) || lines[0] || "Role not identified";
- role=role.replace(/^(job title|position|role)\s*[:\-]\s*/i,"").slice(0,120);
+ const cleanedLines=lines.map(l=>l.replace(/^[•\-*\s]+/,"").trim());
+ const explicitTitlePatterns=[
+  /^(job title|position|role)\s*[:\-]\s*(.+)$/i,
+  /^(vice president|vp)\s*(,|of|-)?\s*(investment )?(due )?diligence\b.*$/i,
+  /^(vice president|vp)\s*(,|of|-)?\s*(investment|portfolio|manager|fund|research|operations|customer|client|strategy|marketing|sales|finance|product).*$/i,
+  /^(director|head of|senior manager|manager|principal|lead)\s+.*$/i
+ ];
+ let role="Role not identified";
+ for(const line of cleanedLines.slice(0,30)){
+   if(line.length>140) continue;
+   const labeled=line.match(explicitTitlePatterns[0]);
+   if(labeled && labeled[2]){role=labeled[2].trim();break}
+   if(explicitTitlePatterns.slice(1).some(rx=>rx.test(line))){role=line;break}
+ }
+ if(role==="Role not identified"){
+   const scored=cleanedLines.slice(0,40).map((line,i)=>{
+     const l=line.toLowerCase();
+     let score=0;
+     if(line.length>4 && line.length<120) score+=2;
+     if(/vice president|\bvp\b/.test(l)) score+=7;
+     if(/diligence|due diligence|investment diligence|manager research|manager selection/.test(l)) score+=8;
+     if(/director|head of|senior manager|principal/.test(l)) score+=4;
+     if(/reports? to|reporting to|works? with|partner with|collaborate with/.test(l)) score-=8;
+     if(/responsibilities|qualifications|about us|about the role|what you'll do|what you will do/.test(l)) score-=5;
+     score-=i*0.05;
+     return {line,score};
+   }).sort((a,b)=>b.score-a.score);
+   if(scored[0] && scored[0].score>2) role=scored[0].line;
+ }
+ if(role==="Role not identified") role=cleanedLines[0] || "Role not identified";
+ role=role.replace(/^(job title|position|role)\s*[:\-]\s*/i,"").replace(/\s+\|\s+.*$/,"").slice(0,120);
 
  let company="Company not identified";
  const companyLine=lines.find(l=>/^(company|about the company|employer)\s*[:\-]/i.test(l));
@@ -110,7 +138,9 @@ function analyzeJobDescription(text,url){
   ["GTM / Growth",["go-to-market","gtm","growth strategy","market strategy"]],
   ["Stakeholder Management",["stakeholder","cross-functional","executive communication"]],
   ["SaaS",["saas","software as a service"]],
-  ["Zendesk / Support",["zendesk","support operations","ticketing","service desk"]]
+  ["Zendesk / Support",["zendesk","support operations","ticketing","service desk"]],
+  ["Investment Diligence",["investment diligence","due diligence","manager diligence","manager research","manager selection","fund diligence","investment committee","underwriting","private equity","private markets","co-investment","co investment","fund manager","gp stakes"]],
+  ["Investment Analysis",["irr","moic","dpi","tvpi","sharpe","sortino","track record","fund performance","investment memo","ic memo","investment committee memo"]]
  ];
  const matches=keywordMap.filter(([,keys])=>keys.some(k=>lower.includes(k))).map(([label])=>label);
 
@@ -121,9 +151,9 @@ function analyzeJobDescription(text,url){
 
  const questions=[
   `Walk me through your experience most relevant to ${role}.`,
-  matches.includes("Operations") ? "Tell me about a process you redesigned and how you measured the result." : "Tell me about a difficult problem you owned from start to finish.",
-  matches.includes("Leadership") ? "How do you set expectations, coach performance, and handle underperformance?" : "How do you prioritize when several stakeholders need something at once?",
-  matches.includes("Analytics") ? "Which metrics do you use to decide whether your work is actually improving outcomes?" : "How do you know when a project or initiative is successful?",
+  matches.includes("Investment Diligence") ? "Walk me through how you evaluate a fund manager or investment opportunity from initial screen through investment committee recommendation." : (matches.includes("Operations") ? "Tell me about a process you redesigned and how you measured the result." : "Tell me about a difficult problem you owned from start to finish."),
+  matches.includes("Investment Analysis") ? "How do you use IRR, MOIC, DPI, TVPI and qualitative underwriting together rather than relying on one metric?" : (matches.includes("Leadership") ? "How do you set expectations, coach performance, and handle underperformance?" : "How do you prioritize when several stakeholders need something at once?"),
+  matches.includes("Investment Diligence") ? "Tell me about a time your diligence uncovered a risk that was not obvious in the manager's materials." : (matches.includes("Analytics") ? "Which metrics do you use to decide whether your work is actually improving outcomes?" : "How do you know when a project or initiative is successful?"),
   "Why this company and why this role now?"
  ];
 
@@ -136,6 +166,8 @@ function analyzeJobDescription(text,url){
   matches.includes("Analytics") && "KPI ownership, decision-making with data, dashboards, and measurable business impact.",
   matches.includes("AI / Automation") && "Practical AI and automation use cases tied to efficiency or customer outcomes.",
   matches.includes("Project / Program Management") && "Complex cross-functional delivery, milestones, dependencies, and accountability.",
+  matches.includes("Investment Diligence") && "Manager selection, fund diligence, investment committee judgment, reference checks, risk identification, and evidence-based recommendations.",
+  matches.includes("Investment Analysis") && "Fund performance analysis using IRR, MOIC, DPI, TVPI, track-record quality, attribution, and downside/risk context.",
   matches.length===0 && "Use quantified outcomes and examples that map directly to the responsibilities in the posting."
  ]);
 
@@ -144,7 +176,7 @@ function analyzeJobDescription(text,url){
   "What would make you say the person in this role is successful after 90 days and after one year?",
   "What are the biggest problems this person is expected to solve first?",
   "How are priorities and decision rights split across the teams this role works with?",
-  "Is the compensation range, reporting line, and scope in the posting still accurate?"
+  matches.includes("Investment Diligence") ? "How is the diligence team split across manager selection, co-investments, direct investments, and portfolio monitoring?" : "Is the compensation range, reporting line, and scope in the posting still accurate?"
  ];
 
  const redFlags=[];
