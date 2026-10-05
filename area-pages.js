@@ -68,13 +68,14 @@ function renderAreaPage(){
  const modules=[...new Set(features.map(f=>f.module))];
  root.innerHTML=`
    <section class="area-hero"><p class="eyebrow">${cfg.kicker}</p><h1>${cfg.title}</h1><p>${cfg.desc}</p><div class="area-meta"><span>${features.length} user-test features</span><span>Demo + N/A states</span><span>Source-aware</span></div></section>
-   ${pagePreview(cfg.demo)}
+   ${(area==="Company Intelligence"||area==="Job Intelligence")?companyDataExperience(area):pagePreview(cfg.demo)}
    <section class="page-modules">
    ${modules.map(module=>`<section class="page-module"><div class="module-head"><div><p class="eyebrow">Module</p><h2>${module}</h2></div><span>${features.filter(f=>f.module===module).length} features</span></div><div class="feature-list">${features.filter(f=>f.module===module).map(f=>{const p=placeholderFor(f); return `<div class="feature-row"><div class="feature-row-main"><h3>${f.name}</h3><p>${p[2]}</p></div><div class="feature-row-meta"><span class="prototype-status ${p[1]}">${p[0]}</span><button type="button" class="prototype-link" data-feature="${f.name.replace(/"/g,"&quot;")}">Preview</button></div></div>`}).join("")}</div></section>`).join("")}
    </section>`;
  root.querySelectorAll("[data-feature]").forEach(btn=>btn.addEventListener("click",()=>showPageToast(btn.dataset.feature)));
  root.querySelectorAll("[data-demo-action]").forEach(btn=>btn.addEventListener("click",()=>showPageToast("Prototype interaction: "+btn.dataset.demoAction)));
  if(area==="Interview Prep") setupInterviewPrep();
+ if(area==="Company Intelligence"||area==="Job Intelligence") setupResearchBrowser(area);
 }
 
 function escHtml(value){
@@ -82,6 +83,77 @@ function escHtml(value){
 }
 function unique(arr){return [...new Set(arr.filter(Boolean))]}
 function sentenceList(items){return items.length?items.map(x=>`<li>${escHtml(x)}</li>`).join(""):"<li>N/A</li>"}
+
+function researchedCompanies(){
+ return Object.entries(window.FLY_COMPANIES||{}).filter(([,v])=>v&&v.name);
+}
+function toneClass(value){
+ const v=String(value||"").toLowerCase();
+ if(/apply now|low|positive|active|verified|strong|a\+|\ba\b|a-/.test(v)) return "demo";
+ if(/high|risk|elevated|c-|\bd\b/.test(v)) return "na";
+ return "test";
+}
+function companyDataExperience(area){
+ const entries=researchedCompanies();
+ if(!entries.length) return pagePreview(area==="Company Intelligence"?"company":"job");
+ const defaultKey=entries.find(([k])=>k==="caz")?.[0] || entries[0][0];
+ return `
+ <section class="research-browser" data-research-area="${area}">
+   <div class="research-toolbar">
+     <div><p class="eyebrow">Existing Fly research</p><h2>Use the data we already have.</h2></div>
+     <label>Company
+       <select class="research-company-select">
+         ${entries.map(([key,v])=>`<option value="${escHtml(key)}" ${key===defaultKey?"selected":""}>${escHtml(v.name)}</option>`).join("")}
+       </select>
+     </label>
+   </div>
+   <div class="research-company-output" data-company-key="${escHtml(defaultKey)}"></div>
+ </section>`;
+}
+function renderCompanyResearch(container,key,area){
+ const d=(window.FLY_COMPANIES||{})[key];
+ if(!d||!container) return;
+ if(area==="Company Intelligence"){
+   const grades=d.grades||{};
+   const findings=(d.findings||[]).slice(0,5);
+   const hiring=(d.hiringSnapshot||[]).slice(0,6);
+   container.innerHTML=`
+    <div class="research-title"><div><h3>${escHtml(d.name)}</h3><p>${escHtml(d.meta||d.industry||"")}</p></div><div class="research-grade"><span>Overall</span><strong>${escHtml(d.overallGrade||"N/A")}</strong></div></div>
+    <div class="research-kpis">${Object.entries(grades).map(([label,val])=>`<div><span>${escHtml(label)}</span><strong>${escHtml(val)}</strong></div>`).join("")}</div>
+    <div class="research-columns">
+      <section><h3>What Fly found</h3>${findings.map(x=>`<div class="research-line"><span class="prototype-status ${x.type==="good"?"demo":x.type==="risk"?"na":"test"}">${escHtml(x.type||"signal")}</span><div><strong>${escHtml(x.title)}</strong><p>${escHtml(x.text)}</p></div></div>`).join("")}</section>
+      <section><h3>Hiring snapshot</h3>${hiring.map(([label,val])=>`<div class="research-metric"><span>${escHtml(label)}</span><strong>${escHtml(val)}</strong></div>`).join("")}</section>
+    </div>
+    ${d.readout?`<div class="research-readout"><div><span>Positive</span><p>${escHtml(d.readout.good||"N/A")}</p></div><div><span>Watch</span><p>${escHtml(d.readout.watch||"N/A")}</p></div><div><span>Ask</span><p>${escHtml(d.readout.ask||"N/A")}</p></div></div>`:""}
+   `;
+ }else{
+   const x=d.decisionLayer||{};
+   const path=x.applicationPath||[];
+   container.innerHTML=`
+    <div class="research-title"><div><h3>${escHtml(d.name)}</h3><p>${escHtml(d.meta||d.industry||"")}</p></div><span class="prototype-status ${toneClass(x.applyDecision)}">Real research</span></div>
+    <div class="job-decision-strip">
+      <div><span>Application decision</span><strong>${escHtml(x.applyDecision||"Not yet researched")}</strong><p>${escHtml(x.applyWhy||"N/A")}</p></div>
+      <div><span>Hiring reality</span><strong>${escHtml(x.hiringReality||"N/A")}</strong><p>${escHtml(x.hiringWhy||"N/A")}</p></div>
+      <div><span>Ghost-job watch</span><strong>${escHtml(x.ghostJobWatch||"N/A")}</strong><p>${escHtml(x.ghostWhy||"N/A")}</p></div>
+    </div>
+    <div class="job-facts">
+      <div><span>ATS</span><strong>${escHtml(x.ats||"Unknown")}</strong><p>${escHtml(x.atsWhy||"")}</p></div>
+      <div><span>AI in hiring</span><strong>${escHtml(x.aiHiring||"Unknown")}</strong><p>${escHtml(x.aiWhy||"")}</p></div>
+      <div><span>Time-waste risk</span><strong>${escHtml(x.timeWaste||"Unknown")}</strong><p>${escHtml(x.timeWasteWhy||"")}</p></div>
+    </div>
+    ${path.length?`<div class="application-path-compact"><h3>Application path</h3>${path.map(step=>`<div><span>${escHtml(step[0])}</span><strong>${escHtml(step[1]||"")}</strong><em>${escHtml(step[2]||"")}</em></div>`).join("")}</div>`:""}
+   `;
+ }
+}
+function setupResearchBrowser(area){
+ const wrap=document.querySelector(".research-browser");
+ if(!wrap) return;
+ const select=wrap.querySelector(".research-company-select");
+ const output=wrap.querySelector(".research-company-output");
+ const draw=()=>renderCompanyResearch(output,select.value,area);
+ select.addEventListener("change",draw);
+ draw();
+}
 
 function analyzeJobDescription(text,url){
  const raw=(text||"").trim();
