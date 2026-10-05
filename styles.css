@@ -922,3 +922,125 @@ footer{border-top:1px solid var(--orange-line)}
 .application-path-compact strong{font-size:12px}
 .application-path-compact em{font-style:normal;color:var(--muted);font-size:11px}
 @media(max-width:900px){.research-kpis{grid-template-columns:repeat(2,1fr)}.research-columns,.research-readout,.job-decision-strip,.job-facts{grid-template-columns:1fr}.research-toolbar{align-items:flex-start;flex-direction:column}.application-path-compact>div{grid-template-columns:1fr}}
+
+
+/* Fly research visibility + true brand hierarchy */
+:root{
+  --fly-teal:#037E89;
+  --fly-orange:#EE9A70;
+  --fly-cream:#FFF9F4;
+}
+body{
+  background:
+    linear-gradient(180deg,rgba(3,126,137,.035),transparent 260px),
+    var(--fly-cream);
+}
+.site-header{
+  background:var(--fly-teal);
+  border-bottom:4px solid var(--fly-orange);
+}
+.site-header .main-nav a{color:rgba(255,255,255,.9)}
+.site-header .main-nav a:hover{background:rgba(255,255,255,.14);color:#fff}
+.site-header .prototype-badge{
+  color:#fff;background:rgba(238,154,112,.22);border-color:rgba(255,255,255,.35)
+}
+.area-hero{
+  border-left:7px solid var(--fly-orange);
+  padding-left:20px;
+}
+.area-hero .eyebrow,.module-head .eyebrow,.deep-dive-title-row .eyebrow{color:var(--fly-teal)}
+.area-meta span{
+  color:#7b4a31;
+  background:rgba(238,154,112,.18);
+  border-color:rgba(238,154,112,.48);
+}
+.research-browser{
+  border:0;
+  border-top:8px solid var(--fly-teal);
+  border-bottom:5px solid var(--fly-orange);
+  background:#fff;
+  box-shadow:0 16px 40px rgba(3,126,137,.08);
+}
+.research-toolbar{
+  background:linear-gradient(90deg,rgba(3,126,137,.08),rgba(238,154,112,.08));
+  margin:-22px -22px 18px;
+  padding:20px 22px;
+}
+.research-grade{
+  background:var(--fly-teal);
+}
+.research-grade span,.research-grade strong{color:#fff}
+.research-kpis>div{
+  border-top:4px solid var(--fly-orange);
+  background:rgba(3,126,137,.045);
+}
+.research-readout>div:nth-child(1){border-left-color:var(--fly-teal)}
+.research-readout>div:nth-child(2){border-left-color:var(--fly-orange)}
+.research-readout>div:nth-child(3){border-left-color:#8a6f61}
+.prototype-status.researched{
+  background:rgba(3,126,137,.13);
+  color:var(--fly-teal);
+}
+.prototype-status.pending{
+  background:rgba(238,154,112,.18);
+  color:#8a4f32;
+}
+.real-deep-dives{
+  margin-top:24px;
+  padding-top:22px;
+  border-top:3px solid rgba(3,126,137,.18);
+}
+.deep-dive-title-row{
+  display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:12px
+}
+.deep-dive-title-row h3{font-size:22px;margin:0}
+.deep-dive-title-row>span{font-size:11px;font-weight:850;color:var(--muted)}
+.real-deep-dive-nav{
+  display:flex;gap:6px;overflow-x:auto;padding:5px;
+  background:rgba(3,126,137,.07);border-radius:12px;margin-bottom:14px
+}
+.real-deep-dive-nav button{
+  border:0;background:transparent;color:var(--fly-teal);font-weight:850;
+  padding:9px 12px;border-radius:9px;white-space:nowrap
+}
+.real-deep-dive-nav button.active{
+  background:var(--fly-teal);color:#fff
+}
+.real-deep-dive-content{
+  background:#fffdfb;
+  border-left:5px solid var(--fly-orange);
+  padding:18px 18px 8px;
+}
+.deep-dive-section-head h4{font-size:20px;margin:0 0 5px}
+.deep-dive-section-head p{color:var(--muted);font-size:13px;line-height:1.45}
+.deep-dive-row{
+  display:grid;grid-template-columns:minmax(220px,1.3fr) auto minmax(220px,1fr);
+  gap:14px;align-items:start;padding:12px 0;border-bottom:1px solid rgba(3,126,137,.12)
+}
+.deep-dive-row strong{font-size:13px}
+.deep-dive-row>div p,.deep-dive-meaning{margin:4px 0 0;color:var(--muted);font-size:12px;line-height:1.4}
+.signal-pill{
+  padding:5px 8px;border-radius:999px;background:rgba(3,126,137,.10);
+  color:var(--fly-teal);font-size:10px;font-weight:900;text-transform:uppercase
+}
+.source-rows>div{
+  padding:12px 0;border-bottom:1px solid rgba(3,126,137,.12)
+}
+.source-rows strong{font-size:13px}
+.source-rows p{margin:4px 0;color:var(--muted);font-size:12px}
+.source-rows a{color:var(--fly-teal);font-size:12px;font-weight:900}
+.page-module{
+  padding:0 4px 4px;
+}
+.module-head{
+  background:linear-gradient(90deg,rgba(3,126,137,.08),transparent);
+  padding:10px 12px;
+  border-left:4px solid var(--fly-teal);
+}
+.feature-row:hover{
+  background:linear-gradient(90deg,rgba(3,126,137,.06),rgba(238,154,112,.05));
+}
+@media(max-width:800px){
+  .deep-dive-row{grid-template-columns:1fr}
+  .deep-dive-title-row{align-items:flex-start;flex-direction:column}
+}
