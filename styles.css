@@ -803,3 +803,81 @@ footer{border-top:1px solid var(--orange-line)}
   .feature-row{grid-template-columns:1fr;gap:9px}
   .feature-row-meta{justify-content:space-between}
 }
+
+
+/* Fly brand color pass */
+.area-hero,
+.product-hub,
+.page-module,
+.workflow-card,
+.interview-output,
+.community-preview{
+  accent-color:var(--teal);
+}
+.area-hero h1,
+.area-hero h2,
+.module-head h2,
+.product-hub h2,
+.interview-result-head h2{
+  color:var(--ink);
+}
+.module-head{
+  border-bottom-color:rgba(3,126,137,.22);
+}
+.feature-row{
+  border-bottom-color:rgba(3,126,137,.14);
+}
+.feature-row:hover{
+  background:linear-gradient(90deg,rgba(3,126,137,.045),rgba(238,154,112,.035));
+}
+.prototype-status.demo{
+  background:rgba(3,126,137,.10);
+  color:var(--teal-dark);
+}
+.prototype-status.test{
+  background:var(--orange-soft);
+  color:#8a4f32;
+}
+.prototype-status.na{
+  background:#f4f1ed;
+  color:#756c66;
+}
+.preview-card.hero-preview,
+.analysis-source-note,
+.interview-result-grid section,
+.workflow-output,
+.page-module{
+  border-color:rgba(3,126,137,.16);
+}
+.preview-card.hero-preview{
+  background:linear-gradient(135deg,rgba(3,126,137,.12),rgba(238,154,112,.08),#fff);
+}
+.workflow-card{
+  background:linear-gradient(180deg,#fffdf9,#fff);
+  border-color:rgba(238,154,112,.34);
+}
+.feature-row-meta .prototype-link,
+.prototype-link{
+  color:var(--teal-dark);
+}
+.prototype-primary{
+  background:var(--teal);
+}
+.prototype-primary:hover{
+  background:var(--teal-dark);
+}
+.prototype-secondary{
+  border-color:rgba(238,154,112,.55);
+  background:#fffaf7;
+}
+.area-meta span,
+.hub-count{
+  background:rgba(238,154,112,.12);
+  border-color:rgba(238,154,112,.42);
+}
+.main-nav a:hover{
+  background:rgba(3,126,137,.10);
+}
+.page-toast{
+  background:var(--teal-dark);
+}
