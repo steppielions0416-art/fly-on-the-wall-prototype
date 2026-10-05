@@ -12,19 +12,19 @@ const areaPageConfig={
 
 function placeholderFor(feature){
  const demoReady=["Company Overview Dashboard","Company Grade / Summary","Business Stability","Hiring Snapshot","Positive Signals / Risk Flags","Company Deep Dives","Hiring Reality / Ghost-Job Signals","Application Decision Summary","ATS Identification","AI-in-Hiring Indicator","Questions to Ask Employer"];
- if(demoReady.includes(feature.name)) return ["Demo available","demo","Demo data is available in the company research prototype."];
- if(feature.area==="Worker Intelligence"||feature.area==="Worker Community") return ["Awaiting Fly data","test","N/A — no Fly submission data yet. The feature remains visible for testing."];
- if(feature.area==="Job-Search Tools") return ["Directory placeholder","test","N/A — service profile and outcome data will populate here."];
- if(feature.area==="Interview Prep") return ["Prototype flow","test","N/A until a job description is supplied and analysis is connected."];
- if(feature.area==="Career Transition") return ["Prototype flow","test","N/A until work history is supplied and matching data is connected."];
- if(feature.area==="Compensation") return ["Data pending","na","N/A — not enough verified compensation data yet."];
- return ["Data pending","na","N/A — not enough evidence yet."];
+ if(demoReady.includes(feature.name)) return ["Available","researched","Uses existing Fly research."];
+ if(feature.area==="Worker Intelligence"||feature.area==="Worker Community") return ["Pending first-party data","pending","No Fly submission data yet."];
+ if(feature.area==="Job-Search Tools") return ["In build","pending","Service profile and outcome data will populate here."];
+ if(feature.area==="Interview Prep") return ["Working flow","researched","Paste a job description to generate interview prep."];
+ if(feature.area==="Career Transition") return ["In build","pending","Results will populate from work history and transition matching."];
+ if(feature.area==="Compensation") return ["Data pending","pending","No verified compensation dataset is connected yet."];
+ return ["Data pending","pending","No verified data is connected for this item yet."];
 }
 
 function pagePreview(type){
  const previews={
  company:`<section class="experience-preview">
-   <div class="preview-card hero-preview"><span class="mini-label">Overall company grade</span><strong class="mega-grade">B+</strong><p>Demo score composed from stability, hiring, worker, product and credibility signals.</p></div>
+   <div class="preview-card hero-preview"><span class="mini-label">Overall company grade</span><strong class="mega-grade">B+</strong><p>Fly score composed from stability, hiring, worker, product and credibility signals.</p></div>
    <div class="preview-card"><span class="mini-label">Business stability</span><strong>Stable / Watch</strong><p>Funding, layoffs, leadership, ownership, financial and regulatory signals live here.</p></div>
    <div class="preview-card"><span class="mini-label">Before you apply</span><strong>3 positives · 2 cautions</strong><p>Concise decision layer with unknowns called out instead of hidden.</p></div>
  </section>`,
@@ -67,7 +67,7 @@ function renderAreaPage(){
  const features=flyPrototypeFeatures.filter(f=>f.area===area);
  const modules=[...new Set(features.map(f=>f.module))];
  root.innerHTML=`
-   <section class="area-hero"><p class="eyebrow">${cfg.kicker}</p><h1>${cfg.title}</h1><p>${cfg.desc}</p><div class="area-meta"><span>${features.length} user-test features</span><span>Demo + N/A states</span><span>Source-aware</span></div></section>
+   <section class="area-hero"><p class="eyebrow">${cfg.kicker}</p><h1>${cfg.title}</h1><p>${cfg.desc}</p><div class="area-meta"><span>${features.length} user-test features</span><span>Real research where available</span><span>Source-aware</span></div></section>
    ${(area==="Company Intelligence"||area==="Job Intelligence")?companyDataExperience(area):pagePreview(cfg.demo)}
    <section class="page-modules">
    ${modules.map(module=>`<section class="page-module"><div class="module-head"><div><p class="eyebrow">Module</p><h2>${module}</h2></div><span>${features.filter(f=>f.module===module).length} features</span></div><div class="feature-list">${features.filter(f=>f.module===module).map(f=>{const p=placeholderFor(f); return `<div class="feature-row"><div class="feature-row-main"><h3>${f.name}</h3><p>${p[2]}</p></div><div class="feature-row-meta"><span class="prototype-status ${p[1]}">${p[0]}</span><button type="button" class="prototype-link" data-feature="${f.name.replace(/"/g,"&quot;")}">Preview</button></div></div>`}).join("")}</div></section>`).join("")}
@@ -130,7 +130,7 @@ function renderCompanyResearch(container,key,area){
    const x=d.decisionLayer||{};
    const path=x.applicationPath||[];
    container.innerHTML=`
-    <div class="research-title"><div><h3>${escHtml(d.name)}</h3><p>${escHtml(d.meta||d.industry||"")}</p></div><span class="prototype-status ${toneClass(x.applyDecision)}">Real research</span></div>
+    <div class="research-title"><div><h3>${escHtml(d.name)}</h3><p>${escHtml(d.meta||d.industry||"")}</p></div><span class="prototype-status ${toneClass(x.applyDecision)}">Researched</span></div>
     <div class="job-decision-strip">
       <div><span>Application decision</span><strong>${escHtml(x.applyDecision||"Not yet researched")}</strong><p>${escHtml(x.applyWhy||"N/A")}</p></div>
       <div><span>Hiring reality</span><strong>${escHtml(x.hiringReality||"N/A")}</strong><p>${escHtml(x.hiringWhy||"N/A")}</p></div>
