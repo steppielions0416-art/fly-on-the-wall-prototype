@@ -45,6 +45,20 @@
       <p id="searchMessage" class="search-message" aria-live="polite"></p>
     </section>
 
+
+    <section id="prototypeExplorer" class="prototype-explorer">
+      <div class="prototype-explorer-header">
+        <div>
+          <p class="eyebrow">Full user-testing prototype</p>
+          <h2>Explore what Fly can become.</h2>
+          <p>Every feature marked <strong>YES — Build for User Test</strong> in the prototype plan is represented here. Real or demo data appears where available; otherwise Fly shows N/A or a clearly labeled test state instead of hiding the feature.</p>
+        </div>
+        <div class="prototype-total"><strong>118</strong><span>user-test features</span></div>
+      </div>
+      <nav id="prototypeAreaTabs" class="prototype-area-tabs" aria-label="Prototype product areas"></nav>
+      <div id="prototypeAreaPanel" class="prototype-area-panel"></div>
+    </section>
+
     <section id="companyDashboard" class="dashboard" hidden>
       <section id="analysisStatus" class="analysis-status" hidden>
         <div class="analysis-orb" aria-hidden="true"></div>
@@ -173,6 +187,18 @@
     </section>
   </main>
 
+
+  <dialog id="prototypeFeatureDialog">
+    <form method="dialog" class="dialog-shell prototype-detail-dialog">
+      <button class="dialog-close" aria-label="Close feature">×</button>
+      <p id="prototypeFeatureArea" class="eyebrow"></p>
+      <h3 id="prototypeFeatureTitle"></h3>
+      <p><strong>Module:</strong> <span id="prototypeFeatureModule"></span></p>
+      <div class="prototype-detail-value"><strong>Prototype state</strong><p id="prototypeFeatureValue"></p></div>
+      <p class="prototype-detail-note">This element is intentionally visible during user testing even when the underlying production data or automation is not available yet.</p>
+    </form>
+  </dialog>
+
   <dialog id="evidenceDialog">
     <form method="dialog" class="dialog-shell">
       <button class="dialog-close" aria-label="Close evidence">×</button>
@@ -189,5 +215,6 @@
 
   <script src="companies.js"></script>
   <script src="script.js"></script>
+  <script src="prototype-features.js"></script>
 </body>
 </html>
