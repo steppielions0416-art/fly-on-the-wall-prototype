@@ -43,7 +43,7 @@ function pagePreview(type){
    <div class="preview-card"><span class="mini-label">Outcome data</span><strong>N/A</strong><p>Fly-user outcomes and satisfaction will populate here.</p></div>
    <div class="preview-card"><span class="mini-label">Would you pay?</span><strong>Compare before buying</strong><p>Testers can review whether the directory changes purchase decisions.</p></div>
  </section>`,
- interview:`<section class="workflow-card"><div class="workflow-choice"><div><label for="jdUrl">Option 1 — Job posting link</label><input id="jdUrl" type="url" placeholder="https://company.com/jobs/role or LinkedIn/Indeed posting"></div><span class="workflow-or">or</span><div><label for="jdInput">Option 2 — Paste the job description</label><textarea id="jdInput" placeholder="Paste the full job description here…"></textarea></div></div><p class="workflow-help">Use the link when the posting is public. If the site blocks access, requires login, or the posting disappears, paste the job description instead.</p><button class="prototype-primary" type="button" data-demo-action="interview">Prep me for this interview</button><div class="workflow-output"><strong>Company context</strong><p>N/A until a job link or description is entered.</p><strong>Likely interview process</strong><p>N/A until analysis is connected.</p><strong>Likely questions</strong><p>N/A until analysis is connected.</p><strong>What to emphasize</strong><p>N/A until analysis is connected.</p><strong>Smart questions to ask</strong><p>N/A until analysis is connected.</p><strong>Red flags / clarifications</strong><p>N/A until analysis is connected.</p></div></section>`,
+ interview:`<section class="workflow-card interview-workflow"><div class="workflow-choice"><div class="workflow-field"><label for="jdUrl">Option 1 — Paste a job posting link</label><input id="jdUrl" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="Paste a LinkedIn, Indeed, or company job URL"></div><span class="workflow-or">OR</span><div class="workflow-field"><label for="jdInput">Option 2 — Paste the full job description</label><textarea id="jdInput" spellcheck="true" placeholder="Click here, then Ctrl+V to paste the full job description…"></textarea></div></div><p class="workflow-help"><strong>Best prototype test:</strong> paste the full job description. A URL can be saved and used for context, but many job sites block a static website from reading the posting automatically.</p><div class="workflow-actions"><button id="interviewPrepButton" class="prototype-primary" type="button">Prep me for this interview</button><button id="clearInterviewPrep" class="prototype-secondary" type="button">Clear</button></div><p id="interviewPrepMessage" class="workflow-message" aria-live="polite"></p><div id="interviewPrepOutput" class="interview-output" hidden></div></section>`,
  pay:`<section class="experience-preview">
    <div class="preview-card hero-preview"><span class="mini-label">Compensation snapshot</span><strong>N/A</strong><p>Verified range or user-reported range appears here when available.</p></div>
    <div class="preview-card"><span class="mini-label">Movement</span><strong>N/A</strong><p>Tracks whether advertised or discussed compensation changes during the process.</p></div>
@@ -74,7 +74,144 @@ function renderAreaPage(){
    </section>`;
  root.querySelectorAll("[data-feature]").forEach(btn=>btn.addEventListener("click",()=>showPageToast(btn.dataset.feature)));
  root.querySelectorAll("[data-demo-action]").forEach(btn=>btn.addEventListener("click",()=>showPageToast("Prototype interaction: "+btn.dataset.demoAction)));
+ if(area==="Interview Prep") setupInterviewPrep();
 }
+
+function escHtml(value){
+ return String(value||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
+function unique(arr){return [...new Set(arr.filter(Boolean))]}
+function sentenceList(items){return items.length?items.map(x=>`<li>${escHtml(x)}</li>`).join(""):"<li>N/A</li>"}
+
+function analyzeJobDescription(text,url){
+ const raw=(text||"").trim();
+ const lower=raw.toLowerCase();
+ const lines=raw.split(/\n+/).map(x=>x.trim()).filter(Boolean);
+ const domain=(()=>{try{return new URL((url||"").trim()).hostname.replace(/^www\./,"")}catch(e){return ""}})();
+
+ const titleHints=["vice president","vp ","director","head of","senior manager","manager","principal","lead ","specialist","analyst","engineer","customer success","customer experience","operations","implementation","product manager","marketing","sales"];
+ let role=lines.find(l=>l.length<100 && titleHints.some(h=>l.toLowerCase().includes(h))) || lines[0] || "Role not identified";
+ role=role.replace(/^(job title|position|role)\s*[:\-]\s*/i,"").slice(0,120);
+
+ let company="Company not identified";
+ const companyLine=lines.find(l=>/^(company|about the company|employer)\s*[:\-]/i.test(l));
+ if(companyLine) company=companyLine.replace(/^[^:\-]+[:\-]\s*/,"").slice(0,100);
+ else if(domain && !/(linkedin|indeed|glassdoor|ziprecruiter|greenhouse|lever|workday)/i.test(domain)) company=domain.split(".")[0].replace(/[-_]/g," ");
+
+ const keywordMap=[
+  ["Customer Success",["customer success","renewal","retention","churn","nrr","csat"]],
+  ["Customer Experience",["customer experience","cx","customer journey"]],
+  ["Operations",["operations","operational","process improvement","workflow"]],
+  ["Implementation",["implementation","onboarding","go-live","deployment"]],
+  ["Leadership",["leadership","manage a team","people manager","direct reports","executive"]],
+  ["Analytics",["analytics","data analysis","metrics","kpi","dashboard"]],
+  ["AI / Automation",["artificial intelligence"," ai ","automation","automate","machine learning"]],
+  ["Project / Program Management",["project management","program management","roadmap","milestone"]],
+  ["GTM / Growth",["go-to-market","gtm","growth strategy","market strategy"]],
+  ["Stakeholder Management",["stakeholder","cross-functional","executive communication"]],
+  ["SaaS",["saas","software as a service"]],
+  ["Zendesk / Support",["zendesk","support operations","ticketing","service desk"]]
+ ];
+ const matches=keywordMap.filter(([,keys])=>keys.some(k=>lower.includes(k))).map(([label])=>label);
+
+ const seniority=/chief|vice president|\bvp\b|head of|director/i.test(lower)?"Senior leadership":/manager|lead|principal/i.test(lower)?"Manager / lead":"Individual contributor or unspecified";
+ const interviewProcess= seniority==="Senior leadership"
+   ? ["Recruiter or talent screen","Hiring manager / executive conversation","Cross-functional leadership interviews","Case, strategy, or operating discussion may be used","Final executive / culture-fit conversation"]
+   : ["Recruiter screen","Hiring manager interview","Role-specific or cross-functional interview","Possible skills exercise or case","Final team / decision conversation"];
+
+ const questions=[
+  `Walk me through your experience most relevant to ${role}.`,
+  matches.includes("Operations") ? "Tell me about a process you redesigned and how you measured the result." : "Tell me about a difficult problem you owned from start to finish.",
+  matches.includes("Leadership") ? "How do you set expectations, coach performance, and handle underperformance?" : "How do you prioritize when several stakeholders need something at once?",
+  matches.includes("Analytics") ? "Which metrics do you use to decide whether your work is actually improving outcomes?" : "How do you know when a project or initiative is successful?",
+  "Why this company and why this role now?"
+ ];
+
+ const emphasize=unique([
+  matches.includes("Customer Success") && "Retention, NRR, churn reduction, customer health, and executive customer strategy.",
+  matches.includes("Customer Experience") && "End-to-end customer journey improvement and measurable CX outcomes.",
+  matches.includes("Operations") && "Process redesign, operating cadence, automation, efficiency gains, and scalable systems.",
+  matches.includes("Implementation") && "Time-to-value, onboarding, implementation governance, handoffs, and go-live execution.",
+  matches.includes("Leadership") && "Team leadership, organizational design, change leadership, and executive influence.",
+  matches.includes("Analytics") && "KPI ownership, decision-making with data, dashboards, and measurable business impact.",
+  matches.includes("AI / Automation") && "Practical AI and automation use cases tied to efficiency or customer outcomes.",
+  matches.includes("Project / Program Management") && "Complex cross-functional delivery, milestones, dependencies, and accountability.",
+  matches.length===0 && "Use quantified outcomes and examples that map directly to the responsibilities in the posting."
+ ]);
+
+ const smartQuestions=[
+  "Why is this role open — growth, replacement, reorganization, or backfill?",
+  "What would make you say the person in this role is successful after 90 days and after one year?",
+  "What are the biggest problems this person is expected to solve first?",
+  "How are priorities and decision rights split across the teams this role works with?",
+  "Is the compensation range, reporting line, and scope in the posting still accurate?"
+ ];
+
+ const redFlags=[];
+ if(/unpaid|commission only|commission-only/i.test(lower)) redFlags.push("Compensation language needs clarification.");
+ if(/take[- ]home|case study|assessment|presentation exercise/i.test(lower)) redFlags.push("The posting suggests an assessment, take-home, case, or presentation may be part of the process.");
+ if(/video assessment|one-way video|recorded video/i.test(lower)) redFlags.push("A one-way or recorded video step may be required.");
+ if(/nights|weekends|24\/7|on-call/i.test(lower)) redFlags.push("Schedule or availability expectations may extend beyond standard hours.");
+ if(!/\$\s?\d|salary|compensation range|pay range/i.test(lower)) redFlags.push("No clear compensation range detected in the pasted text.");
+ if(raw.length<300) redFlags.push("The pasted job description is short, so the analysis has limited evidence.");
+
+ return {role,company,domain,matches,seniority,interviewProcess,questions,emphasize,smartQuestions,redFlags};
+}
+
+function renderInterviewPrep(result,hasText,hasUrl){
+ const sourceNote=hasText
+   ? "Based on the job description you pasted."
+   : "URL saved, but this static prototype cannot reliably read external job pages. Paste the job description for full analysis.";
+ return `
+   <div class="interview-result-head">
+     <div><p class="eyebrow">Fly interview brief</p><h2>${escHtml(result.role)}</h2><p>${escHtml(result.company)}</p></div>
+     <span class="prototype-status ${hasText?"demo":"test"}">${hasText?"Analyzed":"URL only"}</span>
+   </div>
+   <p class="analysis-source-note">${escHtml(sourceNote)}</p>
+   <div class="interview-result-grid">
+     <section><span class="mini-label">Likely level</span><strong>${escHtml(result.seniority)}</strong></section>
+     <section><span class="mini-label">Signals detected</span><strong>${escHtml(result.matches.slice(0,5).join(" · ")||"N/A")}</strong></section>
+   </div>
+   <div class="prep-section"><h3>Likely interview process</h3><ul>${sentenceList(result.interviewProcess)}</ul></div>
+   <div class="prep-section"><h3>Likely questions</h3><ul>${sentenceList(result.questions)}</ul></div>
+   <div class="prep-section"><h3>What to emphasize</h3><ul>${sentenceList(result.emphasize)}</ul></div>
+   <div class="prep-section"><h3>Smart questions to ask</h3><ul>${sentenceList(result.smartQuestions)}</ul></div>
+   <div class="prep-section"><h3>Red flags / clarifications</h3><ul>${sentenceList(result.redFlags.length?result.redFlags:["No obvious warning language detected in the pasted text. Still verify scope, reporting line, pay, and why the role is open."])}</ul></div>
+ `;
+}
+
+function setupInterviewPrep(){
+ const url=document.getElementById("jdUrl");
+ const jd=document.getElementById("jdInput");
+ const button=document.getElementById("interviewPrepButton");
+ const clear=document.getElementById("clearInterviewPrep");
+ const msg=document.getElementById("interviewPrepMessage");
+ const output=document.getElementById("interviewPrepOutput");
+ if(!url||!jd||!button||!output) return;
+
+ [url,jd].forEach(el=>{
+   el.removeAttribute("readonly");
+   el.removeAttribute("disabled");
+   el.style.pointerEvents="auto";
+   el.addEventListener("paste",()=>{ if(msg) msg.textContent="Pasted. Click “Prep me for this interview” when ready."; });
+ });
+
+ button.addEventListener("click",()=>{
+   const text=jd.value.trim();
+   const link=url.value.trim();
+   if(!text && !link){msg.textContent="Paste a job link or the job description first."; output.hidden=true; return}
+   const result=analyzeJobDescription(text,link);
+   output.innerHTML=renderInterviewPrep(result,!!text,!!link);
+   output.hidden=false;
+   msg.textContent=text?"Prototype analysis generated from the pasted job description.":"Link saved. Paste the job description too for a full analysis.";
+   output.scrollIntoView({behavior:"smooth",block:"start"});
+ });
+ clear.addEventListener("click",()=>{
+   url.value="";jd.value="";output.innerHTML="";output.hidden=true;msg.textContent="";
+   jd.focus();
+ });
+}
+
 function showPageToast(text){
  let t=document.getElementById("pageToast");
  if(!t){t=document.createElement("div");t.id="pageToast";t.className="page-toast";document.body.appendChild(t)}
