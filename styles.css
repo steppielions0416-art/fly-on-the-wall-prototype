@@ -1044,3 +1044,77 @@ body{
   .deep-dive-row{grid-template-columns:1fr}
   .deep-dive-title-row{align-items:flex-start;flex-direction:column}
 }
+
+
+/* Know before you apply — Fly palette only */
+.decision-layer{
+  border-color:rgba(3,126,137,.26);
+  background:
+    radial-gradient(circle at 96% 0%, rgba(3,126,137,.10), transparent 30%),
+    radial-gradient(circle at 4% 100%, rgba(238,154,112,.16), transparent 26%),
+    #fffaf7;
+}
+.decision-layer .eyebrow{color:var(--teal)}
+.decision-layer .signal-count{
+  color:#7f4b31;
+  background:rgba(238,154,112,.16);
+  border-color:rgba(238,154,112,.45);
+}
+.decision-card{
+  border-color:rgba(3,126,137,.16);
+  background:#fff;
+}
+.decision-card::before{background:rgba(3,126,137,.35)}
+.decision-card.tone-good::before{background:var(--teal)}
+.decision-card.tone-watch::before{background:var(--orange)}
+.decision-card.tone-risk::before{background:#c86f4e}
+.decision-card.tone-unknown::before{background:#9db7b9}
+
+.decision-hero{
+  background:linear-gradient(120deg,rgba(3,126,137,.12),rgba(238,154,112,.08),#fff);
+  border-color:rgba(3,126,137,.24);
+}
+
+.decision-icon{background:var(--teal-dark)}
+.tone-good .decision-icon{background:var(--teal)}
+.tone-watch .decision-icon{background:var(--orange);color:var(--ink)}
+.tone-risk .decision-icon{background:#c86f4e}
+.tone-unknown .decision-icon{background:#8ea8aa}
+
+.decision-status.good{
+  background:rgba(3,126,137,.12);
+  color:var(--teal-dark);
+  border:1px solid rgba(3,126,137,.22);
+}
+.decision-status.watch{
+  background:rgba(238,154,112,.18);
+  color:#7f4b31;
+  border:1px solid rgba(238,154,112,.42);
+}
+.decision-status.risk{
+  background:rgba(238,154,112,.32);
+  color:#6f3d28;
+  border:1px solid rgba(200,111,78,.46);
+}
+.decision-status.unknown{
+  background:#f3f7f7;
+  color:#5e7477;
+  border:1px solid rgba(3,126,137,.14);
+}
+
+.decision-card.tone-good{background:linear-gradient(180deg,rgba(3,126,137,.055),#fff)}
+.decision-card.tone-watch{background:linear-gradient(180deg,rgba(238,154,112,.08),#fff)}
+.decision-card.tone-risk{background:linear-gradient(180deg,rgba(238,154,112,.14),#fff)}
+.decision-card.tone-unknown{background:linear-gradient(180deg,#f7fbfb,#fff)}
+
+.path-step{
+  border-color:rgba(3,126,137,.16);
+  background:#fffdf9;
+}
+.path-step span{color:var(--teal-dark)}
+.path-step em{color:#8a4f32}
+.path-arrow{
+  border-color:rgba(238,154,112,.45);
+  color:var(--teal-dark);
+  background:#fffaf7;
+}
