@@ -1,7 +1,33 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Structured job-search reviews from applicants, candidates, employees and paid-service users.">
-<title>Reviews | Fly on the Wall</title><link rel="stylesheet" href="styles.css"></head>
+<title>Reviews | Fly on the Wall</title><link rel="stylesheet" href="styles.css">
+<style>
+.review-flow-dialog{border:0;padding:0;border-radius:14px;width:min(760px,calc(100vw - 28px));max-height:90vh;overflow:auto;box-shadow:0 24px 70px rgba(0,0,0,.2)}
+.review-flow-dialog::backdrop{background:rgba(15,26,29,.55)}
+.review-flow-shell{background:#fff;padding:24px}
+.review-flow-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+.review-flow-top h2{margin:4px 0 4px}
+.review-flow-top p{margin:0;color:var(--muted)}
+.review-flow-close{border:0;background:transparent;font-size:2rem;line-height:1;color:var(--muted);cursor:pointer}
+.review-flow-progress{height:6px;background:#e7edef;border-radius:999px;margin:20px 0;overflow:hidden}
+.review-flow-progress i{display:block;height:100%;background:var(--accent);width:0;transition:width .2s ease}
+.review-question{padding:16px 0;border-bottom:1px solid var(--line)}
+.review-question:last-child{border-bottom:0}
+.review-question label.question-label{display:block;font-weight:700;margin-bottom:9px}
+.review-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.review-options label{display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff;cursor:pointer}
+.review-options input{margin-top:3px}
+.review-input{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;font:inherit}
+.review-flow-actions{display:flex;align-items:center;gap:12px;justify-content:space-between;margin-top:20px}
+.review-flow-step{color:var(--muted);font-size:.82rem}
+.review-summary{display:grid;gap:10px}
+.review-summary article{border:1px solid var(--line);border-radius:9px;padding:12px;background:#f8fbfb}
+.review-summary strong{display:block;margin-bottom:3px}
+.review-summary p{margin:0;color:var(--muted)}
+@media(max-width:620px){.review-options{grid-template-columns:1fr}.review-flow-shell{padding:18px}}
+</style>
+</head>
 <body><header class="site-header"><a class="brand" href="index.html"><img class="brand-wordmark" src="assets/fly-on-the-wall-logo-final.png" alt="Fly on the Wall"></a><nav class="main-nav" aria-label="Fly product">
 <a href="company-intelligence.html">Company Intel</a>
 <a href="job-intelligence.html">Hiring Intel</a>
@@ -15,12 +41,189 @@
 <main class="app-shell area-shell">
 <section class="area-hero"><p class="eyebrow">Worker-reported intelligence</p><h1>Reviews that produce usable data.</h1><p>Instead of one giant text box, Fly collects structured signals about what happened at each step of the job and employment experience.</p></section>
 <section class="review-path-grid">
-<article class="review-path-card"><span>01</span><h2>Apply Review</h2><p>Application channel, ATS, effort, response, reposting, communication and final outcome.</p><div class="path-metrics"><b>ATS used</b><b>Time to apply</b><b>Human contact</b><b>Reposted?</b><b>Final disposition</b></div><button type="button">Preview flow</button></article>
-<article class="review-path-card"><span>02</span><h2>Interview Review</h2><p>Rounds promised vs. actual, interview burden, assignments, job clarity, compensation, communication, ghosting and outcome.</p><div class="path-metrics"><b>Total rounds</b><b>Time burden</b><b>Process changes</b><b>Ghosting point</b><b>Offer / rejection</b></div><button type="button">Preview flow</button></article>
-<article class="review-path-card"><span>03</span><h2>Employee Review</h2><p>Leadership, manager quality, workload, culture, growth, pay, stability, fairness, trust and operating effectiveness.</p><div class="path-metrics"><b>Leadership trust</b><b>Manager</b><b>Burnout</b><b>Growth</b><b>Stability</b></div><button type="button">Preview flow</button></article>
-<article class="review-path-card"><span>04</span><h2>Paid Service Review</h2><p>Pricing transparency, promises vs. delivery, job relevance, actual results, value, cancellation, refunds and support.</p><div class="path-metrics"><b>What paid</b><b>What promised</b><b>Interviews</b><b>Value</b><b>Cancel/refund</b></div><button type="button">Preview flow</button></article>
+<article class="review-path-card"><span>01</span><h2>Apply Review</h2><p>Application channel, ATS, effort, response, reposting, communication and final outcome.</p><div class="path-metrics"><b>ATS used</b><b>Time to apply</b><b>Human contact</b><b>Reposted?</b><b>Final disposition</b></div><button type="button" class="review-preview-btn">Preview flow</button></article>
+<article class="review-path-card"><span>02</span><h2>Interview Review</h2><p>Rounds promised vs. actual, interview burden, assignments, job clarity, compensation, communication, ghosting and outcome.</p><div class="path-metrics"><b>Total rounds</b><b>Time burden</b><b>Process changes</b><b>Ghosting point</b><b>Offer / rejection</b></div><button type="button" class="review-preview-btn">Preview flow</button></article>
+<article class="review-path-card"><span>03</span><h2>Employee Review</h2><p>Leadership, manager quality, workload, culture, growth, pay, stability, fairness, trust and operating effectiveness.</p><div class="path-metrics"><b>Leadership trust</b><b>Manager</b><b>Burnout</b><b>Growth</b><b>Stability</b></div><button type="button" class="review-preview-btn">Preview flow</button></article>
+<article class="review-path-card"><span>04</span><h2>Paid Service Review</h2><p>Pricing transparency, promises vs. delivery, job relevance, actual results, value, cancellation, refunds and support.</p><div class="path-metrics"><b>What paid</b><b>What promised</b><b>Interviews</b><b>Value</b><b>Cancel/refund</b></div><button type="button" class="review-preview-btn">Preview flow</button></article>
 </section>
 <section class="prototype-output-section"><div class="section-heading-row"><div><p class="eyebrow">What users will see</p><h2>Structured outcomes, not review essays.</h2></div><span class="signal-count">Prototype view</span></div>
 <div class="review-output-grid"><article><span>Application response rate</span><strong>N/A</strong><p>Populates when Fly has enough submitted Apply Reviews.</p></article><article><span>Median first human contact</span><strong>N/A</strong><p>Built from applicant response-time selections.</p></article><article><span>Interview follow-through</span><strong>N/A</strong><p>Shows process completion, ghosting and clear disposition rates.</p></article><article><span>Would work here again?</span><strong>N/A</strong><p>Built from current and former employee structured responses.</p></article></div>
 <p class="prototype-note">N/A is intentional until Fly has enough first-party review data. The review structure is live in the prototype; the score is not fabricated.</p></section>
-</main><footer><p>Fly on the Wall prototype · Structured first-party review model.</p></footer></body></html>
+
+<dialog id="reviewFlowDialog" class="review-flow-dialog">
+  <div class="review-flow-shell">
+    <div class="review-flow-top">
+      <div>
+        <p class="eyebrow" id="reviewFlowEyebrow">Review preview</p>
+        <h2 id="reviewFlowTitle">Apply Review</h2>
+        <p id="reviewFlowDesc">See how Fly turns an experience into structured data.</p>
+      </div>
+      <button type="button" class="review-flow-close" id="reviewFlowClose" aria-label="Close">×</button>
+    </div>
+    <div class="review-flow-progress"><i id="reviewFlowProgress"></i></div>
+    <div id="reviewFlowBody"></div>
+    <div class="review-flow-actions">
+      <button type="button" class="prototype-secondary" id="reviewFlowBack">Back</button>
+      <span id="reviewFlowStep" class="review-flow-step"></span>
+      <button type="button" class="prototype-primary" id="reviewFlowNext">Next</button>
+    </div>
+  </div>
+</dialog>
+</main><footer><p>Fly on the Wall prototype · Structured first-party review model.</p></footer>
+<script>
+(function(){
+  const buttons=[...document.querySelectorAll(".review-preview-btn")];
+  const dialog=document.getElementById("reviewFlowDialog");
+  const title=document.getElementById("reviewFlowTitle");
+  const desc=document.getElementById("reviewFlowDesc");
+  const body=document.getElementById("reviewFlowBody");
+  const progress=document.getElementById("reviewFlowProgress");
+  const stepText=document.getElementById("reviewFlowStep");
+  const next=document.getElementById("reviewFlowNext");
+  const back=document.getElementById("reviewFlowBack");
+  const close=document.getElementById("reviewFlowClose");
+
+  const flows=[
+    {
+      name:"Apply Review",
+      desc:"Application channel, ATS, effort, response, reposting, communication and final outcome.",
+      steps:[
+        [
+          {q:"Company",type:"text",name:"company",ph:"Company name"},
+          {q:"Job title",type:"text",name:"title",ph:"Role you applied for"},
+          {q:"Where did you apply?",name:"channel",opts:["Company website","LinkedIn","Indeed","ZipRecruiter","Recruiter","Referral","Other"]},
+          {q:"Do you know which ATS/application system was used?",name:"ats",opts:["Workday","Greenhouse","Lever","iCIMS","Ashby","SmartRecruiters","Taleo","LinkedIn Easy Apply","Indeed Apply","Not sure"]}
+        ],
+        [
+          {q:"How long did the application take?",name:"effort",opts:["Under 5 minutes","5–15 minutes","16–30 minutes","31–60 minutes","Over 1 hour"]},
+          {q:"Did you have to re-enter information already on your résumé?",name:"reenter",opts:["None","Some","Most/all"]},
+          {q:"Did a human contact you?",name:"human",opts:["Yes","No","Unsure"]},
+          {q:"Did you advance to an interview?",name:"advance",opts:["Yes","No"]}
+        ],
+        [
+          {q:"Did you see this job reposted after applying?",name:"reposted",opts:["Yes","No","Unsure"]},
+          {q:"How would you rate communication after applying?",name:"communication",opts:["Excellent","Good","Fair","Poor","None"]},
+          {q:"Final outcome",name:"outcome",opts:["Interviewed","Rejected before interview","Withdrew","Position closed/canceled","Never heard back","Still waiting"]}
+        ]
+      ]
+    },
+    {
+      name:"Interview Review",
+      desc:"Rounds promised vs. actual, burden, assignments, job clarity, compensation, communication, ghosting and outcome.",
+      steps:[
+        [
+          {q:"Company",type:"text",name:"company",ph:"Company name"},
+          {q:"Job title",type:"text",name:"title",ph:"Role interviewed for"},
+          {q:"What level was the role?",name:"level",opts:["Entry level","Individual contributor","Senior individual contributor","Manager","Director","VP","C-suite / Executive"]},
+          {q:"How did you get the interview?",name:"source",opts:["Applied directly","LinkedIn","Indeed","ZipRecruiter","Recruiter contacted me","Employee referral","Executive recruiter/search firm","Networking","Internal candidate"]}
+        ],
+        [
+          {q:"How many interview rounds were you originally told to expect?",name:"promisedRounds",opts:["1","2","3","4","5+","They didn't say"]},
+          {q:"How many interview rounds did you actually complete?",name:"actualRounds",opts:["1","2","3","4","5","6+","Still interviewing"]},
+          {q:"Approximately how much total time did you spend interviewing live?",name:"time",opts:["Under 1 hour","1–2 hours","2–4 hours","4–6 hours","6–10 hours","More than 10 hours"]},
+          {q:"Were you asked to complete work outside the interview?",name:"takehome",opts:["Yes","No"]}
+        ],
+        [
+          {q:"Did the job described in interviews match the posting?",name:"match",opts:["Completely","Mostly","Somewhat","Not at all","No posting / don't remember"]},
+          {q:"Did the company stop communicating with you at any point?",name:"ghost",opts:["Yes","No","Still waiting"]},
+          {q:"Overall interview experience",name:"overall",opts:["Excellent","Good","Fair","Poor","Very poor"]},
+          {q:"Would you recommend interviewing here?",name:"recommend",opts:["Yes","No","It depends"]}
+        ]
+      ]
+    },
+    {
+      name:"Employee Review",
+      desc:"Leadership, manager quality, workload, culture, growth, pay, stability, fairness, trust and operating effectiveness.",
+      steps:[
+        [
+          {q:"Company",type:"text",name:"company",ph:"Company name"},
+          {q:"Are you a current or former employee?",name:"status",opts:["Current","Former"]},
+          {q:"What level were you?",name:"level",opts:["Entry","Team Lead","Manager","Director","VP","C-Suite"]},
+          {q:"Work arrangement",name:"arrangement",opts:["Remote","Hybrid","In Office"]}
+        ],
+        [
+          {q:"Overall, how would you rate your experience working here?",name:"overall",opts:["Excellent","Good","Fair","Poor","Very poor"]},
+          {q:"I trust senior leadership.",name:"leadership",opts:["Strongly agree","Agree","Neutral","Disagree","Strongly disagree","Not sure"]},
+          {q:"Overall, how would you rate your direct manager?",name:"manager",opts:["Excellent","Good","Fair","Poor","Very poor"]},
+          {q:"How would you describe staffing?",name:"staffing",opts:["Overstaffed","Appropriately staffed","Slightly understaffed","Severely understaffed","Not sure"]}
+        ],
+        [
+          {q:"How safe did you feel speaking honestly at work?",name:"safety",opts:["Very safe","Mostly safe","Neutral","Somewhat unsafe","Very unsafe"]},
+          {q:"How much did you trust the company overall?",name:"trust",opts:["Completely","Mostly","Somewhat","Very little","Not at all"]},
+          {q:"Would you recommend working here?",name:"recommend",opts:["Definitely yes","Probably yes","Probably no","Definitely no"]},
+          {q:"Do you believe the company is headed in the right direction?",name:"direction",opts:["Definitely yes","Probably yes","Unsure","Probably no","Definitely no"]}
+        ]
+      ]
+    },
+    {
+      name:"Paid Service Review",
+      desc:"Pricing transparency, promises vs. delivery, job relevance, actual results, value, cancellation, refunds and support.",
+      steps:[
+        [
+          {q:"Service/company name",type:"text",name:"service",ph:"Service name"},
+          {q:"What type of service was it?",name:"type",opts:["Staffing/recruiting agency","AI/automated application","Resume service","Reverse recruiting/job-search concierge","Executive career marketing","Career coaching","Interview coaching","Paid job board/membership","Outplacement service","Other"]},
+          {q:"Was the price clearly shown before you signed up?",name:"priceClear",opts:["Yes","No","Only after speaking with someone"]},
+          {q:"Did you feel pressured to sign up?",name:"pressure",opts:["Not at all","Slightly","Moderately","Very","Extremely"]}
+        ],
+        [
+          {q:"Did you receive everything included in the package you purchased?",name:"delivered",opts:["Yes","Mostly","Some","Very little","No"]},
+          {q:"How would you rate the quality of the service?",name:"quality",opts:["Excellent","Good","Fair","Poor","Very poor"]},
+          {q:"Did it lead to interviews?",name:"interviews",opts:["Yes","No"]},
+          {q:"Did it lead to a job offer?",name:"offer",opts:["Yes","No"]}
+        ],
+        [
+          {q:"Was the service worth what it cost?",name:"worth",opts:["Definitely yes","Probably yes","Probably no","Definitely no"]},
+          {q:"Knowing what you know now, would you pay for it again?",name:"again",opts:["Definitely","Probably","Probably not","Definitely not"]},
+          {q:"How easy was cancellation?",name:"cancel",opts:["Very easy","Easy","Fair","Difficult","Very difficult","Did not cancel"]},
+          {q:"Would you recommend this service?",name:"recommend",opts:["Definitely yes","Probably yes","Probably no","Definitely no"]}
+        ]
+      ]
+    }
+  ];
+
+  let active=null,step=0,answers={};
+
+  function renderQuestion(q){
+    if(q.type==="text"){
+      return '<div class="review-question"><label class="question-label">'+q.q+'</label><input class="review-input" type="text" data-answer="'+q.name+'" placeholder="'+(q.ph||"")+'" value="'+(answers[q.name]||"")+'"></div>';
+    }
+    return '<div class="review-question"><label class="question-label">'+q.q+'</label><div class="review-options">'+q.opts.map(o=>'<label><input type="radio" name="'+q.name+'" value="'+o+'" '+(answers[q.name]===o?'checked':'')+'><span>'+o+'</span></label>').join("")+'</div></div>';
+  }
+
+  function collect(){
+    body.querySelectorAll("[data-answer]").forEach(el=>answers[el.dataset.answer]=el.value.trim());
+    body.querySelectorAll('input[type="radio"]:checked').forEach(el=>answers[el.name]=el.value);
+  }
+
+  function render(){
+    const total=active.steps.length+1;
+    title.textContent=active.name;
+    desc.textContent=active.desc;
+    back.disabled=step===0;
+    progress.style.width=((step+1)/total*100)+"%";
+    stepText.textContent=step<active.steps.length?"Step "+(step+1)+" of "+active.steps.length:"Preview summary";
+    if(step<active.steps.length){
+      body.innerHTML=active.steps[step].map(renderQuestion).join("");
+      next.textContent=step===active.steps.length-1?"Preview summary":"Next";
+    }else{
+      const pairs=Object.entries(answers).filter(([,v])=>v);
+      body.innerHTML='<div class="review-summary"><article><strong>This is the structured data Fly would save.</strong><p>No review is being published from this prototype.</p></article>'+pairs.map(([k,v])=>'<article><strong>'+k.replace(/([A-Z])/g," $1").replace(/^./,m=>m.toUpperCase())+'</strong><p>'+v+'</p></article>').join("")+'</div>';
+      next.textContent="Done";
+    }
+  }
+
+  buttons.forEach((btn,i)=>btn.addEventListener("click",()=>{
+    active=flows[i]; step=0; answers={}; render(); dialog.showModal();
+  }));
+
+  next.addEventListener("click",()=>{
+    collect();
+    if(step<active.steps.length){step++;render();}
+    else dialog.close();
+  });
+  back.addEventListener("click",()=>{collect();if(step>0){step--;render();}});
+  close.addEventListener("click",()=>dialog.close());
+  dialog.addEventListener("click",e=>{if(e.target===dialog) dialog.close();});
+})();
+</script>
+</body></html>
