@@ -64,13 +64,24 @@ function renderAreaPage(){
  const root=document.getElementById("areaPage");
  if(!area||!root) return;
  const cfg=areaPageConfig[area];
- const features=flyPrototypeFeatures.filter(f=>f.area===area);
- root.innerHTML=`
-   <section class="area-hero"><p class="eyebrow">${cfg.kicker}</p><h1>${cfg.title}</h1><p>${cfg.desc}</p><div class="area-meta"><span>${features.length} user-test features</span><span>Real research where available</span><span>Source-aware</span></div></section>
-   ${(area==="Company Intelligence"||area==="Job Intelligence")?companyDataExperience(area):pagePreview(cfg.demo)}
+ if(!cfg) return;
 
- root.querySelectorAll("[data-feature]").forEach(btn=>btn.addEventListener("click",()=>showPageToast(btn.dataset.feature)));
- root.querySelectorAll("[data-demo-action]").forEach(btn=>btn.addEventListener("click",()=>showPageToast("Prototype interaction: "+btn.dataset.demoAction)));
+ root.innerHTML=`
+   <section class="area-hero">
+     <p class="eyebrow">${cfg.kicker}</p>
+     <h1>${cfg.title}</h1>
+     <p>${cfg.desc}</p>
+     <div class="area-meta">
+       <span>Real research where available</span>
+       <span>Source-aware</span>
+     </div>
+   </section>
+   ${(area==="Company Intelligence"||area==="Job Intelligence") ? companyDataExperience(area) : pagePreview(cfg.demo)}
+ `;
+
+ root.querySelectorAll("[data-demo-action]").forEach(btn=>{
+   btn.addEventListener("click",()=>showPageToast("Prototype interaction: "+btn.dataset.demoAction));
+ });
  if(area==="Interview Prep") setupInterviewPrep();
  if(area==="Company Intelligence"||area==="Job Intelligence") setupResearchBrowser(area);
 }
