@@ -65,13 +65,10 @@ function renderAreaPage(){
  if(!area||!root) return;
  const cfg=areaPageConfig[area];
  const features=flyPrototypeFeatures.filter(f=>f.area===area);
- const modules=[...new Set(features.map(f=>f.module))];
  root.innerHTML=`
    <section class="area-hero"><p class="eyebrow">${cfg.kicker}</p><h1>${cfg.title}</h1><p>${cfg.desc}</p><div class="area-meta"><span>${features.length} user-test features</span><span>Real research where available</span><span>Source-aware</span></div></section>
    ${(area==="Company Intelligence"||area==="Job Intelligence")?companyDataExperience(area):pagePreview(cfg.demo)}
-   <section class="page-modules">
-   ${modules.map(module=>`<section class="page-module"><div class="module-head"><div><p class="eyebrow">Module</p><h2>${module}</h2></div><span>${features.filter(f=>f.module===module).length} features</span></div><div class="feature-list">${features.filter(f=>f.module===module).map(f=>{const p=placeholderFor(f); return `<div class="feature-row"><div class="feature-row-main"><h3>${f.name}</h3><p>${p[2]}</p></div><div class="feature-row-meta"><span class="prototype-status ${p[1]}">${p[0]}</span><button type="button" class="prototype-link" data-feature="${f.name.replace(/"/g,"&quot;")}">Preview</button></div></div>`}).join("")}</div></section>`).join("")}
-   </section>`;
+
  root.querySelectorAll("[data-feature]").forEach(btn=>btn.addEventListener("click",()=>showPageToast(btn.dataset.feature)));
  root.querySelectorAll("[data-demo-action]").forEach(btn=>btn.addEventListener("click",()=>showPageToast("Prototype interaction: "+btn.dataset.demoAction)));
  if(area==="Interview Prep") setupInterviewPrep();
