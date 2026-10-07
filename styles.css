@@ -1118,3 +1118,31 @@ body{
   color:var(--teal-dark);
   background:#fffaf7;
 }
+
+/* --- Sitemap prototype refresh · Oct 2026 --- */
+.site-header{background:#fff !important;color:#222 !important;border-bottom:1px solid #e7e3df !important;box-shadow:0 2px 12px rgba(25,25,25,.05);}
+.site-header .main-nav a{color:#333 !important;}
+.site-header .main-nav a:hover{color:#037E89 !important;background:#f4f8f8;}
+.site-header .prototype-badge{background:#f6f2ef !important;color:#6c4e43 !important;border:1px solid #eaded8;}
+.brand-wordmark{background:transparent !important;}
+.sitemap-hub{margin-top:2rem}.sitemap-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.sitemap-grid a:last-child{grid-column:auto;}
+#companyDashboard .bizzie-brief,#companyDashboard .snapshot-grid,#companyDashboard .intelligence-grid,#companyDashboard .reviews-placeholder{display:none !important;}
+.review-path-grid,.classification-grid,.service-card-grid,.review-output-grid,.industry-stat-grid,.industry-detail-grid,.guidance-grid{display:grid;gap:1rem}
+.review-path-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin:2rem 0}
+.review-path-card,.classification-grid article,.service-detail-card,.review-output-grid article,.industry-stat-grid article,.industry-detail-grid article,.guidance-grid article{background:#fff;border:1px solid #e7e3df;border-radius:18px;padding:1.25rem;box-shadow:0 8px 24px rgba(30,30,30,.04)}
+.review-path-card>span,.classification-grid article>span,.industry-chip span{font-size:.72rem;font-weight:800;letter-spacing:.09em;color:#037E89}
+.review-path-card h2,.classification-grid h3,.service-detail-card h3,.industry-detail-grid h3,.guidance-grid h2{margin:.35rem 0 .55rem}
+.review-path-card button,.service-actions button,.service-search button{border:0;border-radius:999px;padding:.72rem 1rem;background:#037E89;color:#fff;font-weight:800;cursor:pointer}
+.path-metrics{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0}.path-metrics b{font-size:.78rem;padding:.42rem .65rem;border-radius:999px;background:#f3f6f6;color:#334}
+.prototype-output-section,.classification-section,.industry-browser{margin:2rem 0 3rem}
+.review-output-grid,.industry-stat-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.review-output-grid article strong,.industry-stat-grid article strong{display:block;font-size:1.7rem;margin:.35rem 0}
+.prototype-note{margin-top:1rem;padding:1rem 1.1rem;background:#fff8f2;border:1px solid #f2ded0;border-radius:14px;color:#69544a}
+.service-search{display:flex;gap:.65rem;max-width:720px;margin-top:1.2rem}.service-search input{flex:1;border:1px solid #d8d4d0;border-radius:999px;padding:.85rem 1rem;font:inherit;background:#fff}
+.classification-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:1rem}.classification-grid article p{margin-bottom:0;color:#666}
+.service-card-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.service-card-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}.service-card-head>strong{font-size:1.35rem;color:#7d7d7d}
+.service-type{font-size:.72rem;font-weight:800;color:#037E89;text-transform:uppercase;letter-spacing:.07em}.service-detail-card dl{margin:1rem 0;display:grid;gap:.65rem}.service-detail-card dl div{border-top:1px solid #eee7e2;padding-top:.65rem}.service-detail-card dt{font-size:.75rem;color:#777;text-transform:uppercase;letter-spacing:.05em}.service-detail-card dd{margin:.2rem 0 0;font-weight:650}.service-actions{display:flex;gap:.5rem;flex-wrap:wrap}.service-actions button.secondary{background:#fff;color:#333;border:1px solid #cfc8c3}
+.industry-chip-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin-top:1rem}.industry-chip{display:flex;gap:.6rem;align-items:center;text-align:left;border:1px solid #ded9d5;background:#fff;border-radius:12px;padding:.8rem .9rem;font-weight:750;cursor:pointer}.industry-chip.active,.industry-chip:hover{border-color:#037E89;background:#f2f9f9}
+.industry-profile-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;margin-bottom:1rem}.industry-detail-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:1rem}.guidance-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin:2rem 0 3rem}.guidance-grid article p{margin-bottom:0;color:#666}
+@media(max-width:900px){.sitemap-grid,.classification-grid,.service-card-grid,.industry-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.review-output-grid,.industry-stat-grid,.industry-chip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.site-header{background:#fff !important}.review-path-grid,.sitemap-grid,.classification-grid,.service-card-grid,.review-output-grid,.industry-stat-grid,.industry-detail-grid,.guidance-grid,.industry-chip-grid{grid-template-columns:1fr}.service-search{flex-direction:column}.industry-profile-head{flex-direction:column}}
