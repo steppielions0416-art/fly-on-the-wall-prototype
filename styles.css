@@ -1174,3 +1174,24 @@ body{
 .account-settings-row{align-items:center;margin-top:.75rem}
 @media(max-width:900px){.account-grid-top,.account-grid-three{grid-template-columns:1fr}.account-tile-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.account-hero{flex-direction:column;align-items:flex-start}.account-tile-grid{grid-template-columns:1fr}.saved-row{grid-template-columns:1fr}.account-shell{padding:24px 16px 48px}.account-settings-row{flex-direction:column}}
+
+/* --- Industry tracked-sample output --- */
+.industry-chip{position:relative;justify-content:flex-start}
+.industry-chip em{margin-left:auto;font-style:normal;font-size:.68rem;font-weight:800;color:#037E89;background:#eef8f8;border-radius:999px;padding:.2rem .45rem}
+.industry-company-sample{margin:1.4rem 0 1.2rem}
+.industry-company-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.industry-company-card{display:grid;grid-template-columns:1fr auto;gap:1rem;background:#fff;border:1px solid #e7e3df;border-radius:16px;padding:1rem}
+.industry-company-card h3{margin:.25rem 0 .35rem}
+.industry-company-card p{margin:0;color:#666}
+.industry-company-type{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:#037E89;font-weight:800}
+.industry-company-grade{text-align:right}
+.industry-company-grade span{display:block;font-size:.7rem;color:#777;text-transform:uppercase;letter-spacing:.06em}
+.industry-company-grade strong{font-size:1.8rem}
+.industry-company-signals{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:.5rem;padding-top:.75rem;border-top:1px solid #eee}
+.industry-company-signals span{font-size:.8rem;background:#f5f7f7;border-radius:999px;padding:.4rem .6rem}
+.industry-list{margin:.4rem 0 0;padding-left:1.1rem}
+.industry-list li{margin:.35rem 0;color:#555}
+.industry-caveat{font-size:.8rem;color:#777}
+.industry-empty-state{background:#fff;border:1px dashed #cfc8c3;border-radius:16px;padding:1.25rem}
+.industry-empty-state p{margin-bottom:0;color:#666}
+@media(max-width:760px){.industry-company-grid{grid-template-columns:1fr}.industry-company-card{grid-template-columns:1fr}.industry-company-grade{text-align:left}.industry-company-signals{grid-column:auto}}
