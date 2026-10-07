@@ -1146,3 +1146,31 @@ body{
 .industry-profile-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;margin-bottom:1rem}.industry-detail-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:1rem}.guidance-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin:2rem 0 3rem}.guidance-grid article p{margin-bottom:0;color:#666}
 @media(max-width:900px){.sitemap-grid,.classification-grid,.service-card-grid,.industry-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.review-output-grid,.industry-stat-grid,.industry-chip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.site-header{background:#fff !important}.review-path-grid,.sitemap-grid,.classification-grid,.service-card-grid,.review-output-grid,.industry-stat-grid,.industry-detail-grid,.guidance-grid,.industry-chip-grid{grid-template-columns:1fr}.service-search{flex-direction:column}.industry-profile-head{flex-direction:column}}
+
+/* My Account dashboard */
+.account-shell{max-width:1180px;margin:0 auto;padding:32px 24px 60px}
+.account-hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;padding:30px 0 22px;border-bottom:1px solid #e7e3df}
+.account-hero h1{margin:.25rem 0 .5rem;font-size:clamp(2rem,4vw,3.4rem)}
+.account-hero p{max-width:720px;color:#666}
+.account-primary,.account-secondary{border-radius:999px;padding:.75rem 1rem;font-weight:800;cursor:pointer}
+.account-primary{border:0;background:#037E89;color:#fff}
+.account-secondary{border:1px solid #d5cfca;background:#fff;color:#333}
+.account-grid{display:grid;gap:1rem}
+.account-grid-top{grid-template-columns:1.5fr 1fr;margin:1.5rem 0}
+.account-grid-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.account-card,.account-tile,.account-settings-row{background:#fff;border:1px solid #e7e3df;border-radius:18px;padding:1.2rem;box-shadow:0 8px 22px rgba(30,30,30,.04)}
+.account-card-head,.account-settings-row{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}
+.account-card a,.account-tile{color:inherit;text-decoration:none}
+.saved-row{display:grid;grid-template-columns:1.1fr 1.5fr auto;gap:1rem;padding:.85rem 0;border-top:1px solid #eee}
+.saved-row span{color:#666}.saved-row em{font-style:normal;color:#037E89;font-weight:800}
+.account-profile-list{display:grid;gap:.7rem;margin:1rem 0}
+.account-profile-list div{display:flex;justify-content:space-between;gap:1rem;border-top:1px solid #eee;padding-top:.6rem}
+.account-profile-list dt{color:#777}.account-profile-list dd{margin:0;font-weight:700}
+.account-section{margin-top:2rem}
+.account-tile-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+.account-tile span{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:#777;font-weight:800}
+.account-tile strong{display:block;font-size:2rem;margin:.35rem 0}
+.account-tile p,.account-card p,.account-settings-row p{color:#666}
+.account-settings-row{align-items:center;margin-top:.75rem}
+@media(max-width:900px){.account-grid-top,.account-grid-three{grid-template-columns:1fr}.account-tile-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.account-hero{flex-direction:column;align-items:flex-start}.account-tile-grid{grid-template-columns:1fr}.saved-row{grid-template-columns:1fr}.account-shell{padding:24px 16px 48px}.account-settings-row{flex-direction:column}}
