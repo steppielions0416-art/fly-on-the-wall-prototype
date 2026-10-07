@@ -3,24 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Fly on the Wall helps job seekers understand companies, openings, career paths and their own search outcomes before wasting time.">
 <title>Fly on the Wall</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
- --bg:#eef1f3;--surface:#fff;--ink:#14262b;--muted:#53666c;--line:#d3dbdf;
- --accent:#037E89;--accent-ink:#fff;--orange:#EE9A70;
- --good:#1d7a4a;--warn:#9a5b00;--bad:#b3392f;
- --good-bg:#e1f1e8;--warn-bg:#f8ecd3;--bad-bg:#f6dedb;
- --font-display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
- --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
- --font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --bg:#eef1f3;--surface:#fff;--ink:#14262b;--muted:#53666c;--line:#d3dbdf;
+  --accent:#037E89;--orange:#EE9A70;--good:#1d7a4a;
+  --font-display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.5}
 img{max-width:100%}
-.wrap{max-width:1040px;margin:auto;padding:16px 18px 50px}
 .site-top{background:#fff;border-bottom:1px solid var(--line)}
 .site-top-inner{max-width:1180px;margin:auto;padding:10px 18px;display:flex;align-items:center;gap:18px}
 .logo{display:block;width:150px;min-width:120px}
@@ -29,77 +27,46 @@ img{max-width:100%}
 .product-nav a{color:var(--muted);text-decoration:none;font-size:.83rem;font-weight:600;padding:7px 9px;border-radius:6px}
 .product-nav a:hover{background:#f2f7f7;color:var(--accent)}
 .product-nav a.account{color:var(--accent);border:1px solid rgba(3,126,137,.25)}
-.tool-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:20px 0 14px;border-bottom:1px solid var(--line)}
-.tool-title{font-family:var(--font-display);font-size:1rem;color:var(--muted);font-weight:700}
-nav.tabs{display:flex;gap:4px;flex-wrap:wrap}
-nav.tabs button{font:inherit;font-weight:600;color:var(--muted);background:transparent;border:1px solid transparent;padding:8px 14px;border-radius:6px;cursor:pointer}
-nav.tabs button[aria-selected="true"]{color:#fff;background:var(--accent)}
-nav.tabs button:hover:not([aria-selected="true"]){border-color:var(--line);color:var(--ink)}
-.notice{margin:16px 0 0;padding:10px 14px;border:1px dashed var(--line);border-radius:6px;color:var(--muted);font-size:.875rem;background:rgba(255,255,255,.45)}
+.wrap{max-width:1120px;margin:auto;padding:0 18px 60px}
+.hero{padding:72px 0 46px;display:grid;grid-template-columns:1.25fr .75fr;gap:42px;align-items:center}
+.eyebrow{font-family:var(--font-mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600}
 h1,h2,h3{font-family:var(--font-display)}
-h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.02;letter-spacing:-.03em;margin:30px 0 8px}
-h2{font-size:1.5rem;line-height:1.2;letter-spacing:-.01em;margin:28px 0 4px}
-.lede{color:var(--muted);margin:0 0 20px;max-width:68ch}
-.label{font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;align-items:start}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}
-.controls{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:end;margin-bottom:16px}
-.field{display:flex;flex-direction:column;gap:4px;min-width:0}.field.grow{flex:1 1 260px}
-select,input[type="text"],input[type="number"],textarea{font:inherit;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:9px 10px;width:100%}
-textarea{min-height:220px;resize:vertical;line-height:1.45}
-.company-meta{color:var(--muted);font-size:.875rem;margin:2px 0 0}
-.verdict-word{font-family:var(--font-display);font-weight:700;font-size:clamp(1.9rem,6vw,2.6rem);line-height:1.05;letter-spacing:-.02em;margin:8px 0 6px}
-.verdict-card[data-v="apply"] .verdict-word{color:var(--good)}
-.verdict-card[data-v="caution"] .verdict-word{color:var(--warn)}
-.verdict-card[data-v="skip"] .verdict-word{color:var(--bad)}
-.verdict-sub{margin:0 0 16px;color:var(--muted)}
-.meter{position:relative;height:10px;border-radius:5px;background:linear-gradient(to right,var(--bad-bg) 0 45%,var(--warn-bg) 45% 70%,var(--good-bg) 70% 100%);border:1px solid var(--line);margin:22px 0 6px}
-.meter .pin{position:absolute;top:-7px;width:4px;height:22px;margin-left:-2px;border-radius:2px;background:var(--ink)}
-.meter-scale{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:.7rem;color:var(--muted)}
-.score-line{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-family:var(--font-mono);font-size:.8rem;color:var(--muted)}
-.score-line strong{font-size:1.1rem;color:var(--ink);font-weight:500}
-ol.reasons,ul.plain{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:10px}
-ol.reasons li,ul.plain li{padding-left:14px;border-left:3px solid var(--line)}
-ol.reasons li b,ul.plain li b{display:block;font-weight:600}
-ol.reasons li span,ul.plain li span{color:var(--muted);font-size:.9rem}
-ul.plain li[data-k="good"]{border-left-color:var(--good)}
-ul.plain li[data-k="watch"]{border-left-color:var(--warn)}
-ul.plain li[data-k="flag"]{border-left-color:var(--bad)}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.btn{font:inherit;font-weight:500;padding:9px 14px;border-radius:6px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
-.btn:hover{border-color:var(--accent)}.btn[aria-pressed="true"],.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-.status{min-height:1.4em;margin:10px 0 0;font-size:.85rem;color:var(--muted)}
-.signal{padding:14px 0;border-top:1px solid var(--line)}.signal:first-of-type{border-top:0;padding-top:0}
-.signal-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}.signal-head b{font-weight:600}
-.tag{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:4px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}.tag.rep{color:var(--accent);border-color:var(--accent)}
-.signal p{margin:4px 0 8px;color:var(--muted);font-size:.9rem}
-.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;border-radius:3px;background:var(--accent)}.bar i[data-t="good"]{background:var(--good)}.bar i[data-t="warn"]{background:var(--warn)}.bar i[data-t="bad"]{background:var(--bad)}
-.pill{display:inline-block;font-family:var(--font-mono);font-size:.78rem;padding:3px 10px;border-radius:999px;font-weight:500}.pill[data-t="good"]{background:var(--good-bg);color:var(--good)}.pill[data-t="warn"]{background:var(--warn-bg);color:var(--warn)}.pill[data-t="bad"]{background:var(--bad-bg);color:var(--bad)}
-.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:14px 0 0;font-size:.9rem}.kv dt{color:var(--muted)}.kv dd{margin:0;overflow-wrap:anywhere}
-.sample-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 12px}
-.method{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;display:grid;gap:6px;max-width:75ch}.method b{color:var(--ink)}
-.quick-links{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}
-.quick-links a{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px;text-decoration:none;color:var(--ink);font-weight:600}
-.quick-links span{display:block;color:var(--muted);font-weight:400;font-size:.84rem;margin-top:2px}
-.journey{margin-top:32px}
-.journey-head{max-width:760px;margin-bottom:16px}
-.journey-head h2{margin-bottom:6px}
-.journey-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.journey-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px}
-.journey-num{font-family:var(--font-mono);font-size:.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em}
-.journey-card h3{font-size:1.15rem;margin:8px 0 6px}
-.journey-card p{color:var(--muted);font-size:.9rem;margin:0 0 12px}
-.journey-card ul{margin:0;padding-left:18px;color:var(--ink);font-size:.88rem}
-.journey-card li{margin:5px 0}
-.journey-card a{display:inline-block;margin-top:14px;color:var(--accent);font-weight:700;text-decoration:none}
-.source-key{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.source-key span{font-family:var(--font-mono);font-size:.68rem;padding:4px 8px;border:1px solid var(--line);border-radius:999px;background:#fff}
-.source-key .reported{border-color:var(--accent);color:var(--accent)}
-.source-key .public{border-color:var(--good);color:var(--good)}
-.source-key .observed{border-color:var(--orange);color:#9a5538}
-.source-key .estimated{color:var(--muted)}
-[hidden]{display:none!important}
-@media(max-width:780px){.site-top-inner{align-items:flex-start}.product-nav{display:none}.logo{width:135px}.quick-links,.journey-grid{grid-template-columns:1fr}.wrap{padding-inline:14px}}
+h1{font-size:clamp(2.8rem,7vw,5.6rem);line-height:.96;letter-spacing:-.045em;margin:12px 0 18px;max-width:900px}
+.hero p{font-size:1.12rem;color:var(--muted);max-width:700px;margin:0 0 24px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:700;border-radius:8px;padding:11px 16px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.hero-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}
+.hero-card .big{font-family:var(--font-display);font-size:1.45rem;line-height:1.15;margin:8px 0}
+.hero-card p{font-size:.92rem;margin:0;color:var(--muted)}
+.hero-card .mini{display:grid;gap:10px;margin-top:18px}
+.hero-card .mini div{padding:10px 12px;border-left:3px solid var(--accent);background:#f8fbfb}
+.hero-card .mini b{display:block;font-size:.9rem}
+.hero-card .mini span{font-size:.8rem;color:var(--muted)}
+.section{padding:28px 0}
+.section-head{max-width:760px;margin-bottom:18px}
+.section h2{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.05;letter-spacing:-.02em;margin:6px 0 8px}
+.section-head p{color:var(--muted);margin:0}
+.journey-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.journey-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column}
+.step{font-family:var(--font-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.journey-card h3{font-size:1.3rem;line-height:1.15;margin:8px 0 7px}
+.journey-card>p{color:var(--muted);font-size:.9rem;margin:0 0 13px}
+.journey-card ul{padding-left:18px;margin:0;color:var(--ink);font-size:.9rem}
+.journey-card li{margin:6px 0}
+.journey-card a{margin-top:auto;padding-top:16px;color:var(--accent);font-weight:700;text-decoration:none}
+.intel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.intel-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}
+.intel-card h3{font-size:1rem;margin:0 0 5px}
+.intel-card p{font-size:.84rem;color:var(--muted);margin:0}
+.trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.trust span{font-family:var(--font-mono);font-size:.68rem;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:#fff}
+.trust .reported{border-color:var(--accent);color:var(--accent)}
+.trust .public{border-color:var(--good);color:var(--good)}
+.trust .observed{border-color:var(--orange);color:#9a5538}
+.footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.journey-grid{grid-template-columns:1fr}.intel-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:780px){.product-nav{display:none}.logo{width:135px}.wrap{padding-inline:14px}.hero{padding-top:46px}.intel-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -119,249 +86,105 @@ ul.plain li[data-k="flag"]{border-left-color:var(--bad)}
   </div>
 </header>
 
-<div class="wrap">
-  <div class="tool-head">
-    <div class="tool-title">Know before you apply.</div>
-    <nav class="tabs" role="tablist" aria-label="Tools">
-      <button role="tab" id="tab-verdict" aria-selected="true" aria-controls="panel-verdict">Should I Apply?</button>
-      <button role="tab" id="tab-checker" aria-selected="false" aria-controls="panel-checker">Job Posting Checker</button>
-    </nav>
-  </div>
-
-  <p class="notice"><strong>Prototype:</strong> the examples on this page are fictional so we can test the experience without pretending we have review data we do not yet have.</p>
-
-  <section id="panel-verdict" role="tabpanel" aria-labelledby="tab-verdict">
-    <h1>Should I apply here?</h1>
-    <p class="lede">One plain answer with the reasons behind it, built from how a company hires, how it treats applicants and how stable it looks.</p>
-    <div class="controls">
-      <div class="field grow">
-        <label class="label" for="company">Company and role</label>
-        <select id="company"></select>
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Job-market intelligence for workers</div>
+      <h1>Know what you’re walking into.</h1>
+      <p>Fly on the Wall helps you understand the company, the opportunity and your own search before you spend hours applying, interviewing or paying for help.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="company-intelligence.html">Research a company</a>
+        <a class="btn" href="career-transition.html">Explore career paths</a>
+        <a class="btn" href="account.html">Open My Search</a>
       </div>
     </div>
-    <div class="grid">
-      <div class="card verdict-card" id="verdict-card" data-v="apply">
-        <div class="label" id="co-label">Verdict</div>
-        <p class="company-meta" id="co-meta"></p>
-        <div class="verdict-word" id="v-word"></div>
-        <p class="verdict-sub" id="v-sub"></p>
-        <div class="score-line"><span>Overall signal score</span><strong id="v-score"></strong></div>
-        <div class="meter" aria-hidden="true"><div class="pin" id="v-pin"></div></div>
-        <div class="meter-scale" aria-hidden="true"><span>Skip</span><span>Caution</span><span>Apply</span></div>
-        <div class="label" style="margin-top:18px">Top three reasons</div>
-        <ol class="reasons" id="v-reasons"></ol>
-        <div class="actions">
-          <button class="btn" id="save-co" aria-pressed="false">Save company</button>
-          <button class="btn" id="follow-co" aria-pressed="false">Follow</button>
-          <a class="btn" href="reviews.html">Read reviews</a>
-          <a class="btn primary" href="interview-prep.html">Prepare for interview</a>
-        </div>
-        <p class="status" id="v-status" role="status" aria-live="polite"></p>
+    <aside class="hero-card">
+      <div class="eyebrow">What Fly brings together</div>
+      <div class="big">Company truth + hiring behavior + worker outcomes</div>
+      <p>Public data, observed job activity and first-party applicant and employee experience are kept distinct so users can see what is fact, what was reported and what Fly estimated.</p>
+      <div class="mini">
+        <div><b>Company reality</b><span>Layoffs, stability, leadership, hiring direction and public records.</span></div>
+        <div><b>Candidate reality</b><span>Response rates, interview burden, ghosting, reposts and outcomes.</span></div>
+        <div><b>Your reality</b><span>Role fit, career options, search conversion and next-best action.</span></div>
       </div>
-      <div class="card">
-        <div class="label">Signal breakdown</div>
-        <div id="signals" style="margin-top:12px"></div>
-      </div>
-    </div>
+    </aside>
   </section>
 
-  <section id="panel-checker" role="tabpanel" aria-labelledby="tab-checker" hidden>
-    <h1>Is this job posting real?</h1>
-    <p class="lede">Paste a posting and add what you know about its history. The checker looks for ghost-job patterns, missing pay, vague wording and which applicant tracking system it likely uses.</p>
-    <div class="grid">
-      <div class="card">
-        <div class="sample-row">
-          <span class="label">Try a sample</span>
-          <button class="btn" data-sample="clear">Clear posting</button>
-          <button class="btn" data-sample="vague">Vague posting</button>
-          <button class="btn" data-sample="pipeline">Pipeline posting</button>
-        </div>
-        <div class="field" style="margin-bottom:12px">
-          <label class="label" for="link">Posting link (optional)</label>
-          <input type="text" id="link" placeholder="https://boards.greenhouse.io/example/jobs/123">
-        </div>
-        <div class="field" style="margin-bottom:12px">
-          <label class="label" for="jd">Job description</label>
-          <textarea id="jd"></textarea>
-        </div>
-        <div class="controls" style="margin-bottom:0">
-          <div class="field" style="width:130px">
-            <label class="label" for="days">Days posted</label>
-            <input type="number" id="days" min="0" max="999" value="0">
-          </div>
-          <div class="field" style="width:130px">
-            <label class="label" for="reposts">Times reposted</label>
-            <input type="number" id="reposts" min="0" max="20" value="0">
-          </div>
-          <button class="btn primary" id="run-check">Check posting</button>
-        </div>
-      </div>
-      <div class="card" id="result-card">
-        <div class="label">Result</div>
-        <div id="result"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="journey" aria-labelledby="journey-title">
-    <div class="journey-head">
-      <div class="label">One intelligence system</div>
-      <h2 id="journey-title">Three questions. One job-search path.</h2>
-      <p class="lede">Fly connects research, decisions and outcomes instead of making you jump between disconnected tools.</p>
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">One intelligence system</div>
+      <h2>Three questions drive the experience.</h2>
+      <p>The tools live inside the journey. They are not the homepage.</p>
     </div>
     <div class="journey-grid">
       <article class="journey-card">
-        <div class="journey-num">01 · Opportunity</div>
+        <div class="step">01 · Opportunity</div>
         <h3>Is this worth my time?</h3>
-        <p>Research the employer and the opening before investing hours in an application.</p>
+        <p>Decide whether the company and opening deserve your attention before you apply.</p>
         <ul>
-          <li>Should I Apply? verdict</li>
-          <li>Company health, layoffs and leadership</li>
-          <li>Posting age, reposts and ghost-job signals</li>
+          <li>Company health and stability</li>
+          <li>Hiring activity and posting history</li>
           <li>Applicant response and interview behavior</li>
-          <li>ATS and application friction</li>
+          <li>Ghost-job and repost signals</li>
+          <li>Should I Apply? decision support</li>
         </ul>
-        <a href="company-intelligence.html">Explore opportunity intelligence →</a>
+        <a href="company-intelligence.html">Explore Company + Hiring Intel →</a>
       </article>
+
       <article class="journey-card">
-        <div class="journey-num">02 · Positioning</div>
+        <div class="step">02 · Positioning</div>
         <h3>Am I positioned right?</h3>
-        <p>Use your experience to identify realistic roles, industries and interview positioning.</p>
+        <p>Translate your experience into realistic opportunities and stronger interview positioning.</p>
         <ul>
           <li>Career Transition matches</li>
           <li>Role and industry fit</li>
-          <li>Transferable skills and gap analysis</li>
+          <li>Transferable skills and gaps</li>
           <li>Company-specific interview prep</li>
           <li>Compensation context</li>
         </ul>
         <a href="career-transition.html">Explore Career Transition →</a>
       </article>
+
       <article class="journey-card">
-        <div class="journey-num">03 · Outcomes</div>
+        <div class="step">03 · Outcomes</div>
         <h3>What is happening in my search?</h3>
-        <p>Track applications and outcomes so your own search gets smarter over time.</p>
+        <p>Track what actually happens so your search gets smarter instead of just busier.</p>
         <ul>
           <li>Saved → Applied → Interviewing → Offer</li>
-          <li>Response and interview conversion rates</li>
-          <li>Ghosting and time-in-stage tracking</li>
-          <li>Follow-up prompts that feed Fly reviews</li>
-          <li>Offer comparison and negotiation layer</li>
+          <li>Response and interview conversion</li>
+          <li>Ghosting and time-in-stage</li>
+          <li>Follow-up and review prompts</li>
+          <li>Offer comparison and decision support</li>
         </ul>
-        <a href="account.html">Open My Account →</a>
+        <a href="account.html">Open My Search →</a>
       </article>
-    </div>
-    <div class="source-key" aria-label="Data confidence labels">
-      <span class="reported">Reported</span>
-      <span class="public">Public record</span>
-      <span class="observed">Observed</span>
-      <span class="estimated">Estimated</span>
     </div>
   </section>
 
-  <div class="quick-links">
-    <a href="company-intelligence.html">Company Intel<span>Business health, layoffs, leadership, public records and risk.</span></a>
-    <a href="job-intelligence.html">Hiring Intel<span>Active hiring, reposts, ATS, response behavior and hiring reality.</span></a>
-    <a href="account.html">My Search<span>Saved jobs, application stages, outcomes and alerts.</span></a>
-  </div>
+  <section class="section">
+    <div class="section-head">
+      <div class="eyebrow">What you can explore</div>
+      <h2>Built around decisions, not another job board.</h2>
+    </div>
+    <div class="intel-grid">
+      <a class="intel-card" href="company-intelligence.html" style="text-decoration:none;color:inherit"><h3>Company Intel</h3><p>Business health, layoffs, leadership, stability and risk.</p></a>
+      <a class="intel-card" href="job-intelligence.html" style="text-decoration:none;color:inherit"><h3>Hiring Intel</h3><p>Openings, reposts, ATS, hiring activity and candidate signals.</p></a>
+      <a class="intel-card" href="reviews.html" style="text-decoration:none;color:inherit"><h3>Worker Reviews</h3><p>Apply, interview and employee sentiment captured as structured data.</p></a>
+      <a class="intel-card" href="tools.html" style="text-decoration:none;color:inherit"><h3>Paid Services</h3><p>Outcome-focused reviews of job-search services, recruiters and tools.</p></a>
+      <a class="intel-card" href="industries.html" style="text-decoration:none;color:inherit"><h3>Industries</h3><p>See where demand, stability and opportunity are shifting.</p></a>
+      <a class="intel-card" href="interview-prep.html" style="text-decoration:none;color:inherit"><h3>Interview Prep</h3><p>Prepare for the actual company, role and likely process.</p></a>
+      <a class="intel-card" href="career-transition.html" style="text-decoration:none;color:inherit"><h3>Career Transition</h3><p>Find realistic next roles based on capabilities, not just prior titles.</p></a>
+      <a class="intel-card" href="account.html" style="text-decoration:none;color:inherit"><h3>My Search</h3><p>Track jobs, outcomes, alerts and your own search performance.</p></a>
+    </div>
+    <div class="trust" aria-label="Data source labels">
+      <span class="reported">Reported</span>
+      <span class="public">Public record</span>
+      <span class="observed">Observed</span>
+      <span>Estimated</span>
+    </div>
+  </section>
 
-  <div class="method">
-    <div><b>How to read this.</b> Reported = Fly user submissions. Public record = government or company-source facts. Observed = posting or hiring behavior Fly can directly track. Estimated = Fly inferred it from patterns, so treat it as a lead and not a fact.</div>
-    <div><b>Prototype data.</b> The demo companies on this page are fictional. Real company research lives in Company Intel and Hiring Intel.</div>
-  </div>
-</div>
-
-<script>
-(function(){
-"use strict";
-var $=function(id){return document.getElementById(id)};
-var tabs={verdict:$("tab-verdict"),checker:$("tab-checker")};
-var panels={verdict:$("panel-verdict"),checker:$("panel-checker")};
-function showTab(name){Object.keys(tabs).forEach(function(k){tabs[k].setAttribute("aria-selected",k===name?"true":"false");panels[k].hidden=k!==name})}
-tabs.verdict.addEventListener("click",function(){showTab("verdict")});
-tabs.checker.addEventListener("click",function(){showTab("checker")});
-
-var WEIGHTS={resp:.25,fresh:.25,vel:.15,lay:.20,fit:.15};
-var LABELS={resp:"Applicant response rate",fresh:"Posting freshness",vel:"Hiring momentum",lay:"Layoff history",fit:"Role fit"};
-var COMPANIES=[
-{id:"northwind",name:"Northwind Freight Software",role:"VP, Customer Success",meta:"Logistics software · about 1,200 employees · Private · Remote and hybrid",signals:{
-resp:{s:62,kind:"Reported",text:"62% of applicants heard back within three weeks, from 48 submitted Apply reviews."},
-fresh:{s:82,kind:"Estimated",text:"Posted 9 days ago with no reposts."},
-vel:{s:74,kind:"Reported",text:"Open roles are up 18% over 90 days, mostly growth hiring."},
-lay:{s:70,kind:"Reported",text:"No state layoff notices filed in the last 24 months."},
-fit:{s:78,kind:"Estimated",text:"Strong match for VP-level customer leaders with enterprise software experience."}}},
-{id:"brightline",name:"Brightline Care Systems",role:"Director, Customer Experience",meta:"Healthcare technology · about 640 employees · Private · Hybrid",signals:{
-resp:{s:45,kind:"Reported",text:"45% of applicants heard back, but most replies took over five weeks (21 reviews)."},
-fresh:{s:48,kind:"Estimated",text:"Posted 61 days ago and reposted twice."},
-vel:{s:45,kind:"Reported",text:"Open roles are flat. 7 of 9 open roles repeat titles filled in the past year."},
-lay:{s:40,kind:"Reported",text:"One reduction affecting about 11% of staff was filed five months ago."},
-fit:{s:70,kind:"Estimated",text:"Good match on customer experience scope, thinner on healthcare compliance experience."}}},
-{id:"cobalt",name:"Cobalt Ledger",role:"VP, Customer Success",meta:"Financial software · about 300 employees · Private · On-site",signals:{
-resp:{s:12,kind:"Reported",text:"12% of applicants heard back, and 9 of 14 reviewers report no reply at all."},
-fresh:{s:15,kind:"Estimated",text:"Posted 140 days ago and reposted six times."},
-vel:{s:22,kind:"Reported",text:"Open roles are down 30% over 90 days, with two hiring freezes mentioned in reviews."},
-lay:{s:18,kind:"Reported",text:"Two layoff rounds filed within the last 12 months."},
-fit:{s:60,kind:"Estimated",text:"Title and scope match, but the posting requires on-site work in a single office."}}}
-];
-function tone(s){return s>=70?"good":s>=45?"warn":"bad"}
-function score(c){var t=0;Object.keys(WEIGHTS).forEach(function(k){t+=c.signals[k].s*WEIGHTS[k]});return Math.round(t)}
-function verdictFor(n){return n>=70?"apply":n>=45?"caution":"skip"}
-var VTEXT={apply:["Apply","Signals look healthy. Apply this week and set a follow-up reminder."],caution:["Apply with caution","Signals are mixed. Apply, but keep your search moving elsewhere."],skip:["Skip","Several warning signs. Spend your time on stronger leads."]};
-var sel=$("company");
-COMPANIES.forEach(function(c){var o=document.createElement("option");o.value=c.id;o.textContent=c.name+" · "+c.role;sel.appendChild(o)});
-function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n}
-function renderCompany(id){
- var c=COMPANIES.filter(function(x){return x.id===id})[0],n=score(c),v=verdictFor(n);
- $("verdict-card").setAttribute("data-v",v);$("co-label").textContent=c.name+" · "+c.role;$("co-meta").textContent=c.meta;
- $("v-word").textContent=VTEXT[v][0];$("v-sub").textContent=VTEXT[v][1];$("v-score").textContent=n+" / 100";$("v-pin").style.left=Math.max(1,Math.min(99,n))+"%";
- var keys=Object.keys(c.signals),ordered=keys.slice().sort(function(a,b){return v==="apply"?c.signals[b].s-c.signals[a].s:c.signals[a].s-c.signals[b].s}).slice(0,3);
- var ol=$("v-reasons");ol.textContent="";
- ordered.forEach(function(k){var li=el("li");li.appendChild(el("b",null,LABELS[k]));li.appendChild(el("span",null,c.signals[k].text));ol.appendChild(li)});
- var box=$("signals");box.textContent="";
- keys.forEach(function(k){var s=c.signals[k],row=el("div","signal"),head=el("div","signal-head");head.appendChild(el("b",null,LABELS[k]));head.appendChild(el("span","tag "+(s.kind==="Reported"?"rep":""),s.kind));row.appendChild(head);row.appendChild(el("p",null,s.text));var bar=el("div","bar"),i=el("i");i.setAttribute("data-t",tone(s.s));i.style.width=s.s+"%";bar.appendChild(i);row.appendChild(bar);box.appendChild(row)});
- $("save-co").setAttribute("aria-pressed","false");$("follow-co").setAttribute("aria-pressed","false");$("v-status").textContent="";
-}
-sel.addEventListener("change",function(){renderCompany(sel.value)});
-function toggle(btn,onMsg,offMsg){btn.addEventListener("click",function(){var on=btn.getAttribute("aria-pressed")!=="true";btn.setAttribute("aria-pressed",on?"true":"false");$("v-status").textContent=on?onMsg:offMsg})}
-toggle($("save-co"),"Saved to My Account for this session.","Removed from saved companies.");
-toggle($("follow-co"),"Following. In the full product, alerts would appear in My Account.","Unfollowed.");
-renderCompany(COMPANIES[0].id);
-
-var SAMPLES={
-clear:{link:"https://boards.greenhouse.io/northwind/jobs/4021",days:9,reposts:0,text:"VP, Customer Success\nNorthwind Freight Software, remote within the United States\n\nYou will lead a team of 22 across onboarding, support and account management for our enterprise customers, owning net revenue retention and renewal forecasting.\n\nBase salary range: $210,000 to $245,000, plus bonus and equity.\n\nRequirements: 12+ years in customer success, 6+ years leading managers, experience with Salesforce and Gainsight, and a record of improving retention in B2B software.\n\nInterview process: recruiter call, hiring manager conversation, a 60 minute case discussion with the CRO, and a panel with product and finance. We aim to decide within three weeks of your first call."},
-vague:{link:"https://jobs.lever.co/brightline/9f21",days:61,reposts:2,text:"Director, Customer Experience\n\nWe are a fast-paced company looking for a rockstar who can wear many hats. You will help our customers succeed and other duties as assigned.\n\nCompetitive salary and great benefits.\n\nRequirements: strong communication skills and a self-starter attitude."},
-pipeline:{link:"https://cobaltledger.wd5.myworkdayjobs.com/careers/job/VP-Customer-Success",days:140,reposts:6,text:"VP, Customer Success\n\nCobalt Ledger is always hiring great people. Apply now to join our talent community and be considered for future opportunities as they open on an ongoing basis. We keep a pool of candidates for roles across the company.\n\nOn-site in a single office five days a week."}
-};
-var ATS=[["greenhouse.io","Greenhouse"],["lever.co","Lever"],["myworkdayjobs.com","Workday"],["icims.com","iCIMS"],["ashbyhq.com","Ashby"],["smartrecruiters.com","SmartRecruiters"],["taleo.net","Oracle Taleo"],["jobvite.com","Jobvite"],["bamboohr.com","BambooHR"]];
-var GHOST=["talent pipeline","talent community","future opportunities","future openings","evergreen","always hiring","ongoing basis","pool of candidates","general application"];
-var FLAGS=["rockstar","ninja","wear many hats","fast-paced","other duties as assigned","competitive salary","work hard play hard","thick skin","self-starter"];
-function analyze(text,days,reposts,link){
- var lower=text.toLowerCase(),risk=0,items=[];function add(kind,head,body,pts){items.push({k:kind,h:head,b:body});risk+=pts}
- var pay=text.match(/\$\s?\d{2,3}(?:,\d{3})?(?:\s?[kK])?(?:\s?(?:-|to|–)\s?\$?\s?\d{2,3}(?:,\d{3})?(?:\s?[kK])?)?/);
- if(pay)add("good","Pay range listed","Found: "+pay[0].trim()+".",0);else add("watch","No pay range found","The posting does not show a clear pay range.",15);
- if(days>=90)add("flag","Open for "+days+" days","Long-open roles deserve verification before investing heavily.",30);else if(days>=45)add("watch","Open for "+days+" days","Ask whether the role is still actively interviewing.",18);else if(days>=30)add("watch","Open for "+days+" days","Slightly long. Not alarming on its own.",8);else if(days>0)add("good","Posted "+days+" days ago","Recent posting.",0);
- if(reposts>=3)add("flag","Reposted "+reposts+" times","Repeated reposts can signal evergreen, pipeline or difficult-to-fill hiring.",25);else if(reposts>=1)add("watch","Reposted "+reposts+(reposts===1?" time":" times"),"Check whether title or scope changed.",12);
- var ghost=GHOST.filter(function(p){return lower.indexOf(p)!==-1});if(ghost.length)add("flag","Pipeline language","Phrases found: "+ghost.join(", ")+".",Math.min(30,ghost.length*15));
- var flags=FLAGS.filter(function(p){return lower.indexOf(p)!==-1});if(flags.length)add("watch","Vague or loaded wording","Phrases found: "+flags.join(", ")+".",Math.min(12,flags.length*4));
- if(text.trim().length>0&&text.trim().length<400)add("watch","Very short posting","Little detail about scope, team or process.",8);
- var ats="Not detected. Add the posting link to estimate.",l=(link||"").toLowerCase();for(var i=0;i<ATS.length;i++){if(l.indexOf(ATS[i][0])!==-1){ats=ATS[i][1]+" (from the link)";break}}
- var level=risk<20?"Low":risk<45?"Medium":"High";return{risk:Math.min(100,risk),level:level,items:items,ats:ats,pay:pay?pay[0].trim():null}
-}
-function renderResult(r){
- var box=$("result");box.textContent="";var t=r.level==="Low"?"good":r.level==="Medium"?"warn":"bad",top=el("div");top.style.margin="10px 0 4px";var pill=el("span","pill","Ghost job likelihood: "+r.level);pill.setAttribute("data-t",t);top.appendChild(pill);box.appendChild(top);
- var bar=el("div","bar");bar.style.margin="10px 0 14px";var i=el("i");i.setAttribute("data-t",t);i.style.width=Math.max(4,r.risk)+"%";bar.appendChild(i);box.appendChild(bar);
- var ul=el("ul","plain");r.items.forEach(function(it){var li=el("li");li.setAttribute("data-k",it.k);li.appendChild(el("b",null,it.h));li.appendChild(el("span",null,it.b));ul.appendChild(li)});box.appendChild(ul);
- var dl=el("dl","kv");dl.appendChild(el("dt",null,"Pay range"));dl.appendChild(el("dd",null,r.pay||"Not listed"));dl.appendChild(el("dt",null,"Likely ATS"));dl.appendChild(el("dd",null,r.ats));box.appendChild(dl);
- var act=el("div","actions"),save=el("button","btn","Save job"),track=el("button","btn primary","Add to tracker"),st=el("p","status");save.setAttribute("aria-pressed","false");
- save.addEventListener("click",function(){var on=save.getAttribute("aria-pressed")!=="true";save.setAttribute("aria-pressed",on?"true":"false");st.textContent=on?"Saved for this session.":"Removed from saved jobs."});
- track.addEventListener("click",function(){st.textContent="Added to the prototype tracker."});
- act.appendChild(save);act.appendChild(track);box.appendChild(act);box.appendChild(st);
-}
-function run(){renderResult(analyze($("jd").value,parseInt($("days").value,10)||0,parseInt($("reposts").value,10)||0,$("link").value))}
-function loadSample(k){var s=SAMPLES[k];$("jd").value=s.text;$("link").value=s.link;$("days").value=s.days;$("reposts").value=s.reposts;run()}
-$("run-check").addEventListener("click",run);
-Array.prototype.forEach.call(document.querySelectorAll("[data-sample]"),function(b){b.addEventListener("click",function(){loadSample(b.getAttribute("data-sample"))})});
-loadSample("vague");
-})();
-</script>
+  <div class="footer">Fly on the Wall prototype · Worker-first job-market intelligence.</div>
+</main>
 </body>
 </html>
