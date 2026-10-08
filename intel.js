@@ -99,14 +99,18 @@
       const rows = section.rows || [];
       table.innerHTML = `
         <table class="intel-table">
-          <thead><tr><th>Signal</th><th>Data</th><th>Status</th><th>Why it matters</th></tr></thead>
+          <thead><tr><th>Signal</th><th>Data</th><th>Status</th><th>Takeaway</th><th>Source</th></tr></thead>
           <tbody>
-            ${rows.map(row => `<tr>
-              <td>${esc(row[0])}</td>
-              <td><strong>${esc(row[1])}</strong></td>
-              <td><span class="intel-status">${esc(row[2])}</span></td>
-              <td>${esc(row[3])}</td>
-            </tr>`).join("")}
+            ${rows.map(row => {
+              const src = row[4] && c.sources ? c.sources[row[4]] : null;
+              return `<tr>
+                <td>${esc(row[0])}</td>
+                <td><strong>${esc(row[1])}</strong></td>
+                <td><span class="intel-status">${esc(row[2])}</span></td>
+                <td>${esc(row[3])}</td>
+                <td>${src && src.url ? `<a class="intel-source-link" href="${esc(src.url)}" target="_blank" rel="noopener">${esc(src.name || "Source")}</a>` : "—"}</td>
+              </tr>`;
+            }).join("")}
           </tbody>
         </table>
       `;
