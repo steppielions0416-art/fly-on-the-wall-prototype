@@ -1,14 +1,28 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Guidance | Fly on the Wall</title><link rel="stylesheet" href="styles.css"></head><body>
-<header class="site-header"><a class="brand" href="index.html"><img class="brand-wordmark" src="assets/fly-on-the-wall-logo-final.png" alt="Fly on the Wall"></a><nav class="main-nav" aria-label="Fly product">
-<a href="company-intelligence.html">Company Intel</a>
-<a href="job-intelligence.html">Hiring Intel</a>
-<a href="reviews.html">Reviews</a>
-<a href="interview-prep.html">Interview Prep</a>
-<a href="tools.html">Paid Job Seeker Sites</a>
-<a href="industries.html">Industries</a>
+<header class="site-header"><a class="brand" href="index.html"><img class="brand-wordmark" src="assets/fly-on-the-wall-logo-final.png" alt="Fly on the Wall"></a><nav class="main-nav fly-global-nav" aria-label="Fly product">
+<a href="company-intelligence.html">Intel</a>
+<div class="nav-dropdown">
+<button class="nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">Reviews</button>
+<div class="nav-dropdown-menu">
+<a href="reviews.html#apply-reviews">Apply Reviews</a>
+<a href="reviews.html#interview-reviews">Interview Reviews</a>
+<a href="reviews.html#company-reviews">Company Reviews</a>
+</div>
+</div>
+<a href="interview-prep.html">Prep</a>
+<a href="tools.html">Worth</a>
+<a href="industries.html">Industry</a>
 <a href="guidance.html">Guidance</a>
-<a href="account.html">My Account</a>
+<a href="account.html">Account</a>
 </nav><div class="prototype-badge">Prototype</div></header>
 <main class="app-shell area-shell"><section class="area-hero"><p class="eyebrow">Practical guidance</p><h1>Know what to do next.</h1><p>Short, job-seeker-first checklists and templates tied to the moments where people lose time, leverage or confidence.</p></section>
 <section class="guidance-grid"><article><h2>Laid-off checklist</h2><p>Immediate documents, benefits, deadlines, expenses, commission, references and job-search setup.</p></article><article><h2>Résumé checklist</h2><p>What needs to be on the résumé before you start applying.</p></article><article><h2>Interview assignment kit</h2><p>Frameworks for case studies, presentations and 30-60-90 plans.</p></article><article><h2>Interview prep checklist</h2><p>Company, role, examples, questions, compensation and risk review.</p></article><article><h2>Questions to ask</h2><p>Headcount, role funding, team turnover, manager expectations, hiring timeline and success metrics.</p></article><article><h2>Salary / offer negotiation</h2><p>Offer comparison, negotiation prep and decision criteria.</p></article><article><h2>Networking & outreach</h2><p>Practical templates for recruiter, hiring-manager and referral outreach.</p></article><article><h2>Reference preparation</h2><p>Who to ask, what context to give them and what to confirm before the call.</p></article></section></main>
-<footer><p>Fly on the Wall prototype · Guidance.</p></footer></body></html>
+<footer><p>Fly on the Wall prototype · Guidance.</p></footer><script data-fly-nav-script>
+document.querySelectorAll(".nav-dropdown-trigger").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    var open=btn.getAttribute("aria-expanded")==="true";
+    btn.setAttribute("aria-expanded",open?"false":"true");
+    btn.closest(".nav-dropdown").classList.toggle("open",!open);
+  });
+});
+</script></body></html>
