@@ -1,14 +1,20 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Compare paid job-search services before you spend money."><title>Paid Job Seeker Sites | Fly on the Wall</title><link rel="stylesheet" href="styles.css"></head>
-<body><header class="site-header"><a class="brand" href="index.html"><img class="brand-wordmark" src="assets/fly-on-the-wall-logo-final.png" alt="Fly on the Wall"></a><nav class="main-nav" aria-label="Fly product">
-<a href="company-intelligence.html">Company Intel</a>
-<a href="job-intelligence.html">Hiring Intel</a>
-<a href="reviews.html">Reviews</a>
-<a href="interview-prep.html">Interview Prep</a>
-<a href="tools.html">Paid Job Seeker Sites</a>
-<a href="industries.html">Industries</a>
+<body><header class="site-header"><a class="brand" href="index.html"><img class="brand-wordmark" src="assets/fly-on-the-wall-logo-final.png" alt="Fly on the Wall"></a><nav class="main-nav fly-global-nav" aria-label="Fly product">
+<a href="company-intelligence.html">Intel</a>
+<div class="nav-dropdown">
+<button class="nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">Reviews</button>
+<div class="nav-dropdown-menu">
+<a href="reviews.html#apply-reviews">Apply Reviews</a>
+<a href="reviews.html#interview-reviews">Interview Reviews</a>
+<a href="reviews.html#company-reviews">Company Reviews</a>
+</div>
+</div>
+<a href="interview-prep.html">Prep</a>
+<a href="tools.html">Worth</a>
+<a href="industries.html">Industry</a>
 <a href="guidance.html">Guidance</a>
-<a href="account.html">My Account</a>
+<a href="account.html">Account</a>
 </nav><div class="prototype-badge">Prototype</div></header>
 <main class="app-shell area-shell"><section class="area-hero"><p class="eyebrow">Paid job-search services</p><h1>Know what you are paying for.</h1><p>Browse by service type, see what each company says it offers, and eventually compare Fly-owned review outcomes, value, cancellation and refund experiences.</p><div class="service-search"><input type="search" placeholder="Search a site or service name…" aria-label="Search paid job seeker sites"><button type="button">Search</button></div></section>
 <section class="classification-section"><p class="eyebrow">Browse by classification</p><h2>Six prototype categories</h2><div class="classification-grid">
@@ -25,4 +31,12 @@
 <article class="service-detail-card"><div class="service-card-head"><div><span class="service-type">AI Job Search & Auto-Apply</span><h3>Simplify</h3></div><strong>N/A</strong></div><p>Job-search platform with Copilot tools and an Autopilot beta for selected jobs.</p><dl><div><dt>Price</dt><dd>$19.99/week · $39.99/month · $89.99/3 months</dd></div><div><dt>User review before submit?</dt><dd>Autopilot submits selected jobs; Copilot supports review-before-submit</dd></div><div><dt>Data signal</dt><dd>Published policy describes AI-related service data handling</dd></div><div><dt>Fly review grade</dt><dd>N/A — not enough Fly reviews</dd></div></dl><div class="service-actions"><button>Read Reviews</button><button class="secondary">Visit Site</button></div></article>
 <article class="service-detail-card"><div class="service-card-head"><div><span class="service-type">Job Boards & Premium Job Search</span><h3>FlexJobs</h3></div><strong>N/A</strong></div><p>Subscription job-search platform focused on vetted remote, hybrid, freelance and flexible-work opportunities.</p><dl><div><dt>Price</dt><dd>Research in progress</dd></div><div><dt>Free trial / tier</dt><dd>Research in progress</dd></div><div><dt>Refund / cancellation</dt><dd>Research in progress</dd></div><div><dt>Fly review grade</dt><dd>N/A — not enough Fly reviews</dd></div></dl><div class="service-actions"><button>Read Reviews</button><button class="secondary">Visit Site</button></div></article>
 </div><p class="prototype-note">Service cards deliberately show “N/A” or “Research in progress” where the sample set has not yet verified a field.</p></section>
-</main><footer><p>Fly on the Wall prototype · Paid Job Seeker Sites.</p></footer></body></html>
+</main><footer><p>Fly on the Wall prototype · Paid Job Seeker Sites.</p></footer><script data-fly-nav-script>
+document.querySelectorAll(".nav-dropdown-trigger").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    var open=btn.getAttribute("aria-expanded")==="true";
+    btn.setAttribute("aria-expanded",open?"false":"true");
+    btn.closest(".nav-dropdown").classList.toggle("open",!open);
+  });
+});
+</script></body></html>
