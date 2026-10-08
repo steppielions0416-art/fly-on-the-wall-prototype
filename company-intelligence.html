@@ -1,16 +1,73 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Understand the business before you invest time applying."><title>Company Intelligence | Fly on the Wall</title><link rel="stylesheet" href="styles.css"></head>
-<body data-area="Company Intelligence">
-<header class="site-header"><a class="brand" href="index.html"><img class="brand-wordmark" src="assets/fly-on-the-wall-logo-final.png" alt="Fly on the Wall"></a><nav class="main-nav" aria-label="Fly product">
-<a href="company-intelligence.html">Company Intel</a>
-<a href="job-intelligence.html">Hiring Intel</a>
-<a href="reviews.html">Reviews</a>
-<a href="interview-prep.html">Interview Prep</a>
-<a href="tools.html">Paid Job Seeker Sites</a>
-<a href="industries.html">Industries</a>
-<a href="guidance.html">Guidance</a>
-<a href="account.html">My Account</a>
-</nav><div class="prototype-badge">Prototype</div></header>
-<main class="app-shell area-shell"><div id="areaPage"></div></main>
-<footer><p>Fly on the Wall prototype · N/A means verified data is not yet available.</p></footer>
-<script src="companies.js"></script><script src="prototype-features.js"></script><script src="area-pages.js"></script></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Company and hiring intelligence for job seekers.">
+<title>Intel | Fly on the Wall</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img class="brand-wordmark" src="assets/fly-on-the-wall-logo-final.png" alt="Fly on the Wall"></a>
+  <nav class="main-nav fly-global-nav" aria-label="Fly product">
+    <a href="company-intelligence.html">Intel</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">Reviews</button>
+      <div class="nav-dropdown-menu">
+        <a href="reviews.html#apply-reviews">Apply Reviews</a>
+        <a href="reviews.html#interview-reviews">Interview Reviews</a>
+        <a href="reviews.html#company-reviews">Company Reviews</a>
+      </div>
+    </div>
+    <a href="interview-prep.html">Prep</a>
+    <a href="tools.html">Worth</a>
+    <a href="industries.html">Industry</a>
+    <a href="guidance.html">Guidance</a>
+    <a href="account.html">Account</a>
+  </nav>
+  <div class="prototype-badge">Prototype</div>
+</header>
+
+<main class="app-shell intel-shell">
+  <section class="intel-topbar">
+    <div>
+      <p class="eyebrow">Company + Hiring Intel</p>
+      <h1>Know what you’re walking into.</h1>
+    </div>
+    <label class="intel-company-picker">Company
+      <select id="intelCompany"></select>
+    </label>
+  </section>
+
+  <section id="intelHeader" class="intel-company-header"></section>
+
+  <section id="intelScoreGrid" class="intel-score-grid" aria-label="Company and hiring metrics"></section>
+
+  <section class="intel-section">
+    <div class="intel-section-head"><p class="eyebrow">Fast take</p><h2>What matters</h2></div>
+    <div id="intelTakeaways" class="intel-takeaways"></div>
+  </section>
+
+  <section class="intel-section">
+    <div class="intel-section-head"><p class="eyebrow">Hiring data</p><h2>Current signals</h2></div>
+    <div id="intelHiringMetrics" class="intel-data-grid"></div>
+  </section>
+
+  <section class="intel-section">
+    <div class="intel-section-head"><p class="eyebrow">Evidence</p><h2>Company + hiring details</h2></div>
+    <div id="intelTabs" class="intel-tabs"></div>
+    <div id="intelTable" class="intel-table-wrap"></div>
+  </section>
+
+  <section class="intel-method">
+    <strong>How scores work:</strong> Fly scores summarize the verified evidence currently loaded for that company. Ghost-job and AI-filter scores are risk/likelihood scores, not measured market probabilities. N/A means the evidence is not strong enough to score.
+  </section>
+</main>
+
+<footer><p>Fly on the Wall prototype · Reported and estimated signals are kept separate.</p></footer>
+
+<script src="companies.js"></script>
+<script src="intel.js"></script>
+</body>
+</html>
