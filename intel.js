@@ -32,6 +32,30 @@
 
   const scoreTone = n => n == null ? "unknown" : n >= 70 ? "risk" : n >= 45 ? "watch" : "good";
 
+  const parseCount = value => {
+    const s = String(value || "").replace(/,/g,"").trim();
+    const m = s.match(/~?([0-9]+(?:\.[0-9]+)?)\s*([KMB])?/i);
+    if (!m) return null;
+    let n = parseFloat(m[1]);
+    const unit = (m[2] || "").toUpperCase();
+    if (unit === "K") n *= 1000;
+    if (unit === "M") n *= 1000000;
+    if (unit === "B") n *= 1000000000;
+    return Number.isFinite(n) ? n : null;
+  };
+
+  const hiringRate = company => {
+    const rows = company.hiringSnapshot || [];
+    let openings = null, employees = null;
+    rows.forEach(([label,value]) => {
+      if (/visible openings|current openings/i.test(label)) openings = parseCount(value);
+      if (/current employees|employees/i.test(label) && !/estimate/i.test(label)) employees = parseCount(value);
+      if (/current team/i.test(label)) employees = parseCount(value);
+    });
+    if (!openings || !employees) return null;
+    return openings / employees * 100;
+  };
+
   function metricCard(label, value, sub, tone="neutral") {
     return `<article class="intel-score-card ${tone}">
       <span>${esc(label)}</span>
@@ -57,15 +81,23 @@
       <div class="intel-updated">${esc(c.updated || "")}</div>
     `;
 
+    const hRate = hiringRate(c);
+    const ghostLabel = d.ghostJobWatch
+      ? d.ghostJobWatch.replace("Low–Moderate","Low").replace("Low-Moderate","Low")
+      : "Not enough data";
+    const aiLabel = !d.aiHiring || String(d.aiHiring).toLowerCase().includes("unknown")
+      ? "None reported"
+      : d.aiHiring;
+
     scoreGrid.innerHTML = [
       metricCard("Company Grade", c.overallGrade || "N/A", "Overall Fly grade"),
       metricCard("Business Stability", grades["Business Stability"] || "N/A", "Company health"),
       metricCard("Hiring Grade", grades["Hiring & Workforce"] || "N/A", "Hiring + workforce"),
       metricCard("Job Credibility", grades["Job Credibility"] || "N/A", "Role credibility"),
-      metricCard("Ghost-Job Risk", gScore == null ? "N/A" : gScore + "/100", d.ghostJobWatch || "Insufficient evidence", scoreTone(gScore)),
-      metricCard("ATS", d.ats || "N/A", d.ats ? "Detected / researched" : "Not yet verified"),
-      metricCard("AI Filter Likelihood", aScore == null ? "N/A" : aScore + "/100", d.aiHiring || "Insufficient evidence", scoreTone(aScore)),
-      metricCard("Hiring Reality", d.hiringReality || "N/A", d.timeWaste ? "Time-waste risk: " + d.timeWaste : "Tracked evidence")
+      metricCard("Hiring Rate", hRate == null ? "Not available" : hRate.toFixed(hRate >= 10 ? 0 : 1) + "%", hRate == null ? "Needs openings + workforce count" : "Visible openings ÷ workforce", hRate == null ? "unknown" : "neutral"),
+      metricCard("Likely Ghost Jobs", ghostLabel, gScore == null ? "Not enough tracked evidence" : gScore + "/100 risk signal", scoreTone(gScore)),
+      metricCard("ATS", d.ats ? d.ats.replace(" / internal system","").replace(" / unknown","") : "Not reported", d.ats ? "Application system" : "No ATS confirmed"),
+      metricCard("AI Resume Filtering", aiLabel, aScore == null ? "No employer-specific use reported" : aScore + "/100 likelihood signal", scoreTone(aScore))
     ].join("");
 
     const findings = c.findings || [];
