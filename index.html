@@ -66,24 +66,31 @@ h1{font-size:clamp(2.8rem,7vw,5.6rem);line-height:.96;letter-spacing:-.045em;mar
 .trust .observed{border-color:var(--orange);color:#9a5538}
 .footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
 @media(max-width:900px){.hero{grid-template-columns:1fr}.journey-grid{grid-template-columns:1fr}.intel-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:780px){.product-nav{display:none}.logo{width:135px}.wrap{padding-inline:14px}.hero{padding-top:46px}.intel-grid{grid-template-columns:1fr}}
+@media(max-width:780px){.product-nav{display:flex}.logo{width:135px}.wrap{padding-inline:14px}.hero{padding-top:46px}.intel-grid{grid-template-columns:1fr}}
 </style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="site-top">
-  <div class="site-top-inner">
-    <a class="logo" href="index.html"><img src="assets/fly-on-the-wall-logo-final.png" alt="Fly on the Wall"></a>
-    <nav class="product-nav" aria-label="Product navigation">
-      <a href="company-intelligence.html">Company Intel</a>
-      <a href="job-intelligence.html">Hiring Intel</a>
-      <a href="reviews.html">Reviews</a>
-      <a href="tools.html">Paid Services</a>
-      <a href="industries.html">Industries</a>
-      <a href="interview-prep.html">Interview Prep</a>
-      <a href="career-transition.html">Career Transition</a>
-      <a class="account" href="account.html">My Account</a>
-    </nav>
-  </div>
+<header class="site-header">
+  <a class="brand" href="index.html"><img class="brand-wordmark" src="assets/fly-on-the-wall-logo-final.png" alt="Fly on the Wall"></a>
+  <nav class="main-nav fly-global-nav" aria-label="Fly product">
+    <a href="company-intelligence.html">Intel</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">Reviews</button>
+      <div class="nav-dropdown-menu">
+        <a href="reviews.html#apply-reviews">Apply Reviews</a>
+        <a href="reviews.html#interview-reviews">Interview Reviews</a>
+        <a href="reviews.html#company-reviews">Employee Reviews</a>
+        <a href="reviews.html#paid-service-reviews">Paid Service Reviews</a>
+      </div>
+    </div>
+    <a href="interview-prep.html">Prep</a>
+    <a href="tools.html">3rd Party</a>
+    <a href="industries.html">Industry</a>
+    <a href="guidance.html">Guidance</a>
+    <a href="account.html">Control</a>
+  </nav>
+  <div class="prototype-badge">Prototype</div>
 </header>
 
 <main class="wrap">
@@ -91,11 +98,11 @@ h1{font-size:clamp(2.8rem,7vw,5.6rem);line-height:.96;letter-spacing:-.045em;mar
     <div>
       <div class="eyebrow">Job-market intelligence for workers</div>
       <h1>Know what you’re walking into.</h1>
-      <p>Fly on the Wall helps you understand the company, the opportunity and your own search before you spend hours applying, interviewing or paying for help.</p>
+      <p>Research companies. Spot ghost jobs. Prepare for interviews. Get guidance for your next move. Know what’s worth paying for. Track what’s working.</p>
       <div class="hero-actions">
         <a class="btn primary" href="company-intelligence.html">Research a company</a>
         <a class="btn" href="career-transition.html">Explore career paths</a>
-        <a class="btn" href="account.html">Open My Search</a>
+        <a class="btn" href="account.html">Open Control Center</a>
       </div>
     </div>
     <aside class="hero-card">
@@ -156,7 +163,7 @@ h1{font-size:clamp(2.8rem,7vw,5.6rem);line-height:.96;letter-spacing:-.045em;mar
           <li>Follow-up and review prompts</li>
           <li>Offer comparison and decision support</li>
         </ul>
-        <a href="account.html">Open My Search →</a>
+        <a href="account.html">Open Control →</a>
       </article>
     </div>
   </section>
@@ -170,11 +177,11 @@ h1{font-size:clamp(2.8rem,7vw,5.6rem);line-height:.96;letter-spacing:-.045em;mar
       <a class="intel-card" href="company-intelligence.html" style="text-decoration:none;color:inherit"><h3>Company Intel</h3><p>Business health, layoffs, leadership, stability and risk.</p></a>
       <a class="intel-card" href="job-intelligence.html" style="text-decoration:none;color:inherit"><h3>Hiring Intel</h3><p>Openings, reposts, ATS, hiring activity and candidate signals.</p></a>
       <a class="intel-card" href="reviews.html" style="text-decoration:none;color:inherit"><h3>Worker Reviews</h3><p>Apply, interview and employee sentiment captured as structured data.</p></a>
-      <a class="intel-card" href="tools.html" style="text-decoration:none;color:inherit"><h3>Paid Services</h3><p>Outcome-focused reviews of job-search services, recruiters and tools.</p></a>
+      <a class="intel-card" href="tools.html" style="text-decoration:none;color:inherit"><h3>3rd Party Services</h3><p>Outcome-focused reviews of job-search services, recruiters and tools.</p></a>
       <a class="intel-card" href="industries.html" style="text-decoration:none;color:inherit"><h3>Industries</h3><p>See where demand, stability and opportunity are shifting.</p></a>
       <a class="intel-card" href="interview-prep.html" style="text-decoration:none;color:inherit"><h3>Interview Prep</h3><p>Prepare for the actual company, role and likely process.</p></a>
       <a class="intel-card" href="career-transition.html" style="text-decoration:none;color:inherit"><h3>Career Transition</h3><p>Find realistic next roles based on capabilities, not just prior titles.</p></a>
-      <a class="intel-card" href="account.html" style="text-decoration:none;color:inherit"><h3>My Search</h3><p>Track jobs, outcomes, alerts and your own search performance.</p></a>
+      <a class="intel-card" href="account.html" style="text-decoration:none;color:inherit"><h3>Control Center</h3><p>Track jobs, outcomes, alerts and your own search performance.</p></a>
     </div>
     <div class="trust" aria-label="Data source labels">
       <span class="reported">Reported</span>
