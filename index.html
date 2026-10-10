@@ -193,5 +193,14 @@ h1{font-size:clamp(2.8rem,7vw,5.6rem);line-height:.96;letter-spacing:-.045em;mar
 
   <div class="footer">Fly on the Wall prototype · Worker-first job-market intelligence.</div>
 </main>
+<script>
+document.querySelectorAll(".nav-dropdown-trigger").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    var open=btn.getAttribute("aria-expanded")==="true";
+    btn.setAttribute("aria-expanded",String(!open));
+    btn.closest(".nav-dropdown").classList.toggle("open",!open);
+  });
+});
+</script>
 </body>
 </html>
