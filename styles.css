@@ -1246,3 +1246,7 @@ body{
 .intel-empty{padding:1rem;background:#fff;border:1px dashed #d3dbdf;border-radius:10px;color:#697579}
 @media(max-width:980px){.intel-score-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.intel-data-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.intel-shell{padding:22px 14px 45px}.intel-topbar,.intel-company-header{flex-direction:column;align-items:stretch}.intel-company-picker{min-width:0}.intel-score-grid,.intel-data-grid{grid-template-columns:1fr}.fly-global-nav{gap:.05rem}.fly-global-nav>a,.nav-dropdown-trigger{padding:.5rem .55rem;font-size:.8rem}.nav-dropdown-menu{right:0;left:auto}}
+
+/* Reviews is a direct link; the submenu remains accessible on hover/focus. */
+.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu{display:grid}
+.nav-dropdown-menu{top:100%}
