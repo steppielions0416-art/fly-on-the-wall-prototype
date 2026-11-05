@@ -1,0 +1,32 @@
+/* Illustrative, non-functional preview screens for Career and Control. */
+.fly-sample-notice{border:1px solid #9dd0d2;background:#e9f6f5;border-left:5px solid #037e89;border-radius:12px;padding:15px 18px;margin:0 0 28px;font-size:14px;color:#173d42}
+.fly-sample-notice strong{display:block;font-size:15px;margin-bottom:4px;color:#064f56}
+.fly-sample-notice p{margin:0;line-height:1.5}
+.fly-sample-notice a{color:#05636b;text-decoration:underline}
+.sample-hero{margin-bottom:26px}.sample-hero h1{font-size:clamp(36px,5vw,62px);max-width:850px;margin:5px 0 14px}
+.sample-hero p{max-width:770px;color:var(--muted);font-size:16px;line-height:1.55}
+.fly-sample-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:#067985;display:block;margin-bottom:9px}
+.fly-sample-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:16px 0 28px}
+.fly-sample-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.fly-sample-card{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;min-width:0}
+.fly-sample-card h2{font-size:22px;letter-spacing:-.03em;line-height:1.15;margin:0 0 12px}
+.fly-sample-card h3{font-size:17px;margin:0 0 9px}
+.fly-sample-card p,.fly-sample-card li{font-size:14px;line-height:1.5;color:#42585e}
+.fly-sample-card p:last-child{margin-bottom:0}
+.fly-sample-card ul{margin:8px 0 0;padding-left:19px}
+.fly-sample-card li+li{margin-top:7px}
+.fly-sample-card .big-value{font-weight:800;color:#074f57;font-size:22px;line-height:1.2}
+.fly-sample-wide{grid-column:1/-1}
+.fly-sample-soft{background:#f0f9f9}
+.fly-sample-step{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #e6eded}
+.fly-sample-step:last-child{border-bottom:0}
+.fly-sample-step .step-no{flex:0 0 30px;width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#d8eff0;color:#07555d;font-weight:800}
+.fly-sample-step strong{display:block;margin-bottom:3px;font-size:14px}
+.fly-sample-step p{margin:0}
+.fly-sample-tag{display:inline-block;background:#e8f4f4;color:#075c63;font-size:12px;font-weight:800;padding:5px 9px;border-radius:999px;margin:3px 4px 4px 0}
+.fly-sample-tag.neutral{background:#f3f5f5;color:#566b70}
+.fly-sample-muted{color:#6b7c80;font-size:12px}
+.fly-sample-divider{height:1px;background:var(--line);margin:18px 0}
+.fly-sample-link{font-weight:750;color:#05636b}
+.fly-sample-flag{background:#fff7ee;border:1px solid #f3ddc7;border-radius:11px;padding:12px 14px;font-size:13px;line-height:1.55;color:#654525;margin-top:15px}
+@media(max-width:760px){.fly-sample-grid,.fly-sample-grid.three{grid-template-columns:1fr}.fly-sample-card{padding:18px}.fly-sample-notice{margin-bottom:20px}.sample-hero h1{font-size:37px}}
