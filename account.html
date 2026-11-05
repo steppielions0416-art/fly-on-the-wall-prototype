@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Control | Fly on the Wall</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="sample-preview.css">
 </head>
 <body>
 <header class="site-header">
@@ -96,7 +96,7 @@
 </main>
 
 <footer><p>Fly on the Wall prototype · Control Center dashboard.</p></footer>
-<script data-fly-nav-script>
+<script src="sample-preview.js"></script><script data-fly-nav-script>
 document.querySelectorAll(".nav-dropdown-trigger").forEach(function(btn){
   btn.addEventListener("click",function(){
     var open=btn.getAttribute("aria-expanded")==="true";
