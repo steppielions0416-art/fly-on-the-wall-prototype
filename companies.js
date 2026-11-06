@@ -690,4 +690,392 @@ window.FLY_COMPANIES = {
       "caz-uh":{name:"University of Houston Career Center",url:"https://careercenter.bauer.uh.edu/companies/caz-investments/jobs/",note:"Independent current recruiting signal."}
     }
   }
+  commonspirit: {
+  "name": "CommonSpirit Health",
+  "aliases": [
+    "commonspirit",
+    "common spirit"
+  ],
+  "industry": "Nonprofit healthcare · Hospitals",
+  "meta": "Chicago, IL · 160,000+ team members · Nationwide nonprofit health system",
+  "updated": "Updated Nov 5, 2026",
+  "overallGrade": "B-",
+  "grades": {
+    "Business Stability": "B",
+    "Hiring & Workforce": "C+",
+    "Employee Sentiment": "C+",
+    "Customer / Product": "A-",
+    "Job Credibility": "N/A"
+  },
+  "decisionLayer": {
+    "applyDecision": "Verify Team First",
+    "applyWhy": "A large health system with meaningful restructuring and workforce cost reduction plans. Role, hospital and department are essential.",
+    "applyTone": "watch",
+    "hiringReality": "Active alongside restructuring",
+    "hiringWhy": "Recruiting coexists with organizational restructuring and cost reduction.",
+    "hiringTone": "watch",
+    "ghostJobWatch": "Not assessed",
+    "ghostWhy": "No specific job posting supplied; employer hiring does not establish individual headcount.",
+    "ghostTone": "unknown",
+    "ats": "Not verified",
+    "atsWhy": "A role-specific application link is needed.",
+    "aiHiring": "Unknown",
+    "aiWhy": "No role-specific evidence.",
+    "aiTone": "unknown",
+    "timeWaste": "Unknown",
+    "timeWasteWhy": "Need individual vacancy and hiring process.",
+    "timeWasteTone": "unknown",
+    "applicationPath": [
+      [
+        "Specific job",
+        "Not supplied",
+        "Verify employer careers page"
+      ],
+      [
+        "Approved headcount",
+        "Unknown",
+        "Ask recruiter"
+      ],
+      [
+        "Recruiter",
+        "Unknown",
+        "Role-specific"
+      ],
+      [
+        "Interview",
+        "Unknown",
+        "Role-specific"
+      ]
+    ]
+  },
+  "findings": [
+    {
+      "type": "good",
+      "title": "Revenue and EBITDA improved",
+      "text": "FY2026 revenue $42.4B, up 8.5%; EBITDA $1.9B."
+    },
+    {
+      "type": "watch",
+      "title": "Operating losses persist",
+      "text": "FY2026 loss $430M before special charges; $3.2B including charges."
+    },
+    {
+      "type": "watch",
+      "title": "Large restructuring program",
+      "text": "Project ImpACT targets over $1B FY2027 efficiencies, including workforce rationalization."
+    },
+    {
+      "type": "watch",
+      "title": "Employee experiences vary",
+      "text": "Indeed 3.6/5 overall; management 3.2/5; reviews vary by department."
+    }
+  ],
+  "hiringSnapshot": [
+    [
+      "Workforce",
+      "160,000+ employees"
+    ],
+    [
+      "FY2026 revenue",
+      "$42.4B"
+    ],
+    [
+      "Operating loss",
+      "$430M before special charges"
+    ],
+    [
+      "Cost program",
+      "FY2027 >$1B efficiencies target"
+    ]
+  ],
+  "readout": {
+    "good": "Large care network with improved revenue and EBITDA.",
+    "watch": "Financial and organizational restructuring create department-level uncertainty.",
+    "ask": "Is the opening approved and net-new? Is the unit affected by Project ImpACT or the Conifer transition?"
+  },
+  "tabs": {
+    "stability": {
+      "title": "Business Stability",
+      "intro": "Scale and improving operating results, but continued losses and restructuring.",
+      "rows": [
+        [
+          "FY2026 revenue",
+          "$42.4B, up 8.5%",
+          "Positive",
+          "Very large operating scale",
+          "cs-fin"
+        ],
+        [
+          "FY2026 operating result",
+          "-$430M before special charges; -$3.2B including charges",
+          "Watch",
+          "Profitability remains negative",
+          "cs-becker"
+        ]
+      ]
+    },
+    "hiring": {
+      "title": "Hiring & Workforce",
+      "intro": "Workforce reorganization requires role-specific verification.",
+      "rows": [
+        [
+          "Restructuring",
+          "> $1B FY2027 efficiencies target",
+          "Risk",
+          "Possible workforce and organizational changes",
+          "cs-reorg"
+        ]
+      ]
+    },
+    "employees": {
+      "title": "Employee & Workplace",
+      "intro": "Broad network; employer-wide averages cannot describe every team.",
+      "rows": [
+        [
+          "Indeed",
+          "3.6/5 overall; management 3.2/5",
+          "Mixed",
+          "Location and team matter",
+          "cs-indeed"
+        ]
+      ]
+    },
+    "customers": {
+      "title": "Customer & Product",
+      "intro": "Large national healthcare network.",
+      "rows": [
+        [
+          "Reach",
+          "Over 30M patient encounters annually",
+          "Positive",
+          "Substantial operations",
+          "cs-fin"
+        ]
+      ]
+    },
+    "credibility": {
+      "title": "Opportunity & Job Credibility",
+      "intro": "No exact job URL supplied.",
+      "rows": [
+        [
+          "Ghost-job risk",
+          "Not assessed",
+          "Unknown",
+          "Requires specific job posting and hiring history",
+          "cs-fin"
+        ]
+      ]
+    }
+  },
+  "sources": {
+    "cs-fin": {
+      "name": "CommonSpirit FY2026 financial release",
+      "url": "https://www.commonspirit.org/news-articles/commonspirit-health-releases-fy2026-year-end-financial-results",
+      "note": "Official FY2026 figures."
+    },
+    "cs-becker": {
+      "name": "Becker's — FY2026 results",
+      "url": "https://www.beckershospitalreview.com/finance/commonspirit-narrows-operating-loss-to-1-in-fy-2026-before-special-charges/",
+      "note": "Special charges and operating loss."
+    },
+    "cs-reorg": {
+      "name": "Becker's — Project ImpACT",
+      "url": "https://www.beckershospitalreview.com/finance/commonspirit-cfo-on-6b-overhaul-were-not-afraid-of-short-term-costs/",
+      "note": "2027 cost reductions."
+    },
+    "cs-indeed": {
+      "name": "Indeed employer reviews",
+      "url": "https://www.indeed.com/cmp/Commonspirit-Health/reviews",
+      "note": "User reviews, not verified workforce facts."
+    }
+  }
+},
+  loyalsource: {
+  "name": "Loyal Source Government Services",
+  "aliases": [
+    "loyal source",
+    "loyal source government services"
+  ],
+  "industry": "Federal contracting · Medical services · Workforce",
+  "meta": "Orlando, FL · Federal contract recipient",
+  "updated": "Updated Nov 5, 2026",
+  "overallGrade": "C+",
+  "grades": {
+    "Business Stability": "B",
+    "Hiring & Workforce": "C",
+    "Employee Sentiment": "C-",
+    "Customer / Product": "B",
+    "Job Credibility": "N/A"
+  },
+  "decisionLayer": {
+    "applyDecision": "Verify Contract First",
+    "applyWhy": "Strong federal award activity, but employment stability may depend on a particular task order and recompete.",
+    "applyTone": "watch",
+    "hiringReality": "Contract-linked",
+    "hiringWhy": "FY2026 federal award obligations are substantial; they do not establish every job is funded.",
+    "hiringTone": "watch",
+    "ghostJobWatch": "Not assessed",
+    "ghostWhy": "No specific posting supplied; job needs contract and recruiter verification.",
+    "ghostTone": "unknown",
+    "ats": "Not verified",
+    "atsWhy": "Specific vacancy link needed.",
+    "aiHiring": "Unknown",
+    "aiWhy": "No employer-specific screening evidence collected.",
+    "aiTone": "unknown",
+    "timeWaste": "Unknown",
+    "timeWasteWhy": "Depends on task order, position, and funding.",
+    "timeWasteTone": "unknown",
+    "applicationPath": [
+      [
+        "Specific job",
+        "Not supplied",
+        "Verify career-page listing"
+      ],
+      [
+        "Funding contract",
+        "Unknown",
+        "Identify task order and expiration"
+      ],
+      [
+        "Recruiter",
+        "Unknown",
+        "Confirm approved funded opening"
+      ],
+      [
+        "Interview",
+        "Unknown",
+        "Role specific"
+      ]
+    ]
+  },
+  "findings": [
+    {
+      "type": "good",
+      "title": "Significant federal awards",
+      "text": "FY2026 contract obligations approximately $1.91B, principally VA; not revenue."
+    },
+    {
+      "type": "watch",
+      "title": "Contract expiration exposure",
+      "text": "Large 2026 VA medical disability exam task orders list Dec. 31, 2026 performance end dates."
+    },
+    {
+      "type": "watch",
+      "title": "Job security reviews are weak",
+      "text": "Indeed job security and advancement 2.6/5, management 2.9/5."
+    },
+    {
+      "type": "watch",
+      "title": "A contract is not a guaranteed role",
+      "text": "Verify that the exact opening is supported by awarded, funded, continuing work."
+    }
+  ],
+  "hiringSnapshot": [
+    [
+      "FY2026 federal obligations",
+      "~$1.91B"
+    ],
+    [
+      "Major agency",
+      "Department of Veterans Affairs"
+    ],
+    [
+      "Large task order end dates",
+      "Dec 31, 2026"
+    ],
+    [
+      "Role verification",
+      "No job URL provided"
+    ]
+  ],
+  "readout": {
+    "good": "Substantial federal contract obligations and operating history.",
+    "watch": "Contract continuity, assignment term, and uneven employee reviews.",
+    "ask": "Which federal contract and task order funds this job, when does it end, and what happens if it is not renewed?"
+  },
+  "tabs": {
+    "stability": {
+      "title": "Business Stability",
+      "intro": "Federal obligation totals are not company revenue or profit.",
+      "rows": [
+        [
+          "FY2026 obligations",
+          "~$1.91B",
+          "Positive",
+          "Government contracts are material",
+          "ls-awards"
+        ]
+      ]
+    },
+    "hiring": {
+      "title": "Hiring & Workforce",
+      "intro": "Contract-specific funding and duration are key.",
+      "rows": [
+        [
+          "VA task orders",
+          "Several end Dec 31, 2026",
+          "Watch",
+          "Recompete and extension need confirmation",
+          "ls-order"
+        ]
+      ]
+    },
+    "employees": {
+      "title": "Employee & Workplace",
+      "intro": "Public anonymous reviews are directional only.",
+      "rows": [
+        [
+          "Indeed",
+          "3.2/5 overall; job security/advancement 2.6/5",
+          "Watch",
+          "Ask about contract tenure and supervision",
+          "ls-indeed"
+        ]
+      ]
+    },
+    "customers": {
+      "title": "Customer & Product",
+      "intro": "VA medical disability evaluations are a major component.",
+      "rows": [
+        [
+          "Federal clients",
+          "VA and DHS among major agencies",
+          "Positive",
+          "Public award records support activity",
+          "ls-awards"
+        ]
+      ]
+    },
+    "credibility": {
+      "title": "Opportunity & Job Credibility",
+      "intro": "No individual posting supplied.",
+      "rows": [
+        [
+          "Ghost-job risk",
+          "Not assessed",
+          "Unknown",
+          "Need job ID, posting timeline, contract identifier",
+          "ls-order"
+        ]
+      ]
+    }
+  },
+  "sources": {
+    "ls-awards": {
+      "name": "HigherGov — Loyal Source awards",
+      "url": "https://www.highergov.com/awardee/loyal-source-government-services-llc-10000389/",
+      "note": "Obligations, not revenue."
+    },
+    "ls-order": {
+      "name": "HigherGov — VA delivery order",
+      "url": "https://www.highergov.com/contract/36C10X25D0001-36C10X26N0040/",
+      "note": "Period of performance and funding."
+    },
+    "ls-indeed": {
+      "name": "Indeed — Loyal Source reviews",
+      "url": "https://www.indeed.com/cmp/Loyal-Source/reviews",
+      "note": "User review aggregate."
+    }
+  }
+},
 };
